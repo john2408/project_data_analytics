@@ -1,0 +1,9 @@
+pandas
+jupyter
+ipykernel
+openpyxl
+streamlit
+openai
+streamlit-feedback
+python-dotenv
+scikit-learn
