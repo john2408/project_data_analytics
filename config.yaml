@@ -1,0 +1,6 @@
+preprocessing: 
+  vol_data_path: "../data/raw/inbound_volume_data.csv"
+  prod_data_path: "../data/raw/production_data.csv"
+  covid_data_path: "../data/raw/Covid-19_cases_age_specific.csv"
+  vol_silver_path: "../data/raw/bronze/historical_volume_bronze.parquet"
+
