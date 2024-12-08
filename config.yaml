@@ -7,3 +7,12 @@ preprocessing:
   prod_silver_path: "../data/silver/production_plannig_silver.parquet"
   covid_silver_path: "../data/silver/monthly_covid_rate_per_country.parquet"
 
+  vol_gold_path: "../data/gold/historical_volume_gold.parquet"
+  prod_gold_path: "../data/gold/production_plannig_gold.parquet"
+  covid_gold_path: "../data/gold/monthly_covid_rate_per_country_gold.parquet"
+
+
+
+data_quality:
+  ts_len_threshold: 8
+

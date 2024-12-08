@@ -36,9 +36,9 @@ def preprocessing_volume_data(df_vol: pd.DataFrame) -> pd.DataFrame:
     df_vol["Expected Vol [Tons]"] = np.round(df_vol["Expected Vol [Kg]"] / 1000, 3)
 
     df_vol.columns = df_vol.columns.str.replace(" ", "_")
-    df_vol['Provider'] = df_vol['Provider'].astype('category')
-    df_vol['Plant'] = df_vol['Plant'].astype('category')
-    df_vol['ts_key'] = df_vol['ts_key'].astype('category')
+    #df_vol['Provider'] = df_vol['Provider'].astype('category')
+    #df_vol['Plant'] = df_vol['Plant'].astype('category')
+    #df_vol['ts_key'] = df_vol['ts_key'].astype('category')
 
     return df_vol
 
@@ -138,7 +138,7 @@ def data_quality_vol_analysis(df_vol: pd.DataFrame) -> None:
     print(" Number of time series with data until October 2022: ", ts_with_current_data)
     print(" Number of Total Time Series Available: ", df_vol_summary["ts_key"].nunique())
     print(
-        " Number of Total Time Series Available: ",
+        " Number of Total Time Series Available for Prediction: ",
         np.round(ts_with_current_data / df_vol_summary["ts_key"].nunique(), 2) * 100,
         " %",
     )
@@ -149,10 +149,11 @@ def apply_data_quality_timeseries(df_vol: pd.DataFrame,
                                   df_vol_summary: pd.DataFrame, 
                                   ts_len_threshold: int = 8) -> pd.DataFrame:
     """Apply Data Quality to timeseries data. We apply the following data quality
-    measure: 
+    measures: 
     - (1) Timeseries must have valid data at max date available
     - (2) Timeseries must have a lenght >= than ts_len_threshold
-    - (3) Timeseries must not contain duplicates
+    - (3) Timeseries must not contain duplicates (No Duplicates)
+    - (4) Timeseries must be contain values in all months (Completness)
 
     Args:
         df_vol (pd.DataFrame): volume data in silver layer
@@ -189,6 +190,9 @@ def apply_data_quality_timeseries(df_vol: pd.DataFrame,
     print(" The max ts length is ", df_vol["ts_len"].max())
     print(" The mean ts length is ", df_vol["ts_len"].mean())
 
+    # -----------------------------------------------------------------    
+    # (2) Timeseries must have a lenght >= than ts_len_threshold
+    # -----------------------------------------------------------------
     remaining_ts = df_vol[df_vol["ts_len"] > ts_len_threshold]["ts_key"].unique()
     print(" TS to forecast with Models", len(remaining_ts))
     print(
@@ -200,14 +204,76 @@ def apply_data_quality_timeseries(df_vol: pd.DataFrame,
 
 
     # -----------------------------------------------------------------    
-    # (2) Timeseries must have a lenght >= than ts_len_threshold
+    # (3) Timeseries must not contain duplicates
     # -----------------------------------------------------------------
     # The idea is the for every 'Timestamp','ts_key' combination
     # there should be only one entry for the column 'Actual Vol [Kg]'
-    df_vol_validator = (
-        df_vol[["Timestamp", "ts_key", "Actual Vol [Kg]"]]
-        .groupby(["Timestamp", "ts_key"])
-        .count()
-        .rename(columns={"Actual Vol [Kg]": "n_values"})
+    df_vol_c = (
+        df_vol[["Timestamp", "ts_key", "Actual_Vol_[Tons]", "Expected_Vol_[Tons]"]]
+        .groupby(["Timestamp", "ts_key"], group_keys=False)
+        .agg(
+            {
+                "Actual_Vol_[Tons]": sum,
+                "Expected_Vol_[Tons]": sum,
+            }
+        )
         .reset_index()
+        .set_index("Timestamp")
     )
+
+    # Verify that every Timestamp-Plant combination only contains one entry
+    df_verify = (
+        df_vol_c.groupby(["Timestamp", "ts_key"])["Actual_Vol_[Tons]"]
+        .count()
+        .to_frame()
+        .rename(columns={"Actual_Vol_[Tons]": "n_values"})
+    )
+    assert df_verify["n_values"].unique() == np.array([1])
+
+    # -----------------------------------------------------------------    
+    # (4) Timeseries must be contain values in all months (Completness)
+    # -----------------------------------------------------------------
+    ts = pd.DataFrame()
+    # ref: https://pandas.pydata.org/docs/user_guide/timeseries.html#timeseries-offset-aliases'
+    for ts_key in df_vol_c["ts_key"].unique():
+        # build custom date range for timeseries
+        idx = pd.date_range(
+            start=df_vol_c[df_vol_c["ts_key"] == ts_key].index.min(),
+            end=df_vol_c.index.max(),
+            freq="MS",  # Start of month
+            name="Timestamp",
+        )
+
+        # fill holes in time series
+        df = df_vol_c.loc[df_vol_c["ts_key"] == ts_key].reindex(idx)
+        df.fillna(
+            {
+                "ts_key": ts_key,
+                "Actual _Vol_[Tons]": 0,
+                "Expected_Vol_[Tons]": 0,
+            },
+            inplace=True,
+        )
+        df["Actual_Vol_[Tons]"] = df["Actual_Vol_[Tons]"].astype(np.float32)
+        df["Expected_Vol_[Tons]"] = df["Expected_Vol_[Tons]"].astype(np.float32)
+
+        if ts.empty:
+            ts = df
+        else:
+            ts = pd.concat([ts, df])
+
+        del df
+
+    ts.reset_index(inplace=True)
+
+    # Create Column Plant
+    ts["Plant"] = ts["ts_key"].apply(lambda x: x.split("-")[1])
+
+    # We verify that all ts end at the max date
+    max_date = ts["Timestamp"].max()
+    max_date_all_ts = (ts[["ts_key","Timestamp"]]
+                    .groupby(["ts_key"])
+                    ['Timestamp'].max().unique()[0])
+    assert max_date_all_ts==max_date, "There are timeseries ending at different dates"
+
+    return ts
