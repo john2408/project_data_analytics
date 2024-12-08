@@ -1,4 +1,5 @@
 import pandas as pd
+import numpy as np
 import statsmodels.api as sm
 from typing import List, Dict
 
@@ -90,11 +91,12 @@ def apply_feature_eng(df_ratio_gold: pd.DataFrame,
     
     return df_ratio_gold
 
-def features_seasonal_decomposition(df_ratio_gold: pd.DataFrame) -> pd.DataFrame:
+def features_seasonal_decomposition(df_ratio_gold: pd.DataFrame, target_col:str) -> pd.DataFrame:
     """Get the seasonal decomposition features of the timeseries
 
     Args:
         df_ratio_gold (pd.DataFrame): vol/production ratio dataframe
+        target_col (str): target column
 
     Returns:
         pd.DataFrame: seasonal decomposition features of every timeseries
@@ -103,7 +105,7 @@ def features_seasonal_decomposition(df_ratio_gold: pd.DataFrame) -> pd.DataFrame
     dfs = []
     for ts_key in df_ratio_gold["ts_key"].unique():
 
-        ts_series = df_ratio_gold[df_ratio_gold["ts_key"] == ts_key][col].copy()
+        ts_series = df_ratio_gold[df_ratio_gold["ts_key"] == ts_key][target_col].copy()
 
         _df = seasonal_decomposition(ts_series=ts_series,
                             ts_key=ts_key, 
