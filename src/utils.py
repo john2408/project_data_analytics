@@ -24,6 +24,7 @@ def read_config(yaml_file_path: str) -> Dict:
 
     return config
 
+
 def smape(y_true: np.array, y_pred: np.array) -> float:
     """Calculate the Symmetric Mean Absolute Error
     Args:
@@ -33,8 +34,10 @@ def smape(y_true: np.array, y_pred: np.array) -> float:
     Returns:
         float: SMAPE
     """
-    return 100 * np.mean(2 * np.abs(y_pred - y_true) 
-                         / (np.abs(y_pred) + np.abs(y_true)))
+    return 100 * np.mean(
+        2 * np.abs(y_pred - y_true) / (np.abs(y_pred) + np.abs(y_true))
+    )
+
 
 def store_pickle(obj: Any, path: str) -> None:
     """Store object as pickle
