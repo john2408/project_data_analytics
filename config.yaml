@@ -1,19 +1,24 @@
 preprocessing: 
+
+  # Bronze Tables
   vol_data_path: "../data/raw/inbound_volume_data.csv"
   prod_data_path: "../data/raw/production_data.csv"
   covid_data_path: "../data/raw/Covid-19_cases_age_specific.csv"
 
+  # Silver Tables
   vol_silver_path: "../data/silver/historical_volume_silver.parquet"
   prod_silver_path: "../data/silver/production_plannig_silver.parquet"
   covid_silver_path: "../data/silver/monthly_covid_rate_per_country.parquet"
 
+  # Gold tables
   vol_gold_path: "../data/gold/historical_volume_gold.parquet"
   prod_gold_path: "../data/gold/production_plannig_gold.parquet"
   covid_gold_path: "../data/gold/monthly_covid_rate_per_country_gold.parquet"
   ratio_gold_path: "../data/gold/ratio_vol_prod_gold.parquet"
+  seasonal_feat_gold_path: "../data/gold/seasonal_feat_gold.parquet"
 
+  # Reports
   pdf_report_ratios_path: "../reports/Timeseries_Vol_Prod_Ratio.pdf"
-
 
 data_quality:
   ts_len_threshold: 8
