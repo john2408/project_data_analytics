@@ -16,6 +16,7 @@ preprocessing:
   covid_gold_path: "../data/gold/monthly_covid_rate_per_country_gold.parquet"
   ratio_gold_path: "../data/gold/ratio_vol_prod_gold.parquet"
   seasonal_feat_gold_path: "../data/gold/seasonal_feat_gold.parquet"
+  timeseries_gold_path: "../data/gold/timeseries_gold.parquet"
 
   # Reports
   pdf_report_ratios_path: "../reports/Timeseries_Vol_Prod_Ratio.pdf"
@@ -23,3 +24,12 @@ preprocessing:
 data_quality:
   ts_len_threshold: 8
 
+feature_eng:
+  lag_months: [2 ,3, 4, 5, 6]
+  rolling_months: [2, 4, 6]
+  drop_cols : ['Actual_Vol_[Tons]', 
+             'Expected_Vol_[Tons]',
+             'Expected_Vol_[Kg]',
+             'Vol/Prod_ratio_ton'
+             ,'Actual_Vol_[Kg]']
+  target_col: "Vol/Prod_ratio_kg"
