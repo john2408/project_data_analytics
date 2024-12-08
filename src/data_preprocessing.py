@@ -99,3 +99,115 @@ def preprocesing_covid(df_covid: pd.DataFrame) -> pd.DataFrame:
     df_covid_rate_country = df_covid_rate.pivot(index='Timestamp', columns='country', values='rate_14_day_per_100k')
 
     return df_covid_rate_country
+
+
+def data_quality_vol_analysis(df_vol: pd.DataFrame) -> None:
+    """Timeseries data quality checks for volume data
+
+    Args:
+        df_vol (pd.DataFrame): historical volume data in silver layer
+
+    Returns:
+        None
+    """
+
+    # Check the timeseries length
+    df_vol["ts_len"] = df_vol.groupby("ts_key")["Timestamp"].transform(lambda x: len(x))
+
+    # Create a Summary of all columns
+    df_vol_summary = df_vol.groupby(["ts_key"]).agg(["min", "max"])
+    df_vol_summary.columns = ["-".join(x) for x in df_vol_summary.columns]
+    df_vol_summary = df_vol_summary.reset_index()
+
+    print(
+    " The min date available among all timeseries is: ",
+    df_vol_summary["Timestamp-min"].min(),
+    )
+    print(
+        " The max date available among all timeseries is: ",
+        df_vol_summary["Timestamp-max"].max(),
+    )
+
+    print(" The min ts length is: ", df_vol_summary["ts_len-min"].min())
+    print(" The max ts length is: ", df_vol_summary["ts_len-max"].max())
+
+    ts_with_current_data = df_vol_summary[
+        df_vol_summary["Timestamp-max"] == df_vol_summary["Timestamp-max"].max()
+    ]["ts_key"].nunique()
+
+    print(" Number of time series with data until October 2022: ", ts_with_current_data)
+    print(" Number of Total Time Series Available: ", df_vol_summary["ts_key"].nunique())
+    print(
+        " Number of Total Time Series Available: ",
+        np.round(ts_with_current_data / df_vol_summary["ts_key"].nunique(), 2) * 100,
+        " %",
+    )
+
+    return df_vol_summary
+
+def apply_data_quality_timeseries(df_vol: pd.DataFrame, 
+                                  df_vol_summary: pd.DataFrame, 
+                                  ts_len_threshold: int = 8) -> pd.DataFrame:
+    """Apply Data Quality to timeseries data. We apply the following data quality
+    measure: 
+    - (1) Timeseries must have valid data at max date available
+    - (2) Timeseries must have a lenght >= than ts_len_threshold
+    - (3) Timeseries must not contain duplicates
+
+    Args:
+        df_vol (pd.DataFrame): volume data in silver layer
+        df_vol_summary (pd.DataFrame): summary statistics for vol data
+        ts_len_threshold (int): min numer of datapoints in a ts to be considered in the analysis.  
+
+    Returns:
+        pd.DataFrame: gold volume data
+    """
+    
+    # -----------------------------------------------------------------    
+    # (1) Timeseries must have valid data at max date available
+    # -----------------------------------------------------------------
+    
+    # We keep only the timeseries which have data until the max date available
+    max_date_valid_ts = df_vol_summary[
+        (df_vol_summary["Timestamp-max"] == df_vol_summary["Timestamp-max"].max())
+    ]["ts_key"].unique()
+
+    # Now we just keep those valid timeseries from the data
+    # and we overwrite our dataset
+    df_vol = df_vol[df_vol["ts_key"].isin(max_date_valid_ts)].copy()
+
+    # We just verify our filter was made correctly
+    # We validate that all ts_key in our new df_vol
+    # are the same as the one in the list valid_ts
+    assert set(df_vol["ts_key"].unique()) == set(max_date_valid_ts), "There are missing timeseries"
+
+    print("Number of available timeseries after first filtering:", df_vol["ts_key"].nunique())
+
+    # After the filter we end up with 306 timeseries which can be forecast. 
+    # We analyze then some key metrics:
+    print(" The min ts length is ", df_vol["ts_len"].min())
+    print(" The max ts length is ", df_vol["ts_len"].max())
+    print(" The mean ts length is ", df_vol["ts_len"].mean())
+
+    remaining_ts = df_vol[df_vol["ts_len"] > ts_len_threshold]["ts_key"].unique()
+    print(" TS to forecast with Models", len(remaining_ts))
+    print(
+        " TS to forecast with Models", np.round(len(remaining_ts)/ len(max_date_valid_ts), 2) * 100, " %"
+    )
+
+    # Let`s now filter our data
+    df_vol = df_vol[df_vol["ts_key"].isin(remaining_ts)].copy()
+
+
+    # -----------------------------------------------------------------    
+    # (2) Timeseries must have a lenght >= than ts_len_threshold
+    # -----------------------------------------------------------------
+    # The idea is the for every 'Timestamp','ts_key' combination
+    # there should be only one entry for the column 'Actual Vol [Kg]'
+    df_vol_validator = (
+        df_vol[["Timestamp", "ts_key", "Actual Vol [Kg]"]]
+        .groupby(["Timestamp", "ts_key"])
+        .count()
+        .rename(columns={"Actual Vol [Kg]": "n_values"})
+        .reset_index()
+    )
