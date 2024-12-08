@@ -3,11 +3,19 @@ import optuna
 import pandas as pd
 from datetime import datetime
 import lightgbm as lgb
-from typing import List
+from typing import List, Tuple
 from sklearn.metrics import mean_absolute_error
 
-def train_test_lightgbm(ts: pd.DataFrame, shards: List[datetime]) -> List[lgb.basic.Booster, pd.DataFrame]:
+def train_test_lightgbm(ts: pd.DataFrame, shards: List[datetime]) -> Tuple[lgb.basic.Booster, pd.DataFrame]:
+    """Train/validate/test LightGBM Model
 
+    Args:
+        ts (pd.DataFrame): input timeseries data with features
+        shards (List[datetime]): train/val/test chards
+
+    Returns:
+        Tuple[lgb.basic.Booster, pd.DataFrame]: model and forecast values
+    """
     #ts = df_timeseries_gold.copy()
 
     DROP_COLUMNS = []

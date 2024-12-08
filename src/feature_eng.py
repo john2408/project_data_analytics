@@ -74,16 +74,30 @@ def apply_feature_eng(df_ratio_gold: pd.DataFrame,
     rolling_months = config['rolling_months']
     target_col = config['target_col']
     drop_cols = config['drop_cols']
+    expected_vol_col = config['expected_vol_col']
+    expected_vol_col_rename = config['expected_vol_col_rename']
 
+    df_ratio_gold.rename(columns={expected_vol_col:expected_vol_col_rename}, inplace=True)
     df_ratio_gold.drop(columns=drop_cols, inplace=True)
     df_ratio_gold = categorical_features(df_ratio_gold=df_ratio_gold)
     df_ratio_gold = time_features(df_ratio_gold=df_ratio_gold)
+
+    # For target Column
     df_ratio_gold = lag_features(df_ratio_gold=df_ratio_gold, 
                     target_col=target_col,
                     lag_months=lag_months)
     df_ratio_gold = rolling_features(df_ratio_gold=df_ratio_gold,
                         target_col=target_col, 
                         rolling_months=rolling_months)
+    
+    # For Expected Volume Columns
+    df_ratio_gold = lag_features(df_ratio_gold=df_ratio_gold, 
+                    target_col=expected_vol_col_rename,
+                    lag_months=lag_months)
+    df_ratio_gold = rolling_features(df_ratio_gold=df_ratio_gold,
+                        target_col=expected_vol_col_rename, 
+                        rolling_months=rolling_months)
+    
     df_ratio_gold = add_seasonal_features(df_ratio_gold=df_ratio_gold, 
                     df_ts_decomposition=df_ts_decomposition)
     df_ratio_gold = add_covid_data(df_ratio_gold=df_ratio_gold,

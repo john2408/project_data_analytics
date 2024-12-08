@@ -29,7 +29,9 @@ feature_eng:
   rolling_months: [2, 4, 6]
   drop_cols : ['Actual_Vol_[Tons]', 
              'Expected_Vol_[Tons]',
-             'Expected_Vol_[Kg]',
-             'Vol/Prod_ratio_ton'
-             ,'Actual_Vol_[Kg]']
+             'Vol/Prod_ratio_ton',
+             'Actual_Vol_[Kg]']
   target_col: "Vol/Prod_ratio_kg"
+  expected_vol_col: "Expected_Vol_[Kg]"
+  expected_vol_col_rename: "expected_vol_kg"
+

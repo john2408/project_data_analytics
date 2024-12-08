@@ -249,7 +249,7 @@ def apply_data_quality_timeseries(df_vol: pd.DataFrame,
         df.fillna(
             {
                 "ts_key": ts_key,
-                "Actual _Vol_[Tons]": 0,
+                "Actual_Vol_[Tons]": 0,
                 "Expected_Vol_[Tons]": 0,
             },
             inplace=True,
@@ -275,5 +275,8 @@ def apply_data_quality_timeseries(df_vol: pd.DataFrame,
                     .groupby(["ts_key"])
                     ['Timestamp'].max().unique()[0])
     assert max_date_all_ts==max_date, "There are timeseries ending at different dates"
+
+    assert ts[ts['Actual_Vol_[Tons]'].isna()].shape[0] == 0, "There are NaN Values in Column Actual Vol Kgs"
+    assert ts[ts['Expected_Vol_[Tons]'].isna()].shape[0] == 0, "There are NaN Values in Column Expected Vol Kgs"
 
     return ts
