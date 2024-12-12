@@ -84,6 +84,8 @@ def plot_err_less_20_SMAPE(buckets_data: dict, figsize: tuple = (8, 6)) -> None:
     # Show plot
     plt.show()
 
+    return df_acc_less_20
+
 
 def plot_ratio_vol_prod(ts_key: str, df_ratio: pd.DataFrame) -> None:
     """Plot Ratio-Volume-Production values for a given
