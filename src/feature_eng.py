@@ -81,6 +81,8 @@ def apply_feature_eng(
     drop_cols = config["drop_cols"]
     expected_vol_col = config["expected_vol_col"]
     expected_vol_col_rename = config["expected_vol_col_rename"]
+    config_seasonal_feat = config["seasonal_features"]
+    config_covid_feat = config["covid_features"]
 
     df_ratio_gold.rename(
         columns={expected_vol_col: expected_vol_col_rename}, inplace=True
@@ -110,11 +112,50 @@ def apply_feature_eng(
         target_col=expected_vol_col_rename,
         rolling_months=rolling_months,
     )
+    df_ratio_gold.drop(columns=[expected_vol_col_rename], inplace=True)
 
     df_ratio_gold = add_seasonal_features(
         df_ratio_gold=df_ratio_gold, df_ts_decomposition=df_ts_decomposition
     )
+    
+    for ref_col, col_config in config_seasonal_feat.items():
+
+        print("Calculating lags and rolling features for ", ref_col)
+        df_ratio_gold = lag_features(
+            df_ratio_gold=df_ratio_gold,
+            target_col=col_config['col_name'],
+            lag_months=col_config['lag_months'],
+        )
+        df_ratio_gold = rolling_features(
+            df_ratio_gold=df_ratio_gold,
+            target_col=col_config['col_name'],
+            rolling_months=col_config['rolling_months'],
+        )
+
+        # Drop Column to avoid data leakage
+        df_ratio_gold.drop(columns=[col_config['col_name']], inplace=True)
+
+    
     df_ratio_gold = add_covid_data(df_ratio_gold=df_ratio_gold, df_covid=df_covid)
+   
+    #Calculate Covid Features for each country
+    for col_name in config_covid_feat['cols_names']:
+
+        print("Calculating lags and rolling features for ", col_name)
+
+        df_ratio_gold = lag_features(
+            df_ratio_gold=df_ratio_gold,
+            target_col=col_name,
+            lag_months=config_covid_feat['lag_months'],
+        )
+        df_ratio_gold = rolling_features(
+            df_ratio_gold=df_ratio_gold,
+            target_col=col_name,
+            rolling_months=config_covid_feat['rolling_months'],
+        )
+
+        # Drop Column to avoid data leakage
+        df_ratio_gold.drop(columns=[col_name], inplace=True)
 
     return df_ratio_gold
 
@@ -230,10 +271,10 @@ def rolling_features(
     START_LAG = 2
 
     for i in rolling_months:
-        df_ratio_gold["Rolling_Mean_" + str(i)] = df_ratio_gold.groupby(["ts_key"])[
+        df_ratio_gold[f"{target_col}_Rolling_Mean_" + str(i)] = df_ratio_gold.groupby(["ts_key"])[
             target_col
         ].transform(lambda x: x.shift(START_LAG).rolling(i).mean())
-        df_ratio_gold["Rolling_std_" + str(i)] = df_ratio_gold.groupby(["ts_key"])[
+        df_ratio_gold[f"{target_col}_Rolling_std_" + str(i)] = df_ratio_gold.groupby(["ts_key"])[
             target_col
         ].transform(lambda x: x.shift(START_LAG).rolling(i).std())
 

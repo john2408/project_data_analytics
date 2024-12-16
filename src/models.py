@@ -112,7 +112,7 @@ def train_test_lightgbm(
     # Convert Providers and Plant Column to binary format
     ts = pd.get_dummies(ts, columns=CAT_FEATURES)
 
-    n_opt_trials = 25
+    n_opt_trials = 12
     params = {
         "objective": "regression",
         "metric": "mean_absolute_error",
