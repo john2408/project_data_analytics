@@ -15,6 +15,7 @@ from statsforecast.models import (
     WindowAverage,
 )
 from typing import List, Tuple
+import numpy as np
 
 
 def train_test_stats_models(
@@ -44,6 +45,9 @@ def train_test_stats_models(
         SeasonalNaive(season_length=12),
         WindowAverage(window_size=6),
     ]
+
+    # Set random seed for reproducibility
+    np.random.seed(42)
 
     # Instantiate StatsForecast class to train models
     # use all CPU cores in the process
@@ -101,6 +105,9 @@ def train_test_lightgbm(
     """
     # ts = df_timeseries_gold.copy()
 
+    # Set random seed for reproducibility
+    random_seed = 42
+ 
     DROP_COLUMNS = []
     INDEX_COL = "Timestamp"
     CAT_FEATURES = ["Plant", "Provider"]
@@ -118,6 +125,7 @@ def train_test_lightgbm(
         "metric": "mean_absolute_error",
         "verbosity": -1,
         "boosting_type": "gbdt",
+        "random_seed": random_seed,
     }
 
     dfs = []

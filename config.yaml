@@ -36,18 +36,22 @@ feature_eng:
   expected_vol_col_rename: "expected_vol_kg"
   seasonal_features: 
     trend:
+      apply: True
       col_name: "trend"
       rolling_months: [2, 4, 6]
       lag_months: [2 ,3, 4, 5, 6]
     sesonality:
+      apply: True
       col_name: "sesonality"
       rolling_months: [6, 12]
       lag_months: [6, 12]
     residuals: 
+      apply: True
       col_name: "residuals"
       rolling_months: [2, 4, 6]
       lag_months: [2 ,3, 4, 5, 6]
   covid_features:
+    apply: True
     cols_names: ['Austria', 'Belgium', 'Croatia', 'Cyprus', 'Czechia',
        'Denmark', 'Estonia', 'Finland', 'France', 'Germany', 'Greece',
        'Hungary', 'Iceland', 'Ireland', 'Italy', 'Latvia', 'Liechtenstein',
@@ -55,4 +59,10 @@ feature_eng:
        'Portugal', 'Romania', 'Slovakia', 'Slovenia', 'Spain', 'Sweden']
     rolling_months: [4, 6, 12]
     lag_months: [4, 6, 12]
+  production_features: 
+    apply: False
+    production:
+      col_name: 'Production'
+      rolling_months: [4, 6, 12]
+      lag_months: [4, 6, 12]
 
