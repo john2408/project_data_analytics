@@ -1,8 +1,47 @@
 import yaml
 import pickle
 import numpy as np
-from typing import Dict, Any
+from typing import Dict, Any, List, Tuple
+import pandas as pd
+from sklearn.metrics import mean_absolute_error
 
+def calculate_accuracy_metrics(evaluation_df: pd.DataFrame, model_names: List[str]) -> Tuple[pd.DataFrame, pd.DataFrame]:
+    """Calculate accuracy metrics
+
+    Args:
+        evaluation_df (pd.DataFrame): model prediction with all models
+        model_names (List[str]): model names
+
+    Returns:
+        Tuple[pd.DataFrame, pd.DataFrame]: SMAPE and MAE
+    """
+    dfs_smape = []
+    dfs_maes = []
+    for model_name in model_names:
+        df_smape = (evaluation_df.groupby(['test_frame','ts_key'], group_keys=False)
+                    .apply(lambda x: smape(x['y_target'], x[f'{model_name}_target']))
+                    .to_frame()
+                    .rename(columns={0:'smape'})
+                    .reset_index()
+                    )
+        df_smape['model_name'] = model_name
+        dfs_smape.append(df_smape)
+        del df_smape
+
+        dfs_mae = (evaluation_df.groupby(['test_frame','ts_key'], group_keys=False)
+                .apply(lambda x: mean_absolute_error(x['y_target'], x[f'{model_name}_target']))
+                .to_frame()
+                .rename(columns={0:'mae'})
+                .reset_index()
+                )
+        dfs_mae['model_name'] = model_name
+        dfs_maes.append(dfs_mae)
+        del dfs_mae
+
+    df_accuracy_smape = pd.concat(dfs_smape)
+    df_accuracy_mae = pd.concat(dfs_maes)
+    
+    return df_accuracy_smape, df_accuracy_mae
 
 def read_config(yaml_file_path: str) -> Dict[str, Any]:
     """Read config from yaml file

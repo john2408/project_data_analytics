@@ -62,6 +62,7 @@ def apply_feature_eng(
     df_ts_decomposition: pd.DataFrame,
     df_covid: pd.DataFrame,
     config: Dict,
+    verbosity: int = 1,
 ) -> pd.DataFrame:
     """Apply feature engineering to ratio volume/production
 
@@ -70,6 +71,7 @@ def apply_feature_eng(
         df_ts_decomposition (pd.DataFrame): timeseries decomposition
         df_covid (pd.DataFrame): monthly covid data
         config (Dict): feature engineering config
+        verbosity (int, optional): verbosity level. Defaults to 1.
 
     Returns:
         pd.DataFrame: Timeseries Gold Tables with all features
@@ -124,8 +126,8 @@ def apply_feature_eng(
     for ref_col, col_config in config_seasonal_feat.items():
         
         if col_config['apply']:
-
-            print("Calculating lags and rolling features for ", ref_col)
+            if verbosity > 1:
+                print("Calculating lags and rolling features for ", ref_col)
             df_ratio_gold = lag_features(
                 df_ratio_gold=df_ratio_gold,
                 target_col=col_config['col_name'],
@@ -142,11 +144,12 @@ def apply_feature_eng(
 
     # Add Covid Data
     df_ratio_gold = add_covid_data(df_ratio_gold=df_ratio_gold, df_covid=df_covid)
-   
-    #Calculate Covid Features for each country
+    
+    # Calculate Covid Features for each country
     for col_name in config_covid_feat['cols_names']:
         if config_covid_feat['apply']:
-            print("Calculating lags and rolling features for ", col_name)
+            if verbosity > 1:
+                print("Calculating lags and rolling features for ", col_name)
 
             df_ratio_gold = lag_features(
                 df_ratio_gold=df_ratio_gold,
@@ -165,7 +168,8 @@ def apply_feature_eng(
     
     for ref_col, col_config in production_feat.items():
         if production_feat['apply']:
-            print("Calculating lags and rolling features for ", ref_col)
+            if verbosity > 1:
+                print("Calculating lags and rolling features for ", ref_col)
             df_ratio_gold = lag_features(
                 df_ratio_gold=df_ratio_gold,
                 target_col=col_config['col_name'],
@@ -178,7 +182,7 @@ def apply_feature_eng(
             )
 
     return df_ratio_gold
-
+    
 
 def features_seasonal_decomposition(
     df_ratio_gold: pd.DataFrame, target_col: str

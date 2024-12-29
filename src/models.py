@@ -186,6 +186,7 @@ def train_test_lightgbm(
             return mae
 
         # start hyperparameter tuning
+        optuna.logging.set_verbosity(optuna.logging.WARNING)
         study = optuna.create_study(direction="minimize")
         study.optimize(objective, n_trials=n_opt_trials)
 
