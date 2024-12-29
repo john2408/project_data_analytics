@@ -5,6 +5,42 @@ from typing import Dict, Any, List, Tuple
 import pandas as pd
 from sklearn.metrics import mean_absolute_error
 
+
+data_dict_prod = pd.DataFrame({'Name': ['Timestamp', 'Plant', 'Production'], 
+                              'Description':['Monthly date of the format YYYY-MM-DD', 
+                                             'Assembly Plant ID',
+                                             'Production Volume in Number of Units', ], 
+                              'Role':['ID', 'ID','predictor'], 
+                              'Type':['ordinal','nominal', 'numeric'], 
+                              'Format':['datetime','category','int']
+                              })
+
+data_dict_vol = pd.DataFrame({'Name': ['Timestamp', 'Provider', 'Plant', 'Actual_Vol_[Kg]',
+       'Expected_Vol_[Kg]', 'Year', 'Month', 'ts_key', 'Actual_Vol_[Tons]',
+       'Expected_Vol_[Tons]'], 
+                              'Description':['Monthly date of the format YYYY-MM-DD', 
+                                             'Logistics Provider ID',
+                                             'Assembly Plant ID',
+                                             'Actual transported volume from Provider to Plant in kg', 
+                                             'Expected transported volume from Provider to Plant in kg', 
+                                             'Year in which transport took place', 
+                                             'Month in which transport took place',
+                                             'Timeseries key', 
+                                             'Actual transported volume from Provider to Plant in tons',
+                                             'Expected transported volume from Provider to Plant in tons'], 
+                              'Role':['ID', 'ID', 'ID', 'response', 'predictor','predictor', 'predictor','ID','predictor','predictor'], 
+                              'Type':['ordinal','nominal','nominal', 'numeric','numeric','numeric','numeric','numeric','numeric','numeric'], 
+                              'Format':['datetime','category','category','float','float','int','int','category','float','float']
+                              })
+
+data_dict_covid = pd.DataFrame({'Name': ['Timestamp', 'Country'], 
+                              'Description':['Monthly date of the format YYYY-MM-DD', 
+                                             'Monthly COVID-19 Rate Per 100k (14-Day Average) in the given country'], 
+                              'Role':['ID','predictor'], 
+                              'Type':['ordinal','numeric'], 
+                              'Format':['datetime', 'float']
+                              })
+
 def calculate_accuracy_metrics(evaluation_df: pd.DataFrame, model_names: List[str]) -> Tuple[pd.DataFrame, pd.DataFrame]:
     """Calculate accuracy metrics
 
