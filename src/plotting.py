@@ -6,6 +6,7 @@ from matplotlib.backends.backend_pdf import PdfPages
 import seaborn as sns
 from typing import List, Dict
 
+
 def plot_smape_buckets(df_accuracy_smape: pd.DataFrame, model_names: List[str]) -> Dict:
     """Plot SMAPES Buckets
 
@@ -14,15 +15,23 @@ def plot_smape_buckets(df_accuracy_smape: pd.DataFrame, model_names: List[str]) 
         model_names (List[str]): model names
     """
     # Define SMAPE buckets
-    bins = [0, 10, 20, 30, 40, float('inf')]
-    labels = ['0-10', '10-20', '20-30', '30-40', '>40']
+    bins = [0, 10, 20, 30, 40, float("inf")]
+    labels = ["0-10", "10-20", "20-30", "30-40", ">40"]
 
-    buckets_data = generate_smape_err_buckets(df_accuracy=df_accuracy_smape,
-                                              model_names=model_names, 
-                                              bins=bins, 
-                                              labels=labels)
+    buckets_data = generate_smape_err_buckets(
+        df_accuracy=df_accuracy_smape, model_names=model_names, bins=bins, labels=labels
+    )
 
-    colors = ['#7f7f7f', '#e377c2', '#8c564b', '#9467bd', '#d62728', '#2ca02c', '#ff7f0e', '#1f77b4']
+    colors = [
+        "#7f7f7f",
+        "#e377c2",
+        "#8c564b",
+        "#9467bd",
+        "#d62728",
+        "#2ca02c",
+        "#ff7f0e",
+        "#1f77b4",
+    ]
 
     x = np.arange(len(labels))  # x locations for the buckets
     width = 0.8 / len(model_names)  # Adjust width based on number of models
@@ -30,12 +39,19 @@ def plot_smape_buckets(df_accuracy_smape: pd.DataFrame, model_names: List[str]) 
     fig, ax = plt.subplots(figsize=(10, 6))
 
     for i, (model_name, data) in enumerate(buckets_data.items()):
-        ax.bar(x + i * width - width * len(model_names) / 2, data.values, width, label=model_name, color=colors.pop(), alpha=0.7)
+        ax.bar(
+            x + i * width - width * len(model_names) / 2,
+            data.values,
+            width,
+            label=model_name,
+            color=colors.pop(),
+            alpha=0.7,
+        )
 
     # Add labels and title
-    ax.set_xlabel('SMAPE Range')
-    ax.set_ylabel('Count')
-    ax.set_title('SMAPE Buckets Distribution')
+    ax.set_xlabel("SMAPE Range")
+    ax.set_ylabel("Count")
+    ax.set_title("SMAPE Buckets Distribution")
     ax.set_xticks(x)
     ax.set_xticklabels(labels)
     ax.legend()

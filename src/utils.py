@@ -6,42 +6,102 @@ import pandas as pd
 from sklearn.metrics import mean_absolute_error
 
 
-data_dict_prod = pd.DataFrame({'Name': ['Timestamp', 'Plant', 'Production'], 
-                              'Description':['Monthly date of the format YYYY-MM-DD', 
-                                             'Assembly Plant ID',
-                                             'Production Volume in Number of Units', ], 
-                              'Role':['ID', 'ID','predictor'], 
-                              'Type':['ordinal','nominal', 'numeric'], 
-                              'Format':['datetime','category','int']
-                              })
+data_dict_prod = pd.DataFrame(
+    {
+        "Name": ["Timestamp", "Plant", "Production"],
+        "Description": [
+            "Monthly date of the format YYYY-MM-DD",
+            "Assembly Plant ID",
+            "Production Volume in Number of Units",
+        ],
+        "Role": ["ID", "ID", "predictor"],
+        "Type": ["ordinal", "nominal", "numeric"],
+        "Format": ["datetime", "category", "int"],
+    }
+)
 
-data_dict_vol = pd.DataFrame({'Name': ['Timestamp', 'Provider', 'Plant', 'Actual_Vol_[Kg]',
-       'Expected_Vol_[Kg]', 'Year', 'Month', 'ts_key', 'Actual_Vol_[Tons]',
-       'Expected_Vol_[Tons]'], 
-                              'Description':['Monthly date of the format YYYY-MM-DD', 
-                                             'Logistics Provider ID',
-                                             'Assembly Plant ID',
-                                             'Actual transported volume from Provider to Plant in kg', 
-                                             'Expected transported volume from Provider to Plant in kg', 
-                                             'Year in which transport took place', 
-                                             'Month in which transport took place',
-                                             'Timeseries key', 
-                                             'Actual transported volume from Provider to Plant in tons',
-                                             'Expected transported volume from Provider to Plant in tons'], 
-                              'Role':['ID', 'ID', 'ID', 'response', 'predictor','predictor', 'predictor','ID','predictor','predictor'], 
-                              'Type':['ordinal','nominal','nominal', 'numeric','numeric','numeric','numeric','numeric','numeric','numeric'], 
-                              'Format':['datetime','category','category','float','float','int','int','category','float','float']
-                              })
+data_dict_vol = pd.DataFrame(
+    {
+        "Name": [
+            "Timestamp",
+            "Provider",
+            "Plant",
+            "Actual_Vol_[Kg]",
+            "Expected_Vol_[Kg]",
+            "Year",
+            "Month",
+            "ts_key",
+            "Actual_Vol_[Tons]",
+            "Expected_Vol_[Tons]",
+        ],
+        "Description": [
+            "Monthly date of the format YYYY-MM-DD",
+            "Logistics Provider ID",
+            "Assembly Plant ID",
+            "Actual transported volume from Provider to Plant in kg",
+            "Expected transported volume from Provider to Plant in kg",
+            "Year in which transport took place",
+            "Month in which transport took place",
+            "Timeseries key",
+            "Actual transported volume from Provider to Plant in tons",
+            "Expected transported volume from Provider to Plant in tons",
+        ],
+        "Role": [
+            "ID",
+            "ID",
+            "ID",
+            "response",
+            "predictor",
+            "predictor",
+            "predictor",
+            "ID",
+            "predictor",
+            "predictor",
+        ],
+        "Type": [
+            "ordinal",
+            "nominal",
+            "nominal",
+            "numeric",
+            "numeric",
+            "numeric",
+            "numeric",
+            "numeric",
+            "numeric",
+            "numeric",
+        ],
+        "Format": [
+            "datetime",
+            "category",
+            "category",
+            "float",
+            "float",
+            "int",
+            "int",
+            "category",
+            "float",
+            "float",
+        ],
+    }
+)
 
-data_dict_covid = pd.DataFrame({'Name': ['Timestamp', 'Country'], 
-                              'Description':['Monthly date of the format YYYY-MM-DD', 
-                                             'Monthly COVID-19 Rate Per 100k (14-Day Average) in the given country'], 
-                              'Role':['ID','predictor'], 
-                              'Type':['ordinal','numeric'], 
-                              'Format':['datetime', 'float']
-                              })
+data_dict_covid = pd.DataFrame(
+    {
+        "Name": ["Timestamp", "Country"],
+        "Description": [
+            "Monthly date of the format YYYY-MM-DD",
+            "Monthly COVID-19 Rate Per 100k (14-Day Average) in the given country",
+        ],
+        "Role": ["ID", "predictor"],
+        "Type": ["ordinal", "numeric"],
+        "Format": ["datetime", "float"],
+    }
+)
 
-def calculate_accuracy_metrics(evaluation_df: pd.DataFrame, model_names: List[str]) -> Tuple[pd.DataFrame, pd.DataFrame]:
+
+def calculate_accuracy_metrics(
+    evaluation_df: pd.DataFrame, model_names: List[str]
+) -> Tuple[pd.DataFrame, pd.DataFrame]:
     """Calculate accuracy metrics
 
     Args:
@@ -54,30 +114,35 @@ def calculate_accuracy_metrics(evaluation_df: pd.DataFrame, model_names: List[st
     dfs_smape = []
     dfs_maes = []
     for model_name in model_names:
-        df_smape = (evaluation_df.groupby(['test_frame','ts_key'], group_keys=False)
-                    .apply(lambda x: smape(x['y_target'], x[f'{model_name}_target']))
-                    .to_frame()
-                    .rename(columns={0:'smape'})
-                    .reset_index()
-                    )
-        df_smape['model_name'] = model_name
+        df_smape = (
+            evaluation_df.groupby(["test_frame", "ts_key"], group_keys=False)
+            .apply(lambda x: smape(x["y_target"], x[f"{model_name}_target"]))
+            .to_frame()
+            .rename(columns={0: "smape"})
+            .reset_index()
+        )
+        df_smape["model_name"] = model_name
         dfs_smape.append(df_smape)
         del df_smape
 
-        dfs_mae = (evaluation_df.groupby(['test_frame','ts_key'], group_keys=False)
-                .apply(lambda x: mean_absolute_error(x['y_target'], x[f'{model_name}_target']))
-                .to_frame()
-                .rename(columns={0:'mae'})
-                .reset_index()
-                )
-        dfs_mae['model_name'] = model_name
+        dfs_mae = (
+            evaluation_df.groupby(["test_frame", "ts_key"], group_keys=False)
+            .apply(
+                lambda x: mean_absolute_error(x["y_target"], x[f"{model_name}_target"])
+            )
+            .to_frame()
+            .rename(columns={0: "mae"})
+            .reset_index()
+        )
+        dfs_mae["model_name"] = model_name
         dfs_maes.append(dfs_mae)
         del dfs_mae
 
     df_accuracy_smape = pd.concat(dfs_smape)
     df_accuracy_mae = pd.concat(dfs_maes)
-    
+
     return df_accuracy_smape, df_accuracy_mae
+
 
 def read_config(yaml_file_path: str) -> Dict[str, Any]:
     """Read config from yaml file

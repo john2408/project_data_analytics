@@ -16,6 +16,40 @@ from statsforecast.models import (
 )
 from typing import List, Tuple
 import numpy as np
+import matplotlib.pyplot as plt
+import seaborn as sns
+from src.utils import read_pickle
+
+
+def feature_importance_analysis(model_path: str, top: int = 5) -> None:
+    """Generate a feature importance plot for a LightGBM model.
+
+    Args:
+        model_path (str): _description_
+        top (int, optional): _description_. Defaults to 5.
+    """
+    lgb_model = read_pickle(path=model_path)
+    # Get feature importances
+    importance = lgb_model.feature_importance()
+    feature_names = lgb_model.feature_name()
+    feature_importance_df = pd.DataFrame(
+        {"Feature": feature_names, "Importance": importance}
+    )
+
+    feature_importance_df = feature_importance_df.sort_values(
+        by="Importance", ascending=False
+    )
+
+    # Plot feature importance with a different color palette
+    plt.figure(figsize=(8, 4))
+    sns.barplot(
+        x="Importance",
+        y="Feature",
+        data=feature_importance_df.head(top),
+        palette="viridis",
+    )
+    plt.title("Feature Importance")
+    plt.show()
 
 
 def train_test_stats_models(
@@ -107,7 +141,7 @@ def train_test_lightgbm(
 
     # Set random seed for reproducibility
     random_seed = 42
- 
+
     DROP_COLUMNS = []
     INDEX_COL = "Timestamp"
     CAT_FEATURES = ["Plant", "Provider"]
