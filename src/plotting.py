@@ -170,7 +170,7 @@ def plot_ratio_vol_prod(ts_key: str, df_ratio: pd.DataFrame) -> None:
 
     # Create a figure
     plt.rc("text", usetex=False)
-    fig, axs = plt.subplots(nrows=3, ncols=1, figsize=(10, 15))
+    fig, axs = plt.subplots(nrows=3, ncols=1, figsize=(6, 10))
 
     line_colors = {
         vol1_axis: "#1f76b4",
