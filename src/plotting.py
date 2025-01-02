@@ -7,6 +7,102 @@ import seaborn as sns
 from typing import List, Dict
 
 
+def plot_f_system_smape_buckets_distribution(
+    df_accuracy_smape: pd.DataFrame, figsize: tuple = (10, 6)
+):
+    """Generate buckets distribution plot for SMAPE
+
+    Args:
+        df_accuracy_smape (pd.DataFrame): accuracy values of models
+        figsize (tuple, optional): figsize. Defaults to (10, 6).
+    """
+    # Define SMAPE buckets
+    bins = [0, 10, 20, 30, 40, float("inf")]
+    labels = ["0-10", "10-20", "20-30", "30-40", ">40"]
+    model_names = ["best_model"]
+    buckets_data = generate_smape_err_buckets(
+        df_accuracy=df_accuracy_smape, model_names=model_names, bins=bins, labels=labels
+    )
+
+    colors = [
+        "#7f7f7f",
+        "#e377c2",
+        "#8c564b",
+        "#9467bd",
+        "#d62728",
+        "#2ca02c",
+        "#ff7f0e",
+        "#1f77b4",
+    ]
+
+    x = np.arange(len(labels))  # x locations for the buckets
+    width = 0.8 / len(model_names)  # Adjust width based on number of models
+
+    fig, ax = plt.subplots(figsize=figsize)
+
+    for i, (model_name, data) in enumerate(buckets_data.items()):
+        ax.bar(
+            x + i * width - width * len(model_names) / 2,
+            data.values,
+            width,
+            label=model_name,
+            color=colors.pop(),
+            alpha=0.7,
+        )
+
+    # Add labels and title
+    ax.set_xlabel("SMAPE Range")
+    ax.set_ylabel("Count")
+    ax.set_title("SMAPE Buckets Distribution")
+    ax.set_xticks(x)
+    ax.set_xticklabels(labels)
+    ax.legend()
+
+    plt.tight_layout()
+    plt.show()
+
+
+def plot_smape_histogram(data: pd.DataFrame, figsize=(8, 6)):
+    """Plot SMAPE histogram.
+
+    Args:
+        data (pd.DataFrame): data
+        figsize (tuple, optional): figure size. Defaults to (8, 6).
+    """
+    fig, ax = plt.subplots(figsize=figsize)
+    ax.hist(data, bins=30, color="blue", alpha=0.7)
+    ax.set_title("BEST SMAPE")
+    ax.set_xlabel("SMAPE")
+    ax.set_ylabel("Frequency")
+    plt.tight_layout()
+    plt.show()
+
+
+def plot_model_distribution(
+    df_model_per_ts: pd.DataFrame, figsize: tuple = (6, 6)
+) -> None:
+    """Generate best models per TS plot distribution
+
+    Args:
+        df_model_per_ts (pd.DataFrame): best models per timeseries
+    """
+
+    plt.figure(figsize=figsize)
+    colors = sns.color_palette("pastel", len(df_model_per_ts))
+
+    plt.pie(
+        df_model_per_ts["count"],
+        labels=df_model_per_ts["model_name"],
+        autopct="%1.1f%%",
+        startangle=140,
+        colors=colors,
+        wedgeprops={"edgecolor": "gray"},
+    )
+
+    plt.title("Model Distribution")
+    plt.show()
+
+
 def plot_smape_buckets(df_accuracy_smape: pd.DataFrame, model_names: List[str]) -> Dict:
     """Plot SMAPES Buckets
 
@@ -134,6 +230,7 @@ def plot_err_less_20_SMAPE(buckets_data: dict, figsize: tuple = (8, 6)) -> None:
 
     # Label the plot
     plt.xlabel("Model")
+    plt.xticks(rotation=45)
     plt.ylabel("Accuracy (Number of TS Key with SMAPE <20% ")
     plt.title("Model Accuracy with Less Than 20% SMAPE")
 

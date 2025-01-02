@@ -12,8 +12,152 @@ from src.data_preprocessing import (
     preprocessing_production,
 )
 from src.models import train_test_stats_models, train_test_lightgbm
-from src.utils import store_pickle
+from src.feature_eng import apply_feature_eng
+from src.utils import store_pickle, smape
+from sklearn.metrics import mean_absolute_error
 from typing import Dict, Tuple, List
+
+
+def forecast_system_accuracy_metrics(
+    evaluation_df: pd.DataFrame,
+) -> Tuple[pd.DataFrame, pd.DataFrame]:
+    """Calculate accuracy metrics for the forecast system
+
+    Args:
+        evaluation_df (pd.DataFrame): evaluation dataframe
+
+    Returns:
+        pd.DataFrame: accuracy SMAPE and MAE
+    """
+
+    df_accuracy_smape = (
+        evaluation_df.groupby(["test_frame", "ts_key"], group_keys=False)
+        .apply(lambda x: smape(x["y_target"], x["best_y_hat"]))
+        .to_frame()
+        .rename(columns={0: "smape"})
+        .reset_index()
+    )
+    df_accuracy_smape["model_name"] = "best_model"
+
+    df_accuracy_mae = (
+        evaluation_df.groupby(["test_frame", "ts_key"], group_keys=False)
+        .apply(lambda x: mean_absolute_error(x["y_target"], x["best_y_hat"]))
+        .to_frame()
+        .rename(columns={0: "mae"})
+        .reset_index()
+    )
+    df_accuracy_mae["model_name"] = "best_model"
+
+    return df_accuracy_smape, df_accuracy_mae
+
+
+def forecast_system_evaluation_df(
+    df_forecasts: pd.DataFrame, df_best_models: pd.DataFrame, df_true: pd.DataFrame
+) -> pd.DataFrame:
+    """Generate Evaluation DataFrame for Forecast System
+
+    Args:
+        df_forecasts (pd.DataFrame): forecast values
+        df_best_models (pd.DataFrame): best forecasting model per time series
+        df_true (pd.DataFrame): true values
+
+    Returns:
+        pd.DataFrame: evaluation DataFrame
+    """
+    df_all_forecast = pd.melt(
+        df_forecasts,
+        id_vars=["ts_key", "Timestamp", "y_true", "test_frame"],
+        value_vars=[
+            "LIGHTGBM",
+            "AutoARIMA",
+            "AutoETS",
+            "CES",
+            "SeasonalNaive",
+            "WindowAverage",
+            "Ensemble",
+        ],
+        var_name="model_name",
+        value_name="y_pred",
+    )
+
+    df_best_forecast = pd.merge(
+        df_all_forecast,
+        df_best_models[["ts_key", "model_name"]].rename(
+            columns={"model_name": "best_model_name"}
+        ),
+        on="ts_key",
+        how="left",
+    )
+
+    df_best_forecast = df_best_forecast[
+        df_best_forecast["model_name"] == df_best_forecast["best_model_name"]
+    ].copy()
+
+    evaluation_df = pd.merge(
+        df_best_forecast, df_true, on=["ts_key", "Timestamp"], how="left"
+    )
+
+    evaluation_df["best_y_hat"] = evaluation_df["y_pred"] * evaluation_df["Production"]
+
+    return evaluation_df
+
+
+def calculate_best_models(
+    df_accuracy_smape: pd.DataFrame,
+) -> Tuple[pd.DataFrame, pd.DataFrame]:
+    """Calculate best models
+
+    Args:
+        df_accuracy_smape (pd.DataFrame): accuracy dataframe
+
+    Returns:
+        Tuple[pd.DataFrame, pd.DataFrame]: best models and best model per ts
+    """
+    df_best_models = (
+        df_accuracy_smape.groupby(["ts_key", "model_name"])["smape"]
+        .mean()
+        .to_frame()
+        .reset_index()
+        .copy()
+    )
+    df_best_models["best_smape"] = df_best_models.groupby(["ts_key"])[
+        "smape"
+    ].transform(min)
+    df_best_models = df_best_models[
+        df_best_models["smape"] == df_best_models["best_smape"]
+    ].copy()
+    df_model_per_ts = (
+        df_best_models["model_name"].value_counts().to_frame().reset_index()
+    )
+    return df_best_models, df_model_per_ts
+
+
+def main_feature_engineering(config: Dict) -> pd.DataFrame:
+    """Generate features from the timeseries data
+
+    Args:
+        config (Dict): config Dictionary
+
+    Returns:
+        pd.DataFrame: dataframe with features
+    """
+    df_ratio_gold = pd.read_parquet(config["preprocessing"]["ratio_gold_path"])
+    df_ts_decomposition = pd.read_parquet(
+        config["preprocessing"]["seasonal_feat_gold_path"]
+    )
+    df_covid = pd.read_parquet(config["preprocessing"]["covid_silver_path"])
+
+    df_timeseries_gold = apply_feature_eng(
+        df_ratio_gold=df_ratio_gold,
+        df_ts_decomposition=df_ts_decomposition,
+        df_covid=df_covid,
+        config=config["feature_eng"],
+        verbosity=0,
+    )
+
+    df_timeseries_gold.to_parquet(config["preprocessing"]["timeseries_gold_path"])
+
+    return df_timeseries_gold
 
 
 def generate_vol_prod_ratio_gold(
