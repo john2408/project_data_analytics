@@ -53,9 +53,9 @@ for shard in shards:
     test_dates = df_test['Timestamp'].unique()
 
     df_forecast_shard = pd.DataFrame()
-    for ts_len in ts['ts_len'].unique():
+    for ts_len in df_train_val['ts_len'].unique():
 
-        _df = ts[ts['ts_len'] == ts_len].copy()
+        _df = df_train_val[df_train_val['ts_len'] == ts_len].copy()
 
         grouped_data = _df.groupby('ts_key')['Vol/Prod_ratio_kg'].apply(list).tolist()
 

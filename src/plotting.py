@@ -47,7 +47,7 @@ def plot_f_system_smape_buckets_distribution(
             data.values,
             width,
             label=model_name,
-            color=colors.pop(),
+            color=COLORS.pop(),
             alpha=0.7,
         )
 
@@ -128,13 +128,14 @@ def plot_smape_buckets(
 
     fig, ax = plt.subplots(figsize=figsize)
 
+    colors = sns.color_palette("Paired", len(buckets_data))
     for i, (model_name, data) in enumerate(buckets_data.items()):
         ax.bar(
             x + i * width - width * len(model_names) / 2,
             data.values,
             width,
             label=model_name,
-            color=COLORS.pop(),
+            color=colors.pop(),
             alpha=0.7,
         )
 

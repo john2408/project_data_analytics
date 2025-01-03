@@ -4,3 +4,5 @@
 .deepl
 lightning_logs/
 AutogluonModels/
+.env
+.morai/
