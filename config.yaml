@@ -34,6 +34,7 @@ models:
       "SeasonalNaive",
       "WindowAverage",
   ]
+  chronos_model_names : ["CHRONOS"]
 
 feature_eng:
   lag_months: [2 ,3, 4, 5, 6]

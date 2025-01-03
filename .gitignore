@@ -3,3 +3,4 @@
 .venv
 .deepl
 lightning_logs/
+AutogluonModels/
