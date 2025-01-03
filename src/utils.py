@@ -5,6 +5,23 @@ from typing import Dict, Any, List, Tuple
 import pandas as pd
 from sklearn.metrics import mean_absolute_error
 
+COLORS = [
+    "#8c564b",
+    "#0E4D64",
+    "#17becf",
+    "#fdae61",
+    "#abdda4",
+    "#fee08b",
+    "#7f7f7f",
+    "#e377c2",
+    "#8c564b",
+    "#9467bd",
+    "#d62728",
+    "#2ca02c",
+    "#ff7f0e",
+    "#1f77b4",
+]
+
 
 data_dict_prod = pd.DataFrame(
     {

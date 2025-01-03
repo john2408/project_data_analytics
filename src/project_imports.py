@@ -56,4 +56,5 @@ from src.models import (
     train_test_lightgbm,
     train_test_stats_models,
     feature_importance_analysis,
+    train_test_deep_learning,
 )

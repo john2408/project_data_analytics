@@ -5,11 +5,12 @@ from datetime import datetime
 from matplotlib.backends.backend_pdf import PdfPages
 import seaborn as sns
 from typing import List, Dict
+from src.utils import COLORS
 
 
 def plot_f_system_smape_buckets_distribution(
     df_accuracy_smape: pd.DataFrame, figsize: tuple = (10, 6)
-):
+) -> Dict:
     """Generate buckets distribution plot for SMAPE
 
     Args:
@@ -60,6 +61,8 @@ def plot_f_system_smape_buckets_distribution(
 
     plt.tight_layout()
     plt.show()
+
+    return buckets_data
 
 
 def plot_smape_histogram(data: pd.DataFrame, figsize=(8, 6)):
@@ -118,17 +121,6 @@ def plot_smape_buckets(df_accuracy_smape: pd.DataFrame, model_names: List[str]) 
         df_accuracy=df_accuracy_smape, model_names=model_names, bins=bins, labels=labels
     )
 
-    colors = [
-        "#7f7f7f",
-        "#e377c2",
-        "#8c564b",
-        "#9467bd",
-        "#d62728",
-        "#2ca02c",
-        "#ff7f0e",
-        "#1f77b4",
-    ]
-
     x = np.arange(len(labels))  # x locations for the buckets
     width = 0.8 / len(model_names)  # Adjust width based on number of models
 
@@ -140,7 +132,7 @@ def plot_smape_buckets(df_accuracy_smape: pd.DataFrame, model_names: List[str]) 
             data.values,
             width,
             label=model_name,
-            color=colors.pop(),
+            color=COLORS.pop(),
             alpha=0.7,
         )
 

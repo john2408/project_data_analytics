@@ -14,11 +14,170 @@ from statsforecast.models import (
     SeasonalNaive,
     WindowAverage,
 )
+
+from neuralforecast import NeuralForecast
+from neuralforecast.models import NBEATS, NHITS, KAN
+
 from typing import List, Tuple
 import numpy as np
 import matplotlib.pyplot as plt
 import seaborn as sns
 from src.utils import read_pickle
+
+import logging
+import os
+
+logging.getLogger().setLevel(logging.CRITICAL)
+os.environ["PYTORCH_ENABLE_MPS_FALLBACK"] = "1"
+# os.environ["CUDA_LAUNCH_BLOCKING"] = "1"
+# os.environ["CUDA_VISIBLE_DEVICES"] = ""  # Disable GPU logs
+# os.environ["TF_CPP_MIN_LOG_LEVEL"] = "3"  # If TensorFlow is use
+
+
+def format_ts_data_to_nn_forecast(ts: pd.DataFrame) -> pd.DataFrame:
+    """Format the time series data to be used in the Neural Networks Forecasting
+
+    Args:
+        ts (pd.DataFrame): time series data
+
+    Returns:
+        pd.DataFrame: formatted time series data
+    """
+
+    try:
+
+        # Create custom increasing index for NHiTS algorithm
+        ts["time_idx"] = (
+            ts.sort_values(by=["ts_key", "Timestamp"]).groupby("ts_key").cumcount()
+        )
+
+        _min = ts["ts_len"].min()
+        _max = ts["ts_len"].max()
+        print(f"Min/Max length of a time series: {_min} , {_max}")
+
+        ts.drop(columns=["ts_len"], inplace=True)
+
+        # Rename columns to expected format in neuralforecast library
+        # Additionaly, keep only the target column
+        ts = ts.rename(
+            columns={"ts_key": "unique_id", "Vol/Prod_ratio_kg": "y", "Timestamp": "ds"}
+        ).filter(["ds", "unique_id", "y"])
+
+        return ts
+
+    except Exception as e:
+        print(e)
+        return None
+
+
+def train_test_deep_learning(
+    ts: pd.DataFrame, shards: List[List[datetime]]
+) -> Tuple[NeuralForecast, pd.DataFrame]:
+    """Train Test Neural Networks Forecasting
+
+    Args:
+        ts (pd.DataFrame): _description_
+        shards (List[List[datetime]]): _description_
+
+    Returns:
+        Tuple[NeuralForecast, pd.DataFrame, pd.DataFrame]: _description_
+    """
+    np.random.seed(42)
+
+    # Neural Networks
+    FREQUENCY = "MS"  # Month Start Frequency
+
+    max_encoder_length = 6
+    max_prediction_length = 4  # 4 Months forecast horizon
+    val_size = 4  # 4 Months forecast horizon in validation
+    TS_LEN_THRESHOLD = max_encoder_length + 2 * max_prediction_length
+
+    print("Min Length per Timeseries: ", TS_LEN_THRESHOLD)
+
+    # Data Quality Check for Neural Networks Forecasting
+    assert (
+        ts["ts_len"].min() > TS_LEN_THRESHOLD
+    ), f"Not all timeseries len is greater than {TS_LEN_THRESHOLD}"
+    assert (
+        set(ts.columns[ts.isna().any()]) == set()
+    ), "There are columns containing NA Values"
+
+    ts = format_ts_data_to_nn_forecast(ts=ts)
+
+    df_forecats = pd.DataFrame()
+
+    for shard in shards:
+        test_frame = (
+            shard[3].strftime("%Y-%m-%d") + " - " + shard[4].strftime("%Y-%m-%d")
+        )
+        print(
+            "Train-Testing for",
+            shard[3].strftime("%Y-%m-%d"),
+            shard[4].strftime("%Y-%m-%d"),
+        )
+
+        # Train and Validation Set are input together as one dataset
+        # Prediction set is our 4-month window
+        df_train_val, df_test = (
+            ts[(ts["ds"] <= shard[2])],
+            ts[(ts["ds"] >= shard[3]) & (ts["ds"] <= shard[4])],
+        )
+
+        # Configure Models
+        models = [
+            NBEATS(
+                input_size=max_encoder_length,
+                h=max_prediction_length,
+                max_steps=max_encoder_length,
+            ),
+            NHITS(
+                input_size=max_encoder_length,
+                h=max_prediction_length,
+                max_steps=max_encoder_length,
+            ),
+            KAN(
+                input_size=max_encoder_length,
+                h=max_prediction_length,
+                max_steps=max_encoder_length,
+            ),
+        ]
+
+        nf = NeuralForecast(models=models, freq=FREQUENCY)
+        nf.fit(df=df_train_val, val_size=val_size, verbose=False)
+
+        Y_hat_df = nf.predict().reset_index()
+
+        df_metric_shard = pd.merge(
+            df_test, Y_hat_df, how="left", on=["unique_id", "ds"]
+        )
+        df_metric_shard["test_frame"] = test_frame
+
+        # Adjust negative forecast to be 0
+        df_metric_shard["NBEATS"] = df_metric_shard["NBEATS"].apply(
+            lambda x: 0 if x <= 0 else x
+        )
+        df_metric_shard["NHITS"] = df_metric_shard["NHITS"].apply(
+            lambda x: 0 if x <= 0 else x
+        )
+        df_metric_shard["KAN"] = df_metric_shard["KAN"].apply(
+            lambda x: 0 if x <= 0 else x
+        )
+
+        df_forecats = pd.concat([df_forecats, df_metric_shard])
+
+    df_melted_forecast = pd.melt(
+        df_forecats,
+        id_vars=["unique_id", "ds", "test_frame"],
+        value_vars=["NBEATS", "NHITS", "KAN"],
+        var_name="forecasting_model",
+        value_name="y_hat",
+    )
+
+    df_forecats = df_forecats.rename(
+        columns={"unique_id": "ts_key", "ds": "Timestamp"}
+    ).drop(columns=["index", "y"])
+
+    return nf, df_forecats
 
 
 def feature_importance_analysis(model_path: str, top: int = 5) -> None:

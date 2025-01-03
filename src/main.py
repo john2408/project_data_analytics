@@ -255,8 +255,14 @@ def main_stats_models(df_timeseries_gold: pd.DataFrame, shards: list) -> tuple:
     return stats_models, df_stats_forecast
 
 
+from typing import Dict, List, Tuple
+
+
 def ensemble_model(
-    config: Dict, df_result_lgbm: pd.DataFrame, df_stats_forecast: pd.DataFrame
+    config: Dict,
+    df_result_lgbm: pd.DataFrame,
+    df_stats_forecast: pd.DataFrame,
+    df_result_deepl: pd.DataFrame,
 ) -> Tuple[pd.DataFrame, pd.DataFrame, pd.DataFrame, List]:
     """Create ensemble model from the forecasts of the different models
 
@@ -268,6 +274,7 @@ def ensemble_model(
         pd.DataFrame: ensemble forecast
     """
     ml_model_names = ["LIGHTGBM"]
+    dl_model_names = ["NBEATS", "NHITS", "KAN"]
     stats_model_names = [
         "AutoARIMA",
         "AutoETS",
@@ -275,20 +282,19 @@ def ensemble_model(
         "SeasonalNaive",
         "WindowAverage",
     ]
-    model_names = ml_model_names + stats_model_names
-
-    # df_stats_forecast_melted = pd.melt(
-    #         df_stats_forecast,
-    #         id_vars=['ts_key', 'Timestamp', 'test_frame'],
-    #         value_vars=stats_model_names,
-    #         var_name='forecasting_model',
-    #         value_name='y_hat'
-    #     )
+    model_names = ml_model_names + stats_model_names + dl_model_names
 
     # Join all models in one single dataframe
     df_forecats = pd.merge(
         df_result_lgbm.reset_index(),
         df_stats_forecast,
+        on=["ts_key", "Timestamp", "test_frame"],
+        how="inner",
+    )
+
+    df_forecats = pd.merge(
+        df_forecats,
+        df_result_deepl,
         on=["ts_key", "Timestamp", "test_frame"],
         how="inner",
     )
