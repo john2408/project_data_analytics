@@ -16,7 +16,7 @@ from statsforecast.models import (
 )
 
 from neuralforecast import NeuralForecast
-from neuralforecast.models import NBEATS, NHITS, KAN
+from neuralforecast.models import NBEATS, NHITS, KAN, TFT
 
 from typing import List, Tuple
 import numpy as np
@@ -45,7 +45,6 @@ def format_ts_data_to_nn_forecast(ts: pd.DataFrame) -> pd.DataFrame:
     """
 
     try:
-
         # Create custom increasing index for NHiTS algorithm
         ts["time_idx"] = (
             ts.sort_values(by=["ts_key", "Timestamp"]).groupby("ts_key").cumcount()
@@ -135,7 +134,7 @@ def train_test_deep_learning(
                 h=max_prediction_length,
                 max_steps=max_encoder_length,
             ),
-            KAN(
+            TFT(
                 input_size=max_encoder_length,
                 h=max_prediction_length,
                 max_steps=max_encoder_length,
@@ -159,7 +158,7 @@ def train_test_deep_learning(
         df_metric_shard["NHITS"] = df_metric_shard["NHITS"].apply(
             lambda x: 0 if x <= 0 else x
         )
-        df_metric_shard["KAN"] = df_metric_shard["KAN"].apply(
+        df_metric_shard["TFT"] = df_metric_shard["TFT"].apply(
             lambda x: 0 if x <= 0 else x
         )
 
@@ -168,7 +167,7 @@ def train_test_deep_learning(
     df_melted_forecast = pd.melt(
         df_forecats,
         id_vars=["unique_id", "ds", "test_frame"],
-        value_vars=["NBEATS", "NHITS", "KAN"],
+        value_vars=["NBEATS", "NHITS", "TFT"],
         var_name="forecasting_model",
         value_name="y_hat",
     )
@@ -258,7 +257,6 @@ def train_test_stats_models(
     dfs = []
     forecast_horizon = 4
     for start_date in test_fames:
-
         end_date = start_date + relativedelta(months=3)
         test_frame_str = (
             start_date.strftime("%Y-%m-%d") + " - " + end_date.strftime("%Y-%m-%d")
@@ -323,7 +321,6 @@ def train_test_lightgbm(
 
     dfs = []
     for shard in shards:
-
         test_frame = (
             shard[3].strftime("%Y-%m-%d") + " - " + shard[4].strftime("%Y-%m-%d")
         )

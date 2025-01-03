@@ -106,7 +106,9 @@ def plot_model_distribution(
     plt.show()
 
 
-def plot_smape_buckets(df_accuracy_smape: pd.DataFrame, model_names: List[str]) -> Dict:
+def plot_smape_buckets(
+    df_accuracy_smape: pd.DataFrame, model_names: List[str], figsize: tuple = (10, 6)
+) -> Dict:
     """Plot SMAPES Buckets
 
     Args:
@@ -124,7 +126,7 @@ def plot_smape_buckets(df_accuracy_smape: pd.DataFrame, model_names: List[str]) 
     x = np.arange(len(labels))  # x locations for the buckets
     width = 0.8 / len(model_names)  # Adjust width based on number of models
 
-    fig, ax = plt.subplots(figsize=(10, 6))
+    fig, ax = plt.subplots(figsize=figsize)
 
     for i, (model_name, data) in enumerate(buckets_data.items()):
         ax.bar(
@@ -308,7 +310,6 @@ def plot_ratio_all_ts(df_ratio: pd.DataFrame, path: str) -> None:
     """
 
     with PdfPages(path) as pdf:
-
         x_axis = "Timestamp"
         vol1_axis = "Actual_Vol_[Tons]"
         vol2_axis = "Expected_Vol_[Tons]"
@@ -324,7 +325,6 @@ def plot_ratio_all_ts(df_ratio: pd.DataFrame, path: str) -> None:
         }
 
         for ts_key in df_ratio["ts_key"].unique():  # [:10]:
-
             _df = df_ratio.query(f" ts_key == '{ts_key}'")
             plant = ts_key.split("-")[1]
             x = _df[x_axis]

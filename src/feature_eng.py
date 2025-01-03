@@ -36,7 +36,6 @@ def seasonal_decomposition(
         period = 6
 
     try:
-
         decomposition = sm.tsa.seasonal_decompose(ts_series, period=period, model=model)
 
         df_decomposition = pd.DataFrame(
@@ -124,7 +123,6 @@ def apply_feature_eng(
 
     # Calculate Seasonal Features
     for ref_col, col_config in config_seasonal_feat.items():
-
         if col_config["apply"]:
             if verbosity > 1:
                 print("Calculating lags and rolling features for ", ref_col)
@@ -198,7 +196,6 @@ def features_seasonal_decomposition(
 
     dfs = []
     for ts_key in df_ratio_gold["ts_key"].unique():
-
         ts_series = df_ratio_gold[df_ratio_gold["ts_key"] == ts_key][target_col].copy()
 
         _df = seasonal_decomposition(

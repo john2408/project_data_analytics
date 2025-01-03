@@ -11,7 +11,11 @@ from src.data_preprocessing import (
     apply_data_quality_timeseries,
     preprocessing_production,
 )
-from src.models import train_test_stats_models, train_test_lightgbm
+from src.models import (
+    train_test_stats_models,
+    train_test_lightgbm,
+    train_test_deep_learning,
+)
 from src.feature_eng import apply_feature_eng
 from src.utils import store_pickle, smape
 from sklearn.metrics import mean_absolute_error
@@ -201,6 +205,28 @@ def generate_vol_prod_ratio_gold(
     return df_ratio_gold
 
 
+def main_deepl_models(df_timeseries_gold: pd.DataFrame, shards: list) -> tuple:
+    """Generate forecast with deep learning models
+
+    Args:
+        df_timeseries_gold (pd.DataFrame): gold timeseries data
+        shards (List[datetime]): train, test, validation data
+
+    Returns:
+        tuple: model and forecast results
+    """
+
+    nf_model, df_result_deepl = train_test_deep_learning(
+        ts=df_timeseries_gold.copy(), shards=shards
+    )
+    path = "../models/deepl_forecast.pkl"
+
+    store_pickle(obj=nf_model, path=path)
+    df_result_deepl.to_parquet("../data/forecasts/deepl_forecast.parquet")
+
+    return nf_model, df_result_deepl
+
+
 def main_lightgbm(df_timeseries_gold: pd.DataFrame, shards: list) -> tuple:
     """Train LightGBM model and generate forecasts
 
@@ -273,15 +299,9 @@ def ensemble_model(
     Returns:
         pd.DataFrame: ensemble forecast
     """
-    ml_model_names = ["LIGHTGBM"]
-    dl_model_names = ["NBEATS", "NHITS", "KAN"]
-    stats_model_names = [
-        "AutoARIMA",
-        "AutoETS",
-        "CES",
-        "SeasonalNaive",
-        "WindowAverage",
-    ]
+    ml_model_names = config["models"]["ml_model_names"]
+    dl_model_names = config["models"]["dl_model_names"]
+    stats_model_names = config["models"]["stats_model_names"]
     model_names = ml_model_names + stats_model_names + dl_model_names
 
     # Join all models in one single dataframe

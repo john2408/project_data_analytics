@@ -24,6 +24,7 @@ from src.main import (
     main_stats_models,
     generate_vol_prod_ratio_gold,
     main_lightgbm,
+    main_deepl_models,
     ensemble_model,
     main_feature_engineering,
     calculate_best_models,

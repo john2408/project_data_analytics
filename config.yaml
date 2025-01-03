@@ -24,6 +24,17 @@ preprocessing:
 data_quality:
   ts_len_threshold: 8
 
+models: 
+  ml_model_names : ["LIGHTGBM"]
+  dl_model_names : ["NBEATS", "NHITS", "TFT"]
+  stats_model_names : [
+      "AutoARIMA",
+      "AutoETS",
+      "CES",
+      "SeasonalNaive",
+      "WindowAverage",
+  ]
+
 feature_eng:
   lag_months: [2 ,3, 4, 5, 6]
   rolling_months: [2, 4, 6]
