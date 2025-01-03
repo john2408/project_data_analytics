@@ -15,7 +15,7 @@ from src.models import (
     train_test_stats_models,
     train_test_lightgbm,
     train_test_deep_learning,
-    train_test_llm_chronos
+    train_test_llm_chronos,
 )
 from src.feature_eng import apply_feature_eng
 from src.utils import store_pickle, smape
@@ -23,7 +23,7 @@ from sklearn.metrics import mean_absolute_error
 from typing import Dict, Tuple, List
 
 
-def main_chronos(df_timeseries_gold:pd.DataFrame, shards: list) -> pd.DataFrame:
+def main_chronos(df_timeseries_gold: pd.DataFrame, shards: list) -> pd.DataFrame:
     """Generate Forecast with Chronos Bolt model
 
     Args:
@@ -33,8 +33,10 @@ def main_chronos(df_timeseries_gold:pd.DataFrame, shards: list) -> pd.DataFrame:
     Returns:
         pd.DataFrame: forecast values
     """
-  
-    df_forecats = train_test_llm_chronos(df_timeseries_gold=df_timeseries_gold, shards=shards)
+
+    df_forecats = train_test_llm_chronos(
+        df_timeseries_gold=df_timeseries_gold, shards=shards
+    )
     df_forecats.to_parquet("../data/forecasts/chronos_bolt_forecast.parquet")
 
     return df_forecats
@@ -319,8 +321,10 @@ def ensemble_model(
     dl_model_names = config["models"]["dl_model_names"]
     stats_model_names = config["models"]["stats_model_names"]
     chronos_model_names = config["models"]["chronos_model_names"]
-    
-    model_names = ml_model_names + stats_model_names + dl_model_names + chronos_model_names
+
+    model_names = (
+        ml_model_names + stats_model_names + dl_model_names + chronos_model_names
+    )
 
     # Join all models in one single dataframe
     df_forecats = pd.merge(
@@ -336,7 +340,7 @@ def ensemble_model(
         on=["ts_key", "Timestamp", "test_frame"],
         how="inner",
     )
-    
+
     df_forecats = pd.merge(
         df_forecats,
         df_result_chronos,
@@ -398,6 +402,7 @@ def ensemble_model(
         )
 
     return df_true, df_forecats, evaluation_df, model_names
+
 
 def preparation_production_data(
     config: Dict, df_prod_bronze: pd.DataFrame

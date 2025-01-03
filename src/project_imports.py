@@ -30,7 +30,7 @@ from src.main import (
     calculate_best_models,
     forecast_system_evaluation_df,
     forecast_system_accuracy_metrics,
-    main_chronos
+    main_chronos,
 )
 
 from src.plotting import (

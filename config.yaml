@@ -35,6 +35,7 @@ models:
       "WindowAverage",
   ]
   chronos_model_names : ["CHRONOS"]
+  morai_model_names : ["MORAI"]
 
 feature_eng:
   lag_months: [2 ,3, 4, 5, 6]

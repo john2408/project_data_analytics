@@ -188,7 +188,9 @@ def generate_smape_err_buckets(
     return buckets_data
 
 
-def plot_err_less_20_SMAPE(buckets_data: dict, figsize: tuple = (8, 6), no_plot: bool = False) -> None:
+def plot_err_less_20_SMAPE(
+    buckets_data: dict, figsize: tuple = (8, 6), no_plot: bool = False
+) -> None:
     """based on the SMAPE error intervals, plot the number
     of timeseries with an error of less than 20% SMAPE.
     This shows how robust the models are.
@@ -221,7 +223,10 @@ def plot_err_less_20_SMAPE(buckets_data: dict, figsize: tuple = (8, 6), no_plot:
     if not no_plot:
         plt.figure(figsize=figsize)
         sns.barplot(
-            x="model", y="err_less_20_perc_ts_key", data=df_acc_less_20, palette="viridis"
+            x="model",
+            y="err_less_20_perc_ts_key",
+            data=df_acc_less_20,
+            palette="viridis",
         )
 
         # Label the plot

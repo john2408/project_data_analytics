@@ -36,7 +36,9 @@ os.environ["PYTORCH_ENABLE_MPS_FALLBACK"] = "1"
 # os.environ["TF_CPP_MIN_LOG_LEVEL"] = "3"  # If TensorFlow is use
 
 
-def train_test_llm_chronos(df_timeseries_gold: pd.DataFrame, shards: List[List[datetime]]) -> pd.DataFrame:
+def train_test_llm_chronos(
+    df_timeseries_gold: pd.DataFrame, shards: List[List[datetime]]
+) -> pd.DataFrame:
     """Train LLM Model using Chronos for forecasting
 
     Args:
@@ -46,30 +48,54 @@ def train_test_llm_chronos(df_timeseries_gold: pd.DataFrame, shards: List[List[d
 
     pipeline = BaseChronosPipeline.from_pretrained(
         "amazon/chronos-bolt-base",
-        #device_map="cuda",  # use "cpu" for CPU inference and "mps" for Apple Silicon
+        # device_map="cuda",  # use "cpu" for CPU inference and "mps" for Apple Silicon
         torch_dtype=torch.bfloat16,
     )
 
-    #ts = pd.read_parquet("./data/gold/timeseries_gold.parquet")
+    # ts = pd.read_parquet("./data/gold/timeseries_gold.parquet")
     ts = df_timeseries_gold.copy()
 
-    prediction_length = 4 # 4-month ahead forecast
+    prediction_length = 4  # 4-month ahead forecast
 
     # Create the Timestamps splits for Train, Validation and Test
     # Train = [: shard[0]]
     # Validation = [shard[1] : shard[2]]
     # Test = [shard[3] : shard[4]]
     shards = [
-        [datetime(2021,8,1), datetime(2021,9,1), datetime(2021,12,1), datetime(2022,1,1), datetime(2022,4,1)],
-        [datetime(2021,12,1), datetime(2022,1,1), datetime(2022,4,1), datetime(2022,5,1), datetime(2022,8,1)],
-        [datetime(2022,2,1), datetime(2022,3,1), datetime(2022,6,1), datetime(2022,7,1), datetime(2022,10,1) ],
+        [
+            datetime(2021, 8, 1),
+            datetime(2021, 9, 1),
+            datetime(2021, 12, 1),
+            datetime(2022, 1, 1),
+            datetime(2022, 4, 1),
+        ],
+        [
+            datetime(2021, 12, 1),
+            datetime(2022, 1, 1),
+            datetime(2022, 4, 1),
+            datetime(2022, 5, 1),
+            datetime(2022, 8, 1),
+        ],
+        [
+            datetime(2022, 2, 1),
+            datetime(2022, 3, 1),
+            datetime(2022, 6, 1),
+            datetime(2022, 7, 1),
+            datetime(2022, 10, 1),
+        ],
     ]
 
     df_forecats = pd.DataFrame()
 
     for shard in shards:
-        test_frame = shard[3].strftime("%Y-%m-%d") + " - " + shard[4].strftime("%Y-%m-%d")
-        print("Train-Testing for", shard[3].strftime("%Y-%m-%d"), shard[4].strftime("%Y-%m-%d"))
+        test_frame = (
+            shard[3].strftime("%Y-%m-%d") + " - " + shard[4].strftime("%Y-%m-%d")
+        )
+        print(
+            "Train-Testing for",
+            shard[3].strftime("%Y-%m-%d"),
+            shard[4].strftime("%Y-%m-%d"),
+        )
 
         # Train and Validation Set are input together as one dataset
         # Prediction set is our 4-month window
@@ -78,39 +104,41 @@ def train_test_llm_chronos(df_timeseries_gold: pd.DataFrame, shards: List[List[d
             ts[(ts["Timestamp"] >= shard[3]) & (ts["Timestamp"] <= shard[4])],
         )
 
-        test_dates = df_test['Timestamp'].unique()
+        test_dates = df_test["Timestamp"].unique()
 
         df_forecast_shard = pd.DataFrame()
-        for ts_len in df_train_val['ts_len'].unique():
+        for ts_len in df_train_val["ts_len"].unique():
+            _df = df_train_val[df_train_val["ts_len"] == ts_len].copy()
 
-            _df = df_train_val[df_train_val['ts_len'] == ts_len].copy()
-
-            grouped_data = _df.groupby('ts_key')['Vol/Prod_ratio_kg'].apply(list).tolist()
+            grouped_data = (
+                _df.groupby("ts_key")["Vol/Prod_ratio_kg"].apply(list).tolist()
+            )
 
             context = torch.tensor(grouped_data)
 
             # predict using LLM model by passing context data
-            forecasts = pipeline.predict(context, prediction_length)  
+            forecasts = pipeline.predict(context, prediction_length)
 
             df_forecast_ts_key = pd.DataFrame()
-            for ts_key, forecast in zip(_df['ts_key'].unique(), forecasts):
-                low, median, high = np.quantile(forecast.numpy(), [0.1, 0.5, 0.9], axis=0)
+            for ts_key, forecast in zip(_df["ts_key"].unique(), forecasts):
+                low, median, high = np.quantile(
+                    forecast.numpy(), [0.1, 0.5, 0.9], axis=0
+                )
 
-                df_forecast_ts_key = pd.DataFrame({'CHRONOS_lower': low,
-                                'CHRONOS':median,
-                                'CHRONOS_higher':high
-                                })
-                df_forecast_ts_key['ts_key'] = ts_key
-                df_forecast_ts_key['Timestamp'] = test_dates
+                df_forecast_ts_key = pd.DataFrame(
+                    {"CHRONOS_lower": low, "CHRONOS": median, "CHRONOS_higher": high}
+                )
+                df_forecast_ts_key["ts_key"] = ts_key
+                df_forecast_ts_key["Timestamp"] = test_dates
 
                 df_forecast_shard = pd.concat([df_forecast_shard, df_forecast_ts_key])
 
-        df_forecast_shard['test_frame']  = test_frame
+        df_forecast_shard["test_frame"] = test_frame
 
         df_forecats = pd.concat([df_forecats, df_forecast_shard])
-    
+
     return df_forecats
-    
+
 
 def format_ts_data_to_nn_forecast(ts: pd.DataFrame) -> pd.DataFrame:
     """Format the time series data to be used in the Neural Networks Forecasting
