@@ -307,6 +307,7 @@ def ensemble_model(
     df_stats_forecast: pd.DataFrame,
     df_result_deepl: pd.DataFrame,
     df_result_chronos: pd.DataFrame,
+    df_result_morai: pd.DataFrame,
 ) -> Tuple[pd.DataFrame, pd.DataFrame, pd.DataFrame, List]:
     """Create ensemble model from the forecasts of the different models
 
@@ -321,9 +322,14 @@ def ensemble_model(
     dl_model_names = config["models"]["dl_model_names"]
     stats_model_names = config["models"]["stats_model_names"]
     chronos_model_names = config["models"]["chronos_model_names"]
+    morai_model_names = config["models"]["morai_model_names"]
 
     model_names = (
-        ml_model_names + stats_model_names + dl_model_names + chronos_model_names
+        ml_model_names
+        + stats_model_names
+        + dl_model_names
+        + chronos_model_names
+        + morai_model_names
     )
 
     # Join all models in one single dataframe
@@ -344,6 +350,13 @@ def ensemble_model(
     df_forecats = pd.merge(
         df_forecats,
         df_result_chronos,
+        on=["ts_key", "Timestamp", "test_frame"],
+        how="inner",
+    )
+
+    df_forecats = pd.merge(
+        df_forecats,
+        df_result_morai,
         on=["ts_key", "Timestamp", "test_frame"],
         how="inner",
     )

@@ -4947,3 +4947,8 @@
 2025-01-04 00:42:48,686 - INFO - Forecasting for item_id: Provider_8-Plant_1
 2025-01-04 00:42:48,687 - INFO - Processing time series length: 96
 2025-01-04 00:42:48,688 - INFO - Grouping data by 'ts_key'; this may take some time.
+2025-01-04 00:42:51,725 - INFO - Forecasting for item_id: Provider_8-Plant_5
+2025-01-04 00:42:51,726 - INFO - Finished Forecasting for test frame 2022-07-01 - 2022-10-01
+2025-01-04 00:46:30,246 - INFO - Train-Testing for 2022-01-01 to 2022-04-01
+2025-01-04 00:46:30,255 - INFO - Processing time series length: 94
+2025-01-04 00:46:30,257 - INFO - Grouping data by 'ts_key'; this may take some time.
