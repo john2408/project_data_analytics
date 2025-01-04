@@ -5,10 +5,18 @@ from datetime import datetime
 from gluonts.dataset.pandas import PandasDataset
 from gluonts.dataset.split import split
 from huggingface_hub import hf_hub_download
+import logging
 
 from uni2ts.eval_util.plot import plot_single
 from uni2ts.model.moirai import MoiraiForecast, MoiraiModule
 from uni2ts.model.moirai_moe import MoiraiMoEForecast, MoiraiMoEModule
+
+# Configure logging
+logging.basicConfig(
+    filename="morai.log",
+    level=logging.INFO,
+    format="%(asctime)s - %(levelname)s - %(message)s",
+)
 
 
 def test_sample_forecast():
@@ -112,17 +120,25 @@ def test_sample_forecast():
 def test_train_llm_morai(
     df_timeseries_gold: pd.DataFrame, shards: list
 ) -> pd.DataFrame:
-    df_forecats = pd.DataFrame()
+    """Train and test Moirai model on the given time series data
+
+    Args:
+        df_timeseries_gold (pd.DataFrame): gold data for time series
+        shards (list): train, test, validation shards
+
+    Returns:
+        pd.DataFrame: _description_
+    """
+
+    forecats_per_shard = []
     ts = df_timeseries_gold.copy()
 
     for shard in shards:
         test_frame = (
             shard[3].strftime("%Y-%m-%d") + " - " + shard[4].strftime("%Y-%m-%d")
         )
-        print(
-            "Train-Testing for",
-            shard[3].strftime("%Y-%m-%d"),
-            shard[4].strftime("%Y-%m-%d"),
+        logging.info(
+            f"Train-Testing for {shard[3].strftime('%Y-%m-%d')} to {shard[4].strftime('%Y-%m-%d')}"
         )
 
         # df_train_val_test: since we will use the gluonts split method, we need to provide the entire dataset in the given shard
@@ -136,23 +152,24 @@ def test_train_llm_morai(
         df_forecast_shard = pd.DataFrame()
 
         for ts_len in df_train_val_test["ts_len"].unique():
-            _df = (
-                df_train_val_test[df_train_val_test["ts_len"] == ts_len]
-                .set_index("Timestamp")
-                .copy()
-            )
-
             MODEL = "moirai-moe"  # model name: choose from {'moirai', 'moirai-moe'}
-            SIZE = "small"  # model size: choose from {'small', 'base', 'large'}
+            SIZE = "base"  # model size: choose from {'small', 'base', 'large'}
             PDT = 4  # prediction length: any positive integer
             CTX = ts_len - PDT  # context length: any positive integer
             PSZ = "auto"  # patch size: choose from {"auto", 8, 16, 32, 64, 128}
             BSZ = 4  # batch size: any positive integer
             TEST = 4  # test set length: any positive integer
 
-            patch_size = 4
-            num_samples = 4
+            patch_size = 16
+            num_samples = 16
             target_dim = 1
+
+            logging.info(f"Processing time series length: {ts_len}")
+            _df = (
+                df_train_val_test[df_train_val_test["ts_len"] == ts_len]
+                .set_index("Timestamp")
+                .copy()
+            )
 
             # Convert into GluonTS dataset
             # Ref: https://ts.gluon.ai/stable/tutorials/data_manipulation/pandasdataframes.html
@@ -190,6 +207,7 @@ def test_train_llm_morai(
 
             _dfs = []
             for forecast, label in zip(iter(forecasts), iter(test_data.label)):
+                logging.info(f"Forecasting for item_id: {label['item_id']}")
                 forecast_df = pd.DataFrame(
                     {
                         # "mean": forecast.mean,
@@ -205,13 +223,23 @@ def test_train_llm_morai(
             df_forecast_ts_key = pd.concat(_dfs)
 
             df_forecast_shard = pd.concat([df_forecast_shard, df_forecast_ts_key])
-            
-            del _df, _dfs, df_forecast_ts_key
 
-        print("     Finished Forecasting for test frame", test_frame)
+            del (
+                _df,
+                _dfs,
+                df_forecast_ts_key,
+                ds,
+                test_data,
+                model,
+                predictor,
+                forecasts,
+            )
+
+        logging.info(f"Finished Forecasting for test frame {test_frame}")
         df_forecast_shard["test_frame"] = test_frame
+        forecats_per_shard.append(df_forecast_shard)
 
-    df_forecats = pd.concat([df_forecats, df_forecast_shard])
+    df_forecats = pd.concat(forecats_per_shard)
 
     return df_forecats
 
@@ -247,6 +275,4 @@ if __name__ == "__main__":
     df_result_morai = test_train_llm_morai(
         df_timeseries_gold=df_timeseries_gold, shards=shards
     )
-    df_result_morai.to_parquet("./data/forecast/morai_forecast.parquet")
-
-    print("Test")
+    df_result_morai.to_parquet("./data/forecasts/morai_forecast.parquet")
