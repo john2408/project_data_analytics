@@ -247,7 +247,7 @@ def main_deepl_models(df_timeseries_gold: pd.DataFrame, shards: list) -> tuple:
     return nf_model, df_result_deepl
 
 
-def main_lightgbm(df_timeseries_gold: pd.DataFrame, shards: list) -> tuple:
+def main_lightgbm(df_timeseries_gold: pd.DataFrame, shards: list, covid_feat: bool= True) -> tuple:
     """Train LightGBM model and generate forecasts
 
     Args:
@@ -259,15 +259,20 @@ def main_lightgbm(df_timeseries_gold: pd.DataFrame, shards: list) -> tuple:
     """
     # Train LightGBM
     lgbm_model, df_lgbm_forecast = train_test_lightgbm(
-        ts=df_timeseries_gold, shards=shards
+        ts=df_timeseries_gold, shards=shards, covid_feat=covid_feat
     )
 
+    path_model = "../models/lgbm_forecast.pkl"
+    path_forecast = "../data/forecasts/lgbm_forecast.parquet"
+    if covid_feat: 
+        path_model = "../models/lgbm_covid_forecast.pkl"
+        path_forecast = "../data/forecasts/lgbm_covid_forecast.parquet"
+        
     # Store Model
-    path = "../models/lgbm_forecast.pkl"
-    store_pickle(obj=lgbm_model, path=path)
+    store_pickle(obj=lgbm_model, path=path_model)
 
     # Store Forecasts
-    df_lgbm_forecast.to_parquet("../data/forecasts/lgbm_forecast.parquet")
+    df_lgbm_forecast.to_parquet(path_forecast)
 
     return lgbm_model, df_lgbm_forecast
 
@@ -304,6 +309,7 @@ def main_stats_models(df_timeseries_gold: pd.DataFrame, shards: list) -> tuple:
 def ensemble_model(
     config: Dict,
     df_result_lgbm: pd.DataFrame,
+    df_result_lgbm_covid: pd.DataFrame,
     df_stats_forecast: pd.DataFrame,
     df_result_deepl: pd.DataFrame,
     df_result_chronos: pd.DataFrame,
@@ -324,6 +330,7 @@ def ensemble_model(
     chronos_model_names = config["models"]["chronos_model_names"]
     morai_model_names = config["models"]["morai_model_names"]
 
+
     model_names = (
         ml_model_names
         + stats_model_names
@@ -336,6 +343,13 @@ def ensemble_model(
     df_forecats = pd.merge(
         df_result_lgbm.reset_index(),
         df_stats_forecast,
+        on=["ts_key", "Timestamp", "test_frame"],
+        how="inner",
+    )
+
+    df_forecats = pd.merge(
+        df_forecats,
+        df_result_lgbm_covid.reset_index().drop(columns=["y_true"]),
         on=["ts_key", "Timestamp", "test_frame"],
         how="inner",
     )
@@ -360,6 +374,7 @@ def ensemble_model(
         on=["ts_key", "Timestamp", "test_frame"],
         how="inner",
     )
+
 
     df_ensemble_forecast = pd.melt(
         df_forecats,

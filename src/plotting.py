@@ -241,7 +241,7 @@ def plot_err_less_20_SMAPE(
     return df_acc_less_20
 
 
-def plot_ratio_vol_prod(ts_key: str, df_ratio: pd.DataFrame) -> None:
+def plot_ratio_vol_prod(ts_key: str, df_ratio: pd.DataFrame, figsize=(6, 10)) -> None:
     """Plot Ratio-Volume-Production values for a given
     timeseries key
 
@@ -268,7 +268,7 @@ def plot_ratio_vol_prod(ts_key: str, df_ratio: pd.DataFrame) -> None:
 
     # Create a figure
     plt.rc("text", usetex=False)
-    fig, axs = plt.subplots(nrows=3, ncols=1, figsize=(6, 10))
+    fig, axs = plt.subplots(nrows=3, ncols=1, figsize=figsize)
 
     line_colors = {
         vol1_axis: "#1f76b4",

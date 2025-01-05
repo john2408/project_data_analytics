@@ -142,9 +142,10 @@ def apply_feature_eng(
 
     # Add Covid Data
     df_ratio_gold = add_covid_data(df_ratio_gold=df_ratio_gold, df_covid=df_covid)
-
+    covid_cols_names = [col +"_covid" for col in config_covid_feat["cols_names"]]
+    
     # Calculate Covid Features for each country
-    for col_name in config_covid_feat["cols_names"]:
+    for col_name in covid_cols_names:
         if config_covid_feat["apply"]:
             if verbosity > 1:
                 print("Calculating lags and rolling features for ", col_name)
@@ -314,6 +315,7 @@ def add_covid_data(df_ratio_gold: pd.DataFrame, df_covid: pd.DataFrame):
         _type_: _description_
     """
 
+    df_covid.columns = [col + "_covid" for col in df_covid.columns]
     df_ratio_gold = pd.merge(df_ratio_gold, df_covid, on=["Timestamp"], how="left")
 
     df_ratio_gold = df_ratio_gold.fillna(0)

@@ -280,42 +280,54 @@ def train_test_deep_learning(
 
     df_forecats = df_forecats.rename(
         columns={"unique_id": "ts_key", "ds": "Timestamp"}
-    ).drop(columns=["index", "y"])
+    ).drop(columns=["y"])
+    
+    if "index" in df_forecats.columns:
+        df_forecats.drop(columns=["index"], inplace=True)
 
     return nf, df_forecats
 
 
-def feature_importance_analysis(model_path: str, top: int = 5, figsize: tuple = (8, 4)) -> None:
-    """Generate a feature importance plot for a LightGBM model.
+def feature_importance_analysis(model_paths: dict, top: int = 5, figsize: tuple = (12, 4)) -> pd.DataFrame:
+    """Generate feature importance plots for multiple LightGBM models.
 
     Args:
-        model_path (str): _description_
-        top (int, optional): _description_. Defaults to 5.
+        model_paths (list): List of model paths.
+        top (int, optional): Number of top features to display. Defaults to 5.
+        figsize (tuple, optional): Figure size. Defaults to (12, 4).
     """
-    lgb_model = read_pickle(path=model_path)
-    # Get feature importances
-    importance = lgb_model.feature_importance()
-    feature_names = lgb_model.feature_name()
-    feature_importance_df = pd.DataFrame(
-        {"Feature": feature_names, "Importance": importance}
-    )
+    fig, axes = plt.subplots(1, len(model_paths), figsize=figsize)
+    
+    feat_importances = {}
+    for i, model_name in enumerate(model_paths.keys()):
+        lgb_model = read_pickle(path=model_paths[model_name])
+        # Get feature importances
+        importance = lgb_model.feature_importance()
+        feature_names = lgb_model.feature_name()
+        feature_importance_df = pd.DataFrame(
+            {"Feature": feature_names, "Importance": importance}
+        )
 
-    feature_importance_df = feature_importance_df.sort_values(
-        by="Importance", ascending=False
-    )
+        feature_importance_df = feature_importance_df.sort_values(
+            by="Importance", ascending=False
+        )
 
-    # Plot feature importance with a different color palette
-    plt.figure(figsize=figsize)
-    sns.barplot(
-        x="Importance",
-        y="Feature",
-        data=feature_importance_df.head(top),
-        palette="viridis",
-    )
-    plt.title("Feature Importance")
+        feat_importances[model_name] = feature_importance_df
+        
+        # Plot feature importance with a different color palette
+        sns.barplot(
+            x="Importance",
+            y="Feature",
+            data=feature_importance_df.head(top),
+            palette="viridis",
+            ax=axes[i]
+        )
+        axes[i].set_title(f"Feature Importance for Model {model_name}")   
+    
+    plt.tight_layout()
     plt.show()
-
-
+    
+    return feat_importances
 def train_test_stats_models(
     ts: pd.DataFrame, shards: List[datetime]
 ) -> Tuple[statsforecast.core.StatsForecast, pd.DataFrame]:
@@ -389,7 +401,8 @@ def train_test_stats_models(
 
 
 def train_test_lightgbm(
-    ts: pd.DataFrame, shards: List[datetime]
+    ts: pd.DataFrame, shards: List[datetime],
+    covid_feat: bool
 ) -> Tuple[lgb.basic.Booster, pd.DataFrame]:
     """Train/validate/test LightGBM Model
 
@@ -400,7 +413,10 @@ def train_test_lightgbm(
     Returns:
         Tuple[lgb.basic.Booster, pd.DataFrame]: model and forecast values
     """
-    # ts = df_timeseries_gold.copy()
+    
+    if not covid_feat:
+        col_no_covid = [col for col in ts.columns if "covid" not in col]
+        ts = ts.filter(col_no_covid).copy()
 
     # Set random seed for reproducibility
     random_seed = 42
@@ -513,6 +529,9 @@ def train_test_lightgbm(
 
     df_result_lgbm = pd.concat(dfs)
 
-    df_result_lgbm.rename(columns={"y_pred_lgbm": "LIGHTGBM"}, inplace=True)
+    if covid_feat:
+        df_result_lgbm.rename(columns={"y_pred_lgbm": "LIGHTGBM_C"}, inplace=True)
+    else:
+        df_result_lgbm.rename(columns={"y_pred_lgbm": "LIGHTGBM"}, inplace=True)
 
     return model, df_result_lgbm

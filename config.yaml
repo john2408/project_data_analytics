@@ -25,7 +25,7 @@ data_quality:
   ts_len_threshold: 8
 
 models: 
-  ml_model_names : ["LIGHTGBM"]
+  ml_model_names : ["LIGHTGBM", "LIGHTGBM_C"]
   dl_model_names : ["NBEATS", "NHITS", "TFT"]
   stats_model_names : [
       "AutoARIMA",
