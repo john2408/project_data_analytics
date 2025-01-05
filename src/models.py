@@ -285,7 +285,7 @@ def train_test_deep_learning(
     return nf, df_forecats
 
 
-def feature_importance_analysis(model_path: str, top: int = 5) -> None:
+def feature_importance_analysis(model_path: str, top: int = 5, figsize: tuple = (8, 4)) -> None:
     """Generate a feature importance plot for a LightGBM model.
 
     Args:
@@ -305,7 +305,7 @@ def feature_importance_analysis(model_path: str, top: int = 5) -> None:
     )
 
     # Plot feature importance with a different color palette
-    plt.figure(figsize=(8, 4))
+    plt.figure(figsize=figsize)
     sns.barplot(
         x="Importance",
         y="Feature",
