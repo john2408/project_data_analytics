@@ -142,8 +142,8 @@ def apply_feature_eng(
 
     # Add Covid Data
     df_ratio_gold = add_covid_data(df_ratio_gold=df_ratio_gold, df_covid=df_covid)
-    covid_cols_names = [col +"_covid" for col in config_covid_feat["cols_names"]]
-    
+    covid_cols_names = [col + "_covid" for col in config_covid_feat["cols_names"]]
+
     # Calculate Covid Features for each country
     for col_name in covid_cols_names:
         if config_covid_feat["apply"]:

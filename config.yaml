@@ -17,6 +17,7 @@ preprocessing:
   ratio_gold_path: "../data/gold/ratio_vol_prod_gold.parquet"
   seasonal_feat_gold_path: "../data/gold/seasonal_feat_gold.parquet"
   timeseries_gold_path: "../data/gold/timeseries_gold.parquet"
+  covid_feat_importance_path: "../data/gold/lgbm_covid_feat_importance.parquet"
 
   # Reports
   pdf_report_ratios_path: "../reports/Timeseries_Vol_Prod_Ratio.pdf"

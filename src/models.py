@@ -13,6 +13,7 @@ from statsforecast.models import (
     AutoCES,
     SeasonalNaive,
     WindowAverage,
+    Naive,
 )
 
 from neuralforecast import NeuralForecast
@@ -281,14 +282,16 @@ def train_test_deep_learning(
     df_forecats = df_forecats.rename(
         columns={"unique_id": "ts_key", "ds": "Timestamp"}
     ).drop(columns=["y"])
-    
+
     if "index" in df_forecats.columns:
         df_forecats.drop(columns=["index"], inplace=True)
 
     return nf, df_forecats
 
 
-def feature_importance_analysis(model_paths: dict, top: int = 5, figsize: tuple = (12, 4)) -> pd.DataFrame:
+def feature_importance_analysis(
+    model_paths: dict, top: int = 5, figsize: tuple = (12, 4)
+) -> pd.DataFrame:
     """Generate feature importance plots for multiple LightGBM models.
 
     Args:
@@ -297,7 +300,7 @@ def feature_importance_analysis(model_paths: dict, top: int = 5, figsize: tuple 
         figsize (tuple, optional): Figure size. Defaults to (12, 4).
     """
     fig, axes = plt.subplots(1, len(model_paths), figsize=figsize)
-    
+
     feat_importances = {}
     for i, model_name in enumerate(model_paths.keys()):
         lgb_model = read_pickle(path=model_paths[model_name])
@@ -313,21 +316,23 @@ def feature_importance_analysis(model_paths: dict, top: int = 5, figsize: tuple 
         )
 
         feat_importances[model_name] = feature_importance_df
-        
+
         # Plot feature importance with a different color palette
         sns.barplot(
             x="Importance",
             y="Feature",
             data=feature_importance_df.head(top),
             palette="viridis",
-            ax=axes[i]
+            ax=axes[i],
         )
-        axes[i].set_title(f"Feature Importance for Model {model_name}")   
-    
+        axes[i].set_title(f"Feature Importance for Model {model_name}")
+
     plt.tight_layout()
     plt.show()
-    
+
     return feat_importances
+
+
 def train_test_stats_models(
     ts: pd.DataFrame, shards: List[datetime]
 ) -> Tuple[statsforecast.core.StatsForecast, pd.DataFrame]:
@@ -401,8 +406,7 @@ def train_test_stats_models(
 
 
 def train_test_lightgbm(
-    ts: pd.DataFrame, shards: List[datetime],
-    covid_feat: bool
+    ts: pd.DataFrame, shards: List[datetime], covid_feat: bool
 ) -> Tuple[lgb.basic.Booster, pd.DataFrame]:
     """Train/validate/test LightGBM Model
 
@@ -413,7 +417,7 @@ def train_test_lightgbm(
     Returns:
         Tuple[lgb.basic.Booster, pd.DataFrame]: model and forecast values
     """
-    
+
     if not covid_feat:
         col_no_covid = [col for col in ts.columns if "covid" not in col]
         ts = ts.filter(col_no_covid).copy()

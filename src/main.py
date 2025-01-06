@@ -247,7 +247,9 @@ def main_deepl_models(df_timeseries_gold: pd.DataFrame, shards: list) -> tuple:
     return nf_model, df_result_deepl
 
 
-def main_lightgbm(df_timeseries_gold: pd.DataFrame, shards: list, covid_feat: bool= True) -> tuple:
+def main_lightgbm(
+    df_timeseries_gold: pd.DataFrame, shards: list, covid_feat: bool = True
+) -> tuple:
     """Train LightGBM model and generate forecasts
 
     Args:
@@ -264,10 +266,10 @@ def main_lightgbm(df_timeseries_gold: pd.DataFrame, shards: list, covid_feat: bo
 
     path_model = "../models/lgbm_forecast.pkl"
     path_forecast = "../data/forecasts/lgbm_forecast.parquet"
-    if covid_feat: 
+    if covid_feat:
         path_model = "../models/lgbm_covid_forecast.pkl"
         path_forecast = "../data/forecasts/lgbm_covid_forecast.parquet"
-        
+
     # Store Model
     store_pickle(obj=lgbm_model, path=path_model)
 
@@ -314,6 +316,7 @@ def ensemble_model(
     df_result_deepl: pd.DataFrame,
     df_result_chronos: pd.DataFrame,
     df_result_morai: pd.DataFrame,
+    df_result_nbeatsx: pd.DataFrame,
 ) -> Tuple[pd.DataFrame, pd.DataFrame, pd.DataFrame, List]:
     """Create ensemble model from the forecasts of the different models
 
@@ -325,11 +328,10 @@ def ensemble_model(
         pd.DataFrame: ensemble forecast
     """
     ml_model_names = config["models"]["ml_model_names"]
-    dl_model_names = config["models"]["dl_model_names"]
+    dl_model_names = config["models"]["dl_model_names"] + ["NBEATSx"]
     stats_model_names = config["models"]["stats_model_names"]
     chronos_model_names = config["models"]["chronos_model_names"]
     morai_model_names = config["models"]["morai_model_names"]
-
 
     model_names = (
         ml_model_names
@@ -374,7 +376,13 @@ def ensemble_model(
         on=["ts_key", "Timestamp", "test_frame"],
         how="inner",
     )
-
+    
+    df_forecats = pd.merge(
+        df_forecats,
+        df_result_nbeatsx,
+        on=["ts_key", "Timestamp", "test_frame"],
+        how="inner",
+    )
 
     df_ensemble_forecast = pd.melt(
         df_forecats,
