@@ -6,3 +6,5 @@ lightning_logs/
 AutogluonModels/
 .env
 .morai/
+test.py
+forecast_plot_test.png
