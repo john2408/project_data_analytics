@@ -1,0 +1,61 @@
+{
+	"editor.rulers": [
+		120
+	],
+	"editor.formatOnSave": true,
+	"files.watcherExclude": {
+		"**/build/**": true,
+		"**/dist/**": false,
+		"**/.ipynb_checkpoints/**": true,
+		"**/*.egg-info/**": true,
+		"**/.pytest_cache/**": true,
+		"**/__pycache__/**": true,
+		"**/.mypy_cache/**": true,
+		"**/.venv/**": true
+	},
+	"files.exclude": {
+		"**/.pytest_cache/**": true,
+		"**/.mypy_cache/**": true,
+		"**/__pycache__/**": true,
+		"**/*.egg-info/**": true
+	},
+	"editor.codeActionsOnSave": {
+		"source.organizeImports": "explicit"
+	},
+	"files.eol": "\n",
+	"files.defaultLanguage": "",
+	"flake8.args": [
+		"--line-length",
+		"120",
+	],
+	"python.testing.pytestArgs": [
+		"tests"
+	],
+	"python.testing.unittestEnabled": false,
+	// "python.testing.nosetestsEnabled": false,
+	"python.testing.pytestEnabled": true,
+	"python.linting.pycodestyleEnabled": true,
+	"python.linting.pycodestyleArgs": [
+		"--max-line-length=120"
+	],
+	"python.linting.enabled": true,
+	"python.formatting.blackArgs": [
+		"--line-length",
+		"120"
+	],
+	"[python]": {
+		"editor.defaultFormatter": "ms-python.black-formatter",
+		"editor.formatOnSave": true
+	},
+	"black-formatter.args": [
+		"-l",
+		"120"
+	],
+	"python.testing.unittestArgs": [
+		"-v",
+		"-s",
+		"./tests",
+		"-p",
+		"*_test.py"
+	],
+}

@@ -4952,3 +4952,993 @@
 2025-01-04 00:46:30,246 - INFO - Train-Testing for 2022-01-01 to 2022-04-01
 2025-01-04 00:46:30,255 - INFO - Processing time series length: 94
 2025-01-04 00:46:30,257 - INFO - Grouping data by 'ts_key'; this may take some time.
+2025-01-09 16:40:31,706 - INFO - Train-Testing for 2022-01-01 to 2022-04-01
+2025-01-09 16:40:31,715 - INFO - Processing time series length: 94
+2025-01-09 16:40:31,717 - INFO - Grouping data by 'ts_key'; this may take some time.
+2025-01-09 16:40:38,579 - INFO - Forecasting for item_id: Provider_10-Plant_1
+2025-01-09 16:40:38,580 - INFO - Forecasting for item_id: Provider_2-Plant_11
+2025-01-09 16:40:38,581 - INFO - Forecasting for item_id: Provider_24-Plant_1
+2025-01-09 16:40:38,581 - INFO - Forecasting for item_id: Provider_25-Plant_1
+2025-01-09 16:40:38,660 - INFO - Forecasting for item_id: Provider_25-Plant_11
+2025-01-09 16:40:38,661 - INFO - Forecasting for item_id: Provider_7-Plant_5
+2025-01-09 16:40:38,664 - INFO - Processing time series length: 106
+2025-01-09 16:40:38,678 - INFO - Grouping data by 'ts_key'; this may take some time.
+2025-01-09 16:40:43,414 - INFO - Forecasting for item_id: Provider_10-Plant_10
+2025-01-09 16:40:43,414 - INFO - Forecasting for item_id: Provider_10-Plant_11
+2025-01-09 16:40:43,415 - INFO - Forecasting for item_id: Provider_10-Plant_12
+2025-01-09 16:40:43,415 - INFO - Forecasting for item_id: Provider_10-Plant_13
+2025-01-09 16:40:43,497 - INFO - Forecasting for item_id: Provider_10-Plant_14
+2025-01-09 16:40:43,497 - INFO - Forecasting for item_id: Provider_10-Plant_15
+2025-01-09 16:40:43,498 - INFO - Forecasting for item_id: Provider_10-Plant_18
+2025-01-09 16:40:43,499 - INFO - Forecasting for item_id: Provider_10-Plant_19
+2025-01-09 16:40:43,601 - INFO - Forecasting for item_id: Provider_10-Plant_20
+2025-01-09 16:40:43,601 - INFO - Forecasting for item_id: Provider_10-Plant_4
+2025-01-09 16:40:43,602 - INFO - Forecasting for item_id: Provider_14-Plant_10
+2025-01-09 16:40:43,602 - INFO - Forecasting for item_id: Provider_14-Plant_11
+2025-01-09 16:40:43,694 - INFO - Forecasting for item_id: Provider_14-Plant_12
+2025-01-09 16:40:43,695 - INFO - Forecasting for item_id: Provider_14-Plant_13
+2025-01-09 16:40:43,695 - INFO - Forecasting for item_id: Provider_14-Plant_14
+2025-01-09 16:40:43,696 - INFO - Forecasting for item_id: Provider_14-Plant_15
+2025-01-09 16:40:43,774 - INFO - Forecasting for item_id: Provider_14-Plant_18
+2025-01-09 16:40:43,775 - INFO - Forecasting for item_id: Provider_14-Plant_19
+2025-01-09 16:40:43,775 - INFO - Forecasting for item_id: Provider_14-Plant_20
+2025-01-09 16:40:43,776 - INFO - Forecasting for item_id: Provider_14-Plant_4
+2025-01-09 16:40:43,861 - INFO - Forecasting for item_id: Provider_15-Plant_18
+2025-01-09 16:40:43,861 - INFO - Forecasting for item_id: Provider_15-Plant_19
+2025-01-09 16:40:43,862 - INFO - Forecasting for item_id: Provider_15-Plant_20
+2025-01-09 16:40:43,862 - INFO - Forecasting for item_id: Provider_15-Plant_4
+2025-01-09 16:40:43,978 - INFO - Forecasting for item_id: Provider_18-Plant_19
+2025-01-09 16:40:43,979 - INFO - Forecasting for item_id: Provider_18-Plant_20
+2025-01-09 16:40:43,979 - INFO - Forecasting for item_id: Provider_18-Plant_4
+2025-01-09 16:40:43,980 - INFO - Forecasting for item_id: Provider_2-Plant_10
+2025-01-09 16:40:44,085 - INFO - Forecasting for item_id: Provider_2-Plant_12
+2025-01-09 16:40:44,086 - INFO - Forecasting for item_id: Provider_2-Plant_13
+2025-01-09 16:40:44,087 - INFO - Forecasting for item_id: Provider_2-Plant_14
+2025-01-09 16:40:44,087 - INFO - Forecasting for item_id: Provider_2-Plant_15
+2025-01-09 16:40:44,196 - INFO - Forecasting for item_id: Provider_2-Plant_18
+2025-01-09 16:40:44,197 - INFO - Forecasting for item_id: Provider_2-Plant_19
+2025-01-09 16:40:44,198 - INFO - Forecasting for item_id: Provider_2-Plant_20
+2025-01-09 16:40:44,198 - INFO - Forecasting for item_id: Provider_2-Plant_4
+2025-01-09 16:40:44,285 - INFO - Forecasting for item_id: Provider_20-Plant_10
+2025-01-09 16:40:44,285 - INFO - Forecasting for item_id: Provider_20-Plant_12
+2025-01-09 16:40:44,286 - INFO - Forecasting for item_id: Provider_20-Plant_13
+2025-01-09 16:40:44,286 - INFO - Forecasting for item_id: Provider_20-Plant_14
+2025-01-09 16:40:44,367 - INFO - Forecasting for item_id: Provider_20-Plant_15
+2025-01-09 16:40:44,368 - INFO - Forecasting for item_id: Provider_20-Plant_18
+2025-01-09 16:40:44,369 - INFO - Forecasting for item_id: Provider_20-Plant_19
+2025-01-09 16:40:44,369 - INFO - Forecasting for item_id: Provider_20-Plant_20
+2025-01-09 16:40:44,470 - INFO - Forecasting for item_id: Provider_20-Plant_4
+2025-01-09 16:40:44,471 - INFO - Forecasting for item_id: Provider_20-Plant_6
+2025-01-09 16:40:44,471 - INFO - Forecasting for item_id: Provider_21-Plant_10
+2025-01-09 16:40:44,472 - INFO - Forecasting for item_id: Provider_21-Plant_11
+2025-01-09 16:40:44,555 - INFO - Forecasting for item_id: Provider_21-Plant_12
+2025-01-09 16:40:44,556 - INFO - Forecasting for item_id: Provider_21-Plant_13
+2025-01-09 16:40:44,557 - INFO - Forecasting for item_id: Provider_21-Plant_14
+2025-01-09 16:40:44,558 - INFO - Forecasting for item_id: Provider_21-Plant_15
+2025-01-09 16:40:44,638 - INFO - Forecasting for item_id: Provider_21-Plant_18
+2025-01-09 16:40:44,639 - INFO - Forecasting for item_id: Provider_21-Plant_19
+2025-01-09 16:40:44,640 - INFO - Forecasting for item_id: Provider_21-Plant_20
+2025-01-09 16:40:44,640 - INFO - Forecasting for item_id: Provider_21-Plant_4
+2025-01-09 16:40:44,721 - INFO - Forecasting for item_id: Provider_21-Plant_6
+2025-01-09 16:40:44,722 - INFO - Forecasting for item_id: Provider_22-Plant_10
+2025-01-09 16:40:44,722 - INFO - Forecasting for item_id: Provider_22-Plant_12
+2025-01-09 16:40:44,722 - INFO - Forecasting for item_id: Provider_22-Plant_13
+2025-01-09 16:40:44,841 - INFO - Forecasting for item_id: Provider_22-Plant_14
+2025-01-09 16:40:44,841 - INFO - Forecasting for item_id: Provider_22-Plant_15
+2025-01-09 16:40:44,842 - INFO - Forecasting for item_id: Provider_22-Plant_18
+2025-01-09 16:40:44,842 - INFO - Forecasting for item_id: Provider_22-Plant_19
+2025-01-09 16:40:44,923 - INFO - Forecasting for item_id: Provider_22-Plant_20
+2025-01-09 16:40:44,924 - INFO - Forecasting for item_id: Provider_22-Plant_4
+2025-01-09 16:40:44,924 - INFO - Forecasting for item_id: Provider_22-Plant_6
+2025-01-09 16:40:44,925 - INFO - Forecasting for item_id: Provider_24-Plant_10
+2025-01-09 16:40:45,014 - INFO - Forecasting for item_id: Provider_24-Plant_12
+2025-01-09 16:40:45,015 - INFO - Forecasting for item_id: Provider_24-Plant_13
+2025-01-09 16:40:45,016 - INFO - Forecasting for item_id: Provider_24-Plant_14
+2025-01-09 16:40:45,016 - INFO - Forecasting for item_id: Provider_24-Plant_15
+2025-01-09 16:40:45,101 - INFO - Forecasting for item_id: Provider_24-Plant_18
+2025-01-09 16:40:45,102 - INFO - Forecasting for item_id: Provider_24-Plant_19
+2025-01-09 16:40:45,102 - INFO - Forecasting for item_id: Provider_24-Plant_20
+2025-01-09 16:40:45,103 - INFO - Forecasting for item_id: Provider_24-Plant_4
+2025-01-09 16:40:45,192 - INFO - Forecasting for item_id: Provider_24-Plant_6
+2025-01-09 16:40:45,193 - INFO - Forecasting for item_id: Provider_25-Plant_10
+2025-01-09 16:40:45,194 - INFO - Forecasting for item_id: Provider_25-Plant_12
+2025-01-09 16:40:45,194 - INFO - Forecasting for item_id: Provider_25-Plant_13
+2025-01-09 16:40:45,336 - INFO - Forecasting for item_id: Provider_25-Plant_14
+2025-01-09 16:40:45,337 - INFO - Forecasting for item_id: Provider_25-Plant_15
+2025-01-09 16:40:45,337 - INFO - Forecasting for item_id: Provider_25-Plant_18
+2025-01-09 16:40:45,338 - INFO - Forecasting for item_id: Provider_25-Plant_19
+2025-01-09 16:40:45,422 - INFO - Forecasting for item_id: Provider_25-Plant_20
+2025-01-09 16:40:45,422 - INFO - Forecasting for item_id: Provider_25-Plant_4
+2025-01-09 16:40:45,423 - INFO - Forecasting for item_id: Provider_25-Plant_6
+2025-01-09 16:40:45,423 - INFO - Forecasting for item_id: Provider_27-Plant_10
+2025-01-09 16:40:45,508 - INFO - Forecasting for item_id: Provider_27-Plant_11
+2025-01-09 16:40:45,509 - INFO - Forecasting for item_id: Provider_27-Plant_12
+2025-01-09 16:40:45,509 - INFO - Forecasting for item_id: Provider_27-Plant_13
+2025-01-09 16:40:45,510 - INFO - Forecasting for item_id: Provider_27-Plant_14
+2025-01-09 16:40:45,596 - INFO - Forecasting for item_id: Provider_27-Plant_15
+2025-01-09 16:40:45,596 - INFO - Forecasting for item_id: Provider_27-Plant_18
+2025-01-09 16:40:45,597 - INFO - Forecasting for item_id: Provider_27-Plant_19
+2025-01-09 16:40:45,598 - INFO - Forecasting for item_id: Provider_27-Plant_20
+2025-01-09 16:40:45,706 - INFO - Forecasting for item_id: Provider_27-Plant_4
+2025-01-09 16:40:45,707 - INFO - Forecasting for item_id: Provider_27-Plant_6
+2025-01-09 16:40:45,708 - INFO - Forecasting for item_id: Provider_28-Plant_10
+2025-01-09 16:40:45,708 - INFO - Forecasting for item_id: Provider_28-Plant_12
+2025-01-09 16:40:45,810 - INFO - Forecasting for item_id: Provider_28-Plant_13
+2025-01-09 16:40:45,811 - INFO - Forecasting for item_id: Provider_28-Plant_14
+2025-01-09 16:40:45,812 - INFO - Forecasting for item_id: Provider_28-Plant_15
+2025-01-09 16:40:45,812 - INFO - Forecasting for item_id: Provider_28-Plant_18
+2025-01-09 16:40:45,911 - INFO - Forecasting for item_id: Provider_28-Plant_19
+2025-01-09 16:40:45,912 - INFO - Forecasting for item_id: Provider_28-Plant_20
+2025-01-09 16:40:45,913 - INFO - Forecasting for item_id: Provider_28-Plant_4
+2025-01-09 16:40:45,913 - INFO - Forecasting for item_id: Provider_29-Plant_10
+2025-01-09 16:40:46,000 - INFO - Forecasting for item_id: Provider_29-Plant_11
+2025-01-09 16:40:46,001 - INFO - Forecasting for item_id: Provider_29-Plant_12
+2025-01-09 16:40:46,002 - INFO - Forecasting for item_id: Provider_29-Plant_13
+2025-01-09 16:40:46,002 - INFO - Forecasting for item_id: Provider_29-Plant_14
+2025-01-09 16:40:46,084 - INFO - Forecasting for item_id: Provider_29-Plant_15
+2025-01-09 16:40:46,085 - INFO - Forecasting for item_id: Provider_29-Plant_18
+2025-01-09 16:40:46,086 - INFO - Forecasting for item_id: Provider_29-Plant_19
+2025-01-09 16:40:46,086 - INFO - Forecasting for item_id: Provider_29-Plant_20
+2025-01-09 16:40:46,182 - INFO - Forecasting for item_id: Provider_29-Plant_4
+2025-01-09 16:40:46,183 - INFO - Forecasting for item_id: Provider_3-Plant_10
+2025-01-09 16:40:46,184 - INFO - Forecasting for item_id: Provider_3-Plant_11
+2025-01-09 16:40:46,184 - INFO - Forecasting for item_id: Provider_3-Plant_12
+2025-01-09 16:40:46,279 - INFO - Forecasting for item_id: Provider_3-Plant_13
+2025-01-09 16:40:46,280 - INFO - Forecasting for item_id: Provider_3-Plant_14
+2025-01-09 16:40:46,281 - INFO - Forecasting for item_id: Provider_3-Plant_15
+2025-01-09 16:40:46,281 - INFO - Forecasting for item_id: Provider_3-Plant_18
+2025-01-09 16:40:46,380 - INFO - Forecasting for item_id: Provider_3-Plant_19
+2025-01-09 16:40:46,381 - INFO - Forecasting for item_id: Provider_3-Plant_20
+2025-01-09 16:40:46,382 - INFO - Forecasting for item_id: Provider_3-Plant_4
+2025-01-09 16:40:46,383 - INFO - Forecasting for item_id: Provider_3-Plant_6
+2025-01-09 16:40:46,468 - INFO - Forecasting for item_id: Provider_30-Plant_10
+2025-01-09 16:40:46,468 - INFO - Forecasting for item_id: Provider_30-Plant_12
+2025-01-09 16:40:46,469 - INFO - Forecasting for item_id: Provider_30-Plant_13
+2025-01-09 16:40:46,469 - INFO - Forecasting for item_id: Provider_30-Plant_14
+2025-01-09 16:40:46,550 - INFO - Forecasting for item_id: Provider_30-Plant_15
+2025-01-09 16:40:46,551 - INFO - Forecasting for item_id: Provider_30-Plant_18
+2025-01-09 16:40:46,551 - INFO - Forecasting for item_id: Provider_30-Plant_19
+2025-01-09 16:40:46,552 - INFO - Forecasting for item_id: Provider_30-Plant_20
+2025-01-09 16:40:46,636 - INFO - Forecasting for item_id: Provider_30-Plant_4
+2025-01-09 16:40:46,637 - INFO - Forecasting for item_id: Provider_31-Plant_10
+2025-01-09 16:40:46,637 - INFO - Forecasting for item_id: Provider_31-Plant_11
+2025-01-09 16:40:46,638 - INFO - Forecasting for item_id: Provider_31-Plant_12
+2025-01-09 16:40:46,718 - INFO - Forecasting for item_id: Provider_31-Plant_13
+2025-01-09 16:40:46,719 - INFO - Forecasting for item_id: Provider_31-Plant_14
+2025-01-09 16:40:46,719 - INFO - Forecasting for item_id: Provider_31-Plant_15
+2025-01-09 16:40:46,720 - INFO - Forecasting for item_id: Provider_31-Plant_18
+2025-01-09 16:40:46,822 - INFO - Forecasting for item_id: Provider_31-Plant_19
+2025-01-09 16:40:46,823 - INFO - Forecasting for item_id: Provider_31-Plant_20
+2025-01-09 16:40:46,824 - INFO - Forecasting for item_id: Provider_31-Plant_4
+2025-01-09 16:40:46,824 - INFO - Forecasting for item_id: Provider_32-Plant_10
+2025-01-09 16:40:46,911 - INFO - Forecasting for item_id: Provider_32-Plant_13
+2025-01-09 16:40:46,912 - INFO - Forecasting for item_id: Provider_32-Plant_14
+2025-01-09 16:40:46,912 - INFO - Forecasting for item_id: Provider_32-Plant_15
+2025-01-09 16:40:46,913 - INFO - Forecasting for item_id: Provider_32-Plant_18
+2025-01-09 16:40:47,023 - INFO - Forecasting for item_id: Provider_32-Plant_19
+2025-01-09 16:40:47,024 - INFO - Forecasting for item_id: Provider_32-Plant_20
+2025-01-09 16:40:47,024 - INFO - Forecasting for item_id: Provider_7-Plant_10
+2025-01-09 16:40:47,025 - INFO - Forecasting for item_id: Provider_7-Plant_12
+2025-01-09 16:40:47,185 - INFO - Forecasting for item_id: Provider_7-Plant_13
+2025-01-09 16:40:47,185 - INFO - Forecasting for item_id: Provider_7-Plant_14
+2025-01-09 16:40:47,186 - INFO - Forecasting for item_id: Provider_7-Plant_15
+2025-01-09 16:40:47,186 - INFO - Forecasting for item_id: Provider_7-Plant_18
+2025-01-09 16:40:47,265 - INFO - Forecasting for item_id: Provider_7-Plant_19
+2025-01-09 16:40:47,266 - INFO - Forecasting for item_id: Provider_7-Plant_20
+2025-01-09 16:40:47,266 - INFO - Forecasting for item_id: Provider_7-Plant_4
+2025-01-09 16:40:47,267 - INFO - Forecasting for item_id: Provider_7-Plant_6
+2025-01-09 16:40:47,361 - INFO - Forecasting for item_id: Provider_8-Plant_10
+2025-01-09 16:40:47,362 - INFO - Forecasting for item_id: Provider_8-Plant_11
+2025-01-09 16:40:47,362 - INFO - Forecasting for item_id: Provider_8-Plant_12
+2025-01-09 16:40:47,363 - INFO - Forecasting for item_id: Provider_8-Plant_13
+2025-01-09 16:40:47,454 - INFO - Forecasting for item_id: Provider_8-Plant_14
+2025-01-09 16:40:47,456 - INFO - Forecasting for item_id: Provider_8-Plant_15
+2025-01-09 16:40:47,456 - INFO - Forecasting for item_id: Provider_8-Plant_18
+2025-01-09 16:40:47,457 - INFO - Forecasting for item_id: Provider_8-Plant_19
+2025-01-09 16:40:47,540 - INFO - Forecasting for item_id: Provider_8-Plant_20
+2025-01-09 16:40:47,540 - INFO - Forecasting for item_id: Provider_8-Plant_4
+2025-01-09 16:40:47,541 - INFO - Forecasting for item_id: Provider_9-Plant_10
+2025-01-09 16:40:47,541 - INFO - Forecasting for item_id: Provider_9-Plant_11
+2025-01-09 16:40:47,622 - INFO - Forecasting for item_id: Provider_9-Plant_12
+2025-01-09 16:40:47,623 - INFO - Forecasting for item_id: Provider_9-Plant_13
+2025-01-09 16:40:47,623 - INFO - Forecasting for item_id: Provider_9-Plant_14
+2025-01-09 16:40:47,624 - INFO - Forecasting for item_id: Provider_9-Plant_15
+2025-01-09 16:40:47,745 - INFO - Forecasting for item_id: Provider_9-Plant_18
+2025-01-09 16:40:47,746 - INFO - Forecasting for item_id: Provider_9-Plant_19
+2025-01-09 16:40:47,747 - INFO - Forecasting for item_id: Provider_9-Plant_20
+2025-01-09 16:40:47,747 - INFO - Forecasting for item_id: Provider_9-Plant_4
+2025-01-09 16:40:47,767 - INFO - Processing time series length: 91
+2025-01-09 16:40:47,769 - INFO - Grouping data by 'ts_key'; this may take some time.
+2025-01-09 16:40:50,991 - INFO - Forecasting for item_id: Provider_10-Plant_5
+2025-01-09 16:40:50,992 - INFO - Forecasting for item_id: Provider_16-Plant_5
+2025-01-09 16:40:50,993 - INFO - Forecasting for item_id: Provider_32-Plant_4
+2025-01-09 16:40:50,993 - INFO - Forecasting for item_id: Provider_7-Plant_11
+2025-01-09 16:40:50,994 - INFO - Processing time series length: 87
+2025-01-09 16:40:50,995 - INFO - Grouping data by 'ts_key'; this may take some time.
+2025-01-09 16:40:54,283 - INFO - Forecasting for item_id: Provider_14-Plant_1
+2025-01-09 16:40:54,285 - INFO - Forecasting for item_id: Provider_18-Plant_5
+2025-01-09 16:40:54,285 - INFO - Forecasting for item_id: Provider_2-Plant_5
+2025-01-09 16:40:54,286 - INFO - Forecasting for item_id: Provider_21-Plant_1
+2025-01-09 16:40:54,576 - INFO - Forecasting for item_id: Provider_22-Plant_1
+2025-01-09 16:40:54,577 - INFO - Forecasting for item_id: Provider_22-Plant_11
+2025-01-09 16:40:54,579 - INFO - Forecasting for item_id: Provider_30-Plant_1
+2025-01-09 16:40:54,579 - INFO - Forecasting for item_id: Provider_30-Plant_11
+2025-01-09 16:40:54,812 - INFO - Forecasting for item_id: Provider_9-Plant_1
+2025-01-09 16:40:54,812 - INFO - Forecasting for item_id: Provider_9-Plant_5
+2025-01-09 16:40:54,813 - INFO - Processing time series length: 83
+2025-01-09 16:40:54,814 - INFO - Grouping data by 'ts_key'; this may take some time.
+2025-01-09 16:40:57,949 - INFO - Forecasting for item_id: Provider_14-Plant_22
+2025-01-09 16:40:57,950 - INFO - Processing time series length: 16
+2025-01-09 16:40:57,951 - INFO - Grouping data by 'ts_key'; this may take some time.
+2025-01-09 16:41:01,099 - INFO - Forecasting for item_id: Provider_14-Plant_5
+2025-01-09 16:41:01,099 - INFO - Forecasting for item_id: Provider_32-Plant_5
+2025-01-09 16:41:01,100 - INFO - Processing time series length: 64
+2025-01-09 16:41:01,101 - INFO - Grouping data by 'ts_key'; this may take some time.
+2025-01-09 16:41:04,125 - INFO - Forecasting for item_id: Provider_15-Plant_1
+2025-01-09 16:41:04,126 - INFO - Processing time series length: 90
+2025-01-09 16:41:04,127 - INFO - Grouping data by 'ts_key'; this may take some time.
+2025-01-09 16:41:07,277 - INFO - Forecasting for item_id: Provider_15-Plant_13
+2025-01-09 16:41:07,278 - INFO - Processing time series length: 89
+2025-01-09 16:41:07,279 - INFO - Grouping data by 'ts_key'; this may take some time.
+2025-01-09 16:41:10,348 - INFO - Forecasting for item_id: Provider_15-Plant_5
+2025-01-09 16:41:10,348 - INFO - Forecasting for item_id: Provider_28-Plant_5
+2025-01-09 16:41:10,349 - INFO - Forecasting for item_id: Provider_3-Plant_1
+2025-01-09 16:41:10,350 - INFO - Processing time series length: 73
+2025-01-09 16:41:10,350 - INFO - Grouping data by 'ts_key'; this may take some time.
+2025-01-09 16:41:13,473 - INFO - Forecasting for item_id: Provider_16-Plant_1
+2025-01-09 16:41:13,474 - INFO - Processing time series length: 92
+2025-01-09 16:41:13,475 - INFO - Grouping data by 'ts_key'; this may take some time.
+2025-01-09 16:41:16,691 - INFO - Forecasting for item_id: Provider_16-Plant_10
+2025-01-09 16:41:16,692 - INFO - Forecasting for item_id: Provider_16-Plant_11
+2025-01-09 16:41:16,692 - INFO - Forecasting for item_id: Provider_16-Plant_12
+2025-01-09 16:41:16,693 - INFO - Forecasting for item_id: Provider_16-Plant_13
+2025-01-09 16:41:16,828 - INFO - Forecasting for item_id: Provider_16-Plant_14
+2025-01-09 16:41:16,829 - INFO - Forecasting for item_id: Provider_16-Plant_15
+2025-01-09 16:41:16,830 - INFO - Forecasting for item_id: Provider_16-Plant_18
+2025-01-09 16:41:16,830 - INFO - Forecasting for item_id: Provider_16-Plant_19
+2025-01-09 16:41:16,927 - INFO - Forecasting for item_id: Provider_16-Plant_20
+2025-01-09 16:41:16,928 - INFO - Forecasting for item_id: Provider_16-Plant_4
+2025-01-09 16:41:16,929 - INFO - Forecasting for item_id: Provider_24-Plant_5
+2025-01-09 16:41:16,929 - INFO - Forecasting for item_id: Provider_27-Plant_5
+2025-01-09 16:41:16,930 - INFO - Processing time series length: 57
+2025-01-09 16:41:16,931 - INFO - Grouping data by 'ts_key'; this may take some time.
+2025-01-09 16:41:20,081 - INFO - Forecasting for item_id: Provider_18-Plant_1
+2025-01-09 16:41:20,081 - INFO - Processing time series length: 80
+2025-01-09 16:41:20,082 - INFO - Grouping data by 'ts_key'; this may take some time.
+2025-01-09 16:41:23,175 - INFO - Forecasting for item_id: Provider_18-Plant_11
+2025-01-09 16:41:23,177 - INFO - Processing time series length: 101
+2025-01-09 16:41:23,178 - INFO - Grouping data by 'ts_key'; this may take some time.
+2025-01-09 16:41:26,233 - INFO - Forecasting for item_id: Provider_18-Plant_13
+2025-01-09 16:41:26,234 - INFO - Processing time series length: 61
+2025-01-09 16:41:26,235 - INFO - Grouping data by 'ts_key'; this may take some time.
+2025-01-09 16:41:29,344 - INFO - Forecasting for item_id: Provider_18-Plant_15
+2025-01-09 16:41:29,345 - INFO - Processing time series length: 93
+2025-01-09 16:41:29,346 - INFO - Grouping data by 'ts_key'; this may take some time.
+2025-01-09 16:41:32,735 - INFO - Forecasting for item_id: Provider_2-Plant_1
+2025-01-09 16:41:32,735 - INFO - Forecasting for item_id: Provider_24-Plant_11
+2025-01-09 16:41:32,736 - INFO - Processing time series length: 88
+2025-01-09 16:41:32,737 - INFO - Grouping data by 'ts_key'; this may take some time.
+2025-01-09 16:41:35,824 - INFO - Forecasting for item_id: Provider_20-Plant_1
+2025-01-09 16:41:35,824 - INFO - Forecasting for item_id: Provider_3-Plant_5
+2025-01-09 16:41:35,825 - INFO - Processing time series length: 105
+2025-01-09 16:41:35,826 - INFO - Grouping data by 'ts_key'; this may take some time.
+2025-01-09 16:41:39,015 - INFO - Forecasting for item_id: Provider_20-Plant_11
+2025-01-09 16:41:39,016 - INFO - Processing time series length: 84
+2025-01-09 16:41:39,017 - INFO - Grouping data by 'ts_key'; this may take some time.
+2025-01-09 16:41:42,052 - INFO - Forecasting for item_id: Provider_20-Plant_5
+2025-01-09 16:41:42,053 - INFO - Forecasting for item_id: Provider_21-Plant_5
+2025-01-09 16:41:42,053 - INFO - Forecasting for item_id: Provider_31-Plant_5
+2025-01-09 16:41:42,054 - INFO - Processing time series length: 86
+2025-01-09 16:41:42,055 - INFO - Grouping data by 'ts_key'; this may take some time.
+2025-01-09 16:41:45,202 - INFO - Forecasting for item_id: Provider_22-Plant_5
+2025-01-09 16:41:45,203 - INFO - Forecasting for item_id: Provider_28-Plant_11
+2025-01-09 16:41:45,204 - INFO - Forecasting for item_id: Provider_30-Plant_5
+2025-01-09 16:41:45,204 - INFO - Forecasting for item_id: Provider_32-Plant_1
+2025-01-09 16:41:45,205 - INFO - Processing time series length: 81
+2025-01-09 16:41:45,206 - INFO - Grouping data by 'ts_key'; this may take some time.
+2025-01-09 16:41:48,303 - INFO - Forecasting for item_id: Provider_24-Plant_22
+2025-01-09 16:41:48,304 - INFO - Processing time series length: 99
+2025-01-09 16:41:48,305 - INFO - Grouping data by 'ts_key'; this may take some time.
+2025-01-09 16:41:51,640 - INFO - Forecasting for item_id: Provider_25-Plant_5
+2025-01-09 16:41:51,640 - INFO - Forecasting for item_id: Provider_32-Plant_11
+2025-01-09 16:41:51,641 - INFO - Processing time series length: 85
+2025-01-09 16:41:51,642 - INFO - Grouping data by 'ts_key'; this may take some time.
+2025-01-09 16:41:54,718 - INFO - Forecasting for item_id: Provider_27-Plant_1
+2025-01-09 16:41:54,719 - INFO - Forecasting for item_id: Provider_29-Plant_5
+2025-01-09 16:41:54,720 - INFO - Processing time series length: 79
+2025-01-09 16:41:54,721 - INFO - Grouping data by 'ts_key'; this may take some time.
+2025-01-09 16:41:57,836 - INFO - Forecasting for item_id: Provider_27-Plant_22
+2025-01-09 16:41:57,837 - INFO - Forecasting for item_id: Provider_29-Plant_1
+2025-01-09 16:41:57,838 - INFO - Processing time series length: 60
+2025-01-09 16:41:57,838 - INFO - Grouping data by 'ts_key'; this may take some time.
+2025-01-09 16:42:00,980 - INFO - Forecasting for item_id: Provider_28-Plant_1
+2025-01-09 16:42:00,981 - INFO - Processing time series length: 82
+2025-01-09 16:42:00,982 - INFO - Grouping data by 'ts_key'; this may take some time.
+2025-01-09 16:42:04,094 - INFO - Forecasting for item_id: Provider_31-Plant_1
+2025-01-09 16:42:04,096 - INFO - Processing time series length: 78
+2025-01-09 16:42:04,097 - INFO - Grouping data by 'ts_key'; this may take some time.
+2025-01-09 16:42:07,363 - INFO - Forecasting for item_id: Provider_31-Plant_22
+2025-01-09 16:42:07,366 - INFO - Processing time series length: 19
+2025-01-09 16:42:07,367 - INFO - Grouping data by 'ts_key'; this may take some time.
+2025-01-09 16:42:10,435 - INFO - Forecasting for item_id: Provider_35-Plant_1
+2025-01-09 16:42:10,436 - INFO - Forecasting for item_id: Provider_35-Plant_10
+2025-01-09 16:42:10,436 - INFO - Forecasting for item_id: Provider_35-Plant_11
+2025-01-09 16:42:10,437 - INFO - Forecasting for item_id: Provider_35-Plant_12
+2025-01-09 16:42:10,497 - INFO - Forecasting for item_id: Provider_35-Plant_13
+2025-01-09 16:42:10,498 - INFO - Forecasting for item_id: Provider_35-Plant_14
+2025-01-09 16:42:10,498 - INFO - Forecasting for item_id: Provider_35-Plant_15
+2025-01-09 16:42:10,499 - INFO - Forecasting for item_id: Provider_35-Plant_18
+2025-01-09 16:42:10,574 - INFO - Forecasting for item_id: Provider_35-Plant_19
+2025-01-09 16:42:10,575 - INFO - Forecasting for item_id: Provider_35-Plant_20
+2025-01-09 16:42:10,576 - INFO - Forecasting for item_id: Provider_35-Plant_4
+2025-01-09 16:42:10,576 - INFO - Forecasting for item_id: Provider_35-Plant_5
+2025-01-09 16:42:10,577 - INFO - Processing time series length: 59
+2025-01-09 16:42:10,578 - INFO - Grouping data by 'ts_key'; this may take some time.
+2025-01-09 16:42:13,684 - INFO - Forecasting for item_id: Provider_7-Plant_1
+2025-01-09 16:42:13,685 - INFO - Processing time series length: 62
+2025-01-09 16:42:13,686 - INFO - Grouping data by 'ts_key'; this may take some time.
+2025-01-09 16:42:16,717 - INFO - Forecasting for item_id: Provider_8-Plant_1
+2025-01-09 16:42:16,717 - INFO - Processing time series length: 96
+2025-01-09 16:42:16,718 - INFO - Grouping data by 'ts_key'; this may take some time.
+2025-01-09 16:42:19,790 - INFO - Forecasting for item_id: Provider_8-Plant_5
+2025-01-09 16:42:19,790 - INFO - Finished Forecasting for test frame 2022-01-01 - 2022-04-01
+2025-01-09 16:42:19,791 - INFO - Train-Testing for 2022-05-01 to 2022-08-01
+2025-01-09 16:42:19,812 - INFO - Processing time series length: 94
+2025-01-09 16:42:19,813 - INFO - Grouping data by 'ts_key'; this may take some time.
+2025-01-09 16:42:23,208 - INFO - Forecasting for item_id: Provider_10-Plant_1
+2025-01-09 16:42:23,209 - INFO - Forecasting for item_id: Provider_2-Plant_11
+2025-01-09 16:42:23,210 - INFO - Forecasting for item_id: Provider_24-Plant_1
+2025-01-09 16:42:23,210 - INFO - Forecasting for item_id: Provider_25-Plant_1
+2025-01-09 16:42:23,273 - INFO - Forecasting for item_id: Provider_25-Plant_11
+2025-01-09 16:42:23,274 - INFO - Forecasting for item_id: Provider_7-Plant_5
+2025-01-09 16:42:23,274 - INFO - Processing time series length: 106
+2025-01-09 16:42:23,313 - INFO - Grouping data by 'ts_key'; this may take some time.
+2025-01-09 16:42:26,418 - INFO - Forecasting for item_id: Provider_10-Plant_10
+2025-01-09 16:42:26,419 - INFO - Forecasting for item_id: Provider_10-Plant_11
+2025-01-09 16:42:26,420 - INFO - Forecasting for item_id: Provider_10-Plant_12
+2025-01-09 16:42:26,420 - INFO - Forecasting for item_id: Provider_10-Plant_13
+2025-01-09 16:42:26,501 - INFO - Forecasting for item_id: Provider_10-Plant_14
+2025-01-09 16:42:26,502 - INFO - Forecasting for item_id: Provider_10-Plant_15
+2025-01-09 16:42:26,502 - INFO - Forecasting for item_id: Provider_10-Plant_18
+2025-01-09 16:42:26,503 - INFO - Forecasting for item_id: Provider_10-Plant_19
+2025-01-09 16:42:26,585 - INFO - Forecasting for item_id: Provider_10-Plant_20
+2025-01-09 16:42:26,586 - INFO - Forecasting for item_id: Provider_10-Plant_4
+2025-01-09 16:42:26,587 - INFO - Forecasting for item_id: Provider_14-Plant_10
+2025-01-09 16:42:26,587 - INFO - Forecasting for item_id: Provider_14-Plant_11
+2025-01-09 16:42:26,669 - INFO - Forecasting for item_id: Provider_14-Plant_12
+2025-01-09 16:42:26,670 - INFO - Forecasting for item_id: Provider_14-Plant_13
+2025-01-09 16:42:26,671 - INFO - Forecasting for item_id: Provider_14-Plant_14
+2025-01-09 16:42:26,671 - INFO - Forecasting for item_id: Provider_14-Plant_15
+2025-01-09 16:42:26,755 - INFO - Forecasting for item_id: Provider_14-Plant_18
+2025-01-09 16:42:26,756 - INFO - Forecasting for item_id: Provider_14-Plant_19
+2025-01-09 16:42:26,757 - INFO - Forecasting for item_id: Provider_14-Plant_20
+2025-01-09 16:42:26,757 - INFO - Forecasting for item_id: Provider_14-Plant_4
+2025-01-09 16:42:26,845 - INFO - Forecasting for item_id: Provider_15-Plant_18
+2025-01-09 16:42:26,845 - INFO - Forecasting for item_id: Provider_15-Plant_19
+2025-01-09 16:42:26,846 - INFO - Forecasting for item_id: Provider_15-Plant_20
+2025-01-09 16:42:26,846 - INFO - Forecasting for item_id: Provider_15-Plant_4
+2025-01-09 16:42:26,931 - INFO - Forecasting for item_id: Provider_18-Plant_19
+2025-01-09 16:42:26,932 - INFO - Forecasting for item_id: Provider_18-Plant_20
+2025-01-09 16:42:26,932 - INFO - Forecasting for item_id: Provider_18-Plant_4
+2025-01-09 16:42:26,933 - INFO - Forecasting for item_id: Provider_2-Plant_10
+2025-01-09 16:42:27,013 - INFO - Forecasting for item_id: Provider_2-Plant_12
+2025-01-09 16:42:27,014 - INFO - Forecasting for item_id: Provider_2-Plant_13
+2025-01-09 16:42:27,015 - INFO - Forecasting for item_id: Provider_2-Plant_14
+2025-01-09 16:42:27,015 - INFO - Forecasting for item_id: Provider_2-Plant_15
+2025-01-09 16:42:27,103 - INFO - Forecasting for item_id: Provider_2-Plant_18
+2025-01-09 16:42:27,104 - INFO - Forecasting for item_id: Provider_2-Plant_19
+2025-01-09 16:42:27,105 - INFO - Forecasting for item_id: Provider_2-Plant_20
+2025-01-09 16:42:27,105 - INFO - Forecasting for item_id: Provider_2-Plant_4
+2025-01-09 16:42:27,243 - INFO - Forecasting for item_id: Provider_20-Plant_10
+2025-01-09 16:42:27,244 - INFO - Forecasting for item_id: Provider_20-Plant_12
+2025-01-09 16:42:27,245 - INFO - Forecasting for item_id: Provider_20-Plant_13
+2025-01-09 16:42:27,245 - INFO - Forecasting for item_id: Provider_20-Plant_14
+2025-01-09 16:42:27,326 - INFO - Forecasting for item_id: Provider_20-Plant_15
+2025-01-09 16:42:27,327 - INFO - Forecasting for item_id: Provider_20-Plant_18
+2025-01-09 16:42:27,328 - INFO - Forecasting for item_id: Provider_20-Plant_19
+2025-01-09 16:42:27,328 - INFO - Forecasting for item_id: Provider_20-Plant_20
+2025-01-09 16:42:27,416 - INFO - Forecasting for item_id: Provider_20-Plant_4
+2025-01-09 16:42:27,417 - INFO - Forecasting for item_id: Provider_20-Plant_6
+2025-01-09 16:42:27,418 - INFO - Forecasting for item_id: Provider_21-Plant_10
+2025-01-09 16:42:27,418 - INFO - Forecasting for item_id: Provider_21-Plant_11
+2025-01-09 16:42:27,528 - INFO - Forecasting for item_id: Provider_21-Plant_12
+2025-01-09 16:42:27,529 - INFO - Forecasting for item_id: Provider_21-Plant_13
+2025-01-09 16:42:27,530 - INFO - Forecasting for item_id: Provider_21-Plant_14
+2025-01-09 16:42:27,530 - INFO - Forecasting for item_id: Provider_21-Plant_15
+2025-01-09 16:42:27,619 - INFO - Forecasting for item_id: Provider_21-Plant_18
+2025-01-09 16:42:27,620 - INFO - Forecasting for item_id: Provider_21-Plant_19
+2025-01-09 16:42:27,620 - INFO - Forecasting for item_id: Provider_21-Plant_20
+2025-01-09 16:42:27,621 - INFO - Forecasting for item_id: Provider_21-Plant_4
+2025-01-09 16:42:27,707 - INFO - Forecasting for item_id: Provider_21-Plant_6
+2025-01-09 16:42:27,708 - INFO - Forecasting for item_id: Provider_22-Plant_10
+2025-01-09 16:42:27,708 - INFO - Forecasting for item_id: Provider_22-Plant_12
+2025-01-09 16:42:27,709 - INFO - Forecasting for item_id: Provider_22-Plant_13
+2025-01-09 16:42:27,787 - INFO - Forecasting for item_id: Provider_22-Plant_14
+2025-01-09 16:42:27,788 - INFO - Forecasting for item_id: Provider_22-Plant_15
+2025-01-09 16:42:27,788 - INFO - Forecasting for item_id: Provider_22-Plant_18
+2025-01-09 16:42:27,789 - INFO - Forecasting for item_id: Provider_22-Plant_19
+2025-01-09 16:42:27,870 - INFO - Forecasting for item_id: Provider_22-Plant_20
+2025-01-09 16:42:27,870 - INFO - Forecasting for item_id: Provider_22-Plant_4
+2025-01-09 16:42:27,871 - INFO - Forecasting for item_id: Provider_22-Plant_6
+2025-01-09 16:42:27,871 - INFO - Forecasting for item_id: Provider_24-Plant_10
+2025-01-09 16:42:27,958 - INFO - Forecasting for item_id: Provider_24-Plant_12
+2025-01-09 16:42:27,959 - INFO - Forecasting for item_id: Provider_24-Plant_13
+2025-01-09 16:42:27,959 - INFO - Forecasting for item_id: Provider_24-Plant_14
+2025-01-09 16:42:27,960 - INFO - Forecasting for item_id: Provider_24-Plant_15
+2025-01-09 16:42:28,071 - INFO - Forecasting for item_id: Provider_24-Plant_18
+2025-01-09 16:42:28,072 - INFO - Forecasting for item_id: Provider_24-Plant_19
+2025-01-09 16:42:28,072 - INFO - Forecasting for item_id: Provider_24-Plant_20
+2025-01-09 16:42:28,073 - INFO - Forecasting for item_id: Provider_24-Plant_4
+2025-01-09 16:42:28,163 - INFO - Forecasting for item_id: Provider_24-Plant_6
+2025-01-09 16:42:28,164 - INFO - Forecasting for item_id: Provider_25-Plant_10
+2025-01-09 16:42:28,165 - INFO - Forecasting for item_id: Provider_25-Plant_12
+2025-01-09 16:42:28,166 - INFO - Forecasting for item_id: Provider_25-Plant_13
+2025-01-09 16:42:28,257 - INFO - Forecasting for item_id: Provider_25-Plant_14
+2025-01-09 16:42:28,257 - INFO - Forecasting for item_id: Provider_25-Plant_15
+2025-01-09 16:42:28,258 - INFO - Forecasting for item_id: Provider_25-Plant_18
+2025-01-09 16:42:28,258 - INFO - Forecasting for item_id: Provider_25-Plant_19
+2025-01-09 16:42:28,356 - INFO - Forecasting for item_id: Provider_25-Plant_20
+2025-01-09 16:42:28,357 - INFO - Forecasting for item_id: Provider_25-Plant_4
+2025-01-09 16:42:28,357 - INFO - Forecasting for item_id: Provider_25-Plant_6
+2025-01-09 16:42:28,358 - INFO - Forecasting for item_id: Provider_27-Plant_10
+2025-01-09 16:42:28,444 - INFO - Forecasting for item_id: Provider_27-Plant_11
+2025-01-09 16:42:28,445 - INFO - Forecasting for item_id: Provider_27-Plant_12
+2025-01-09 16:42:28,445 - INFO - Forecasting for item_id: Provider_27-Plant_13
+2025-01-09 16:42:28,446 - INFO - Forecasting for item_id: Provider_27-Plant_14
+2025-01-09 16:42:28,541 - INFO - Forecasting for item_id: Provider_27-Plant_15
+2025-01-09 16:42:28,542 - INFO - Forecasting for item_id: Provider_27-Plant_18
+2025-01-09 16:42:28,542 - INFO - Forecasting for item_id: Provider_27-Plant_19
+2025-01-09 16:42:28,543 - INFO - Forecasting for item_id: Provider_27-Plant_20
+2025-01-09 16:42:28,628 - INFO - Forecasting for item_id: Provider_27-Plant_4
+2025-01-09 16:42:28,629 - INFO - Forecasting for item_id: Provider_27-Plant_6
+2025-01-09 16:42:28,630 - INFO - Forecasting for item_id: Provider_28-Plant_10
+2025-01-09 16:42:28,630 - INFO - Forecasting for item_id: Provider_28-Plant_12
+2025-01-09 16:42:28,720 - INFO - Forecasting for item_id: Provider_28-Plant_13
+2025-01-09 16:42:28,721 - INFO - Forecasting for item_id: Provider_28-Plant_14
+2025-01-09 16:42:28,722 - INFO - Forecasting for item_id: Provider_28-Plant_15
+2025-01-09 16:42:28,722 - INFO - Forecasting for item_id: Provider_28-Plant_18
+2025-01-09 16:42:28,807 - INFO - Forecasting for item_id: Provider_28-Plant_19
+2025-01-09 16:42:28,808 - INFO - Forecasting for item_id: Provider_28-Plant_20
+2025-01-09 16:42:28,808 - INFO - Forecasting for item_id: Provider_28-Plant_4
+2025-01-09 16:42:28,809 - INFO - Forecasting for item_id: Provider_29-Plant_10
+2025-01-09 16:42:28,903 - INFO - Forecasting for item_id: Provider_29-Plant_11
+2025-01-09 16:42:28,904 - INFO - Forecasting for item_id: Provider_29-Plant_12
+2025-01-09 16:42:28,904 - INFO - Forecasting for item_id: Provider_29-Plant_13
+2025-01-09 16:42:28,905 - INFO - Forecasting for item_id: Provider_29-Plant_14
+2025-01-09 16:42:29,013 - INFO - Forecasting for item_id: Provider_29-Plant_15
+2025-01-09 16:42:29,014 - INFO - Forecasting for item_id: Provider_29-Plant_18
+2025-01-09 16:42:29,014 - INFO - Forecasting for item_id: Provider_29-Plant_19
+2025-01-09 16:42:29,015 - INFO - Forecasting for item_id: Provider_29-Plant_20
+2025-01-09 16:42:29,114 - INFO - Forecasting for item_id: Provider_29-Plant_4
+2025-01-09 16:42:29,115 - INFO - Forecasting for item_id: Provider_3-Plant_10
+2025-01-09 16:42:29,115 - INFO - Forecasting for item_id: Provider_3-Plant_11
+2025-01-09 16:42:29,116 - INFO - Forecasting for item_id: Provider_3-Plant_12
+2025-01-09 16:42:29,224 - INFO - Forecasting for item_id: Provider_3-Plant_13
+2025-01-09 16:42:29,225 - INFO - Forecasting for item_id: Provider_3-Plant_14
+2025-01-09 16:42:29,225 - INFO - Forecasting for item_id: Provider_3-Plant_15
+2025-01-09 16:42:29,226 - INFO - Forecasting for item_id: Provider_3-Plant_18
+2025-01-09 16:42:29,325 - INFO - Forecasting for item_id: Provider_3-Plant_19
+2025-01-09 16:42:29,326 - INFO - Forecasting for item_id: Provider_3-Plant_20
+2025-01-09 16:42:29,327 - INFO - Forecasting for item_id: Provider_3-Plant_4
+2025-01-09 16:42:29,327 - INFO - Forecasting for item_id: Provider_3-Plant_6
+2025-01-09 16:42:29,429 - INFO - Forecasting for item_id: Provider_30-Plant_10
+2025-01-09 16:42:29,430 - INFO - Forecasting for item_id: Provider_30-Plant_12
+2025-01-09 16:42:29,430 - INFO - Forecasting for item_id: Provider_30-Plant_13
+2025-01-09 16:42:29,431 - INFO - Forecasting for item_id: Provider_30-Plant_14
+2025-01-09 16:42:29,524 - INFO - Forecasting for item_id: Provider_30-Plant_15
+2025-01-09 16:42:29,524 - INFO - Forecasting for item_id: Provider_30-Plant_18
+2025-01-09 16:42:29,525 - INFO - Forecasting for item_id: Provider_30-Plant_19
+2025-01-09 16:42:29,525 - INFO - Forecasting for item_id: Provider_30-Plant_20
+2025-01-09 16:42:29,608 - INFO - Forecasting for item_id: Provider_30-Plant_4
+2025-01-09 16:42:29,608 - INFO - Forecasting for item_id: Provider_31-Plant_10
+2025-01-09 16:42:29,609 - INFO - Forecasting for item_id: Provider_31-Plant_11
+2025-01-09 16:42:29,609 - INFO - Forecasting for item_id: Provider_31-Plant_12
+2025-01-09 16:42:29,714 - INFO - Forecasting for item_id: Provider_31-Plant_13
+2025-01-09 16:42:29,714 - INFO - Forecasting for item_id: Provider_31-Plant_14
+2025-01-09 16:42:29,715 - INFO - Forecasting for item_id: Provider_31-Plant_15
+2025-01-09 16:42:29,715 - INFO - Forecasting for item_id: Provider_31-Plant_18
+2025-01-09 16:42:29,804 - INFO - Forecasting for item_id: Provider_31-Plant_19
+2025-01-09 16:42:29,805 - INFO - Forecasting for item_id: Provider_31-Plant_20
+2025-01-09 16:42:29,806 - INFO - Forecasting for item_id: Provider_31-Plant_4
+2025-01-09 16:42:29,806 - INFO - Forecasting for item_id: Provider_32-Plant_10
+2025-01-09 16:42:29,896 - INFO - Forecasting for item_id: Provider_32-Plant_13
+2025-01-09 16:42:29,897 - INFO - Forecasting for item_id: Provider_32-Plant_14
+2025-01-09 16:42:29,898 - INFO - Forecasting for item_id: Provider_32-Plant_15
+2025-01-09 16:42:29,898 - INFO - Forecasting for item_id: Provider_32-Plant_18
+2025-01-09 16:42:29,982 - INFO - Forecasting for item_id: Provider_32-Plant_19
+2025-01-09 16:42:29,982 - INFO - Forecasting for item_id: Provider_32-Plant_20
+2025-01-09 16:42:29,983 - INFO - Forecasting for item_id: Provider_7-Plant_10
+2025-01-09 16:42:29,984 - INFO - Forecasting for item_id: Provider_7-Plant_12
+2025-01-09 16:42:30,082 - INFO - Forecasting for item_id: Provider_7-Plant_13
+2025-01-09 16:42:30,082 - INFO - Forecasting for item_id: Provider_7-Plant_14
+2025-01-09 16:42:30,083 - INFO - Forecasting for item_id: Provider_7-Plant_15
+2025-01-09 16:42:30,083 - INFO - Forecasting for item_id: Provider_7-Plant_18
+2025-01-09 16:42:30,181 - INFO - Forecasting for item_id: Provider_7-Plant_19
+2025-01-09 16:42:30,182 - INFO - Forecasting for item_id: Provider_7-Plant_20
+2025-01-09 16:42:30,183 - INFO - Forecasting for item_id: Provider_7-Plant_4
+2025-01-09 16:42:30,183 - INFO - Forecasting for item_id: Provider_7-Plant_6
+2025-01-09 16:42:30,281 - INFO - Forecasting for item_id: Provider_8-Plant_10
+2025-01-09 16:42:30,282 - INFO - Forecasting for item_id: Provider_8-Plant_11
+2025-01-09 16:42:30,283 - INFO - Forecasting for item_id: Provider_8-Plant_12
+2025-01-09 16:42:30,283 - INFO - Forecasting for item_id: Provider_8-Plant_13
+2025-01-09 16:42:30,399 - INFO - Forecasting for item_id: Provider_8-Plant_14
+2025-01-09 16:42:30,400 - INFO - Forecasting for item_id: Provider_8-Plant_15
+2025-01-09 16:42:30,400 - INFO - Forecasting for item_id: Provider_8-Plant_18
+2025-01-09 16:42:30,401 - INFO - Forecasting for item_id: Provider_8-Plant_19
+2025-01-09 16:42:30,485 - INFO - Forecasting for item_id: Provider_8-Plant_20
+2025-01-09 16:42:30,486 - INFO - Forecasting for item_id: Provider_8-Plant_4
+2025-01-09 16:42:30,486 - INFO - Forecasting for item_id: Provider_9-Plant_10
+2025-01-09 16:42:30,486 - INFO - Forecasting for item_id: Provider_9-Plant_11
+2025-01-09 16:42:30,571 - INFO - Forecasting for item_id: Provider_9-Plant_12
+2025-01-09 16:42:30,572 - INFO - Forecasting for item_id: Provider_9-Plant_13
+2025-01-09 16:42:30,572 - INFO - Forecasting for item_id: Provider_9-Plant_14
+2025-01-09 16:42:30,573 - INFO - Forecasting for item_id: Provider_9-Plant_15
+2025-01-09 16:42:30,653 - INFO - Forecasting for item_id: Provider_9-Plant_18
+2025-01-09 16:42:30,653 - INFO - Forecasting for item_id: Provider_9-Plant_19
+2025-01-09 16:42:30,654 - INFO - Forecasting for item_id: Provider_9-Plant_20
+2025-01-09 16:42:30,654 - INFO - Forecasting for item_id: Provider_9-Plant_4
+2025-01-09 16:42:30,661 - INFO - Processing time series length: 91
+2025-01-09 16:42:30,662 - INFO - Grouping data by 'ts_key'; this may take some time.
+2025-01-09 16:42:33,781 - INFO - Forecasting for item_id: Provider_10-Plant_5
+2025-01-09 16:42:33,782 - INFO - Forecasting for item_id: Provider_16-Plant_5
+2025-01-09 16:42:33,782 - INFO - Forecasting for item_id: Provider_32-Plant_4
+2025-01-09 16:42:33,783 - INFO - Forecasting for item_id: Provider_7-Plant_11
+2025-01-09 16:42:33,783 - INFO - Processing time series length: 87
+2025-01-09 16:42:33,785 - INFO - Grouping data by 'ts_key'; this may take some time.
+2025-01-09 16:42:36,804 - INFO - Forecasting for item_id: Provider_14-Plant_1
+2025-01-09 16:42:36,805 - INFO - Forecasting for item_id: Provider_18-Plant_5
+2025-01-09 16:42:36,805 - INFO - Forecasting for item_id: Provider_2-Plant_5
+2025-01-09 16:42:36,806 - INFO - Forecasting for item_id: Provider_21-Plant_1
+2025-01-09 16:42:36,882 - INFO - Forecasting for item_id: Provider_22-Plant_1
+2025-01-09 16:42:36,883 - INFO - Forecasting for item_id: Provider_22-Plant_11
+2025-01-09 16:42:36,884 - INFO - Forecasting for item_id: Provider_30-Plant_1
+2025-01-09 16:42:36,885 - INFO - Forecasting for item_id: Provider_30-Plant_11
+2025-01-09 16:42:36,947 - INFO - Forecasting for item_id: Provider_9-Plant_1
+2025-01-09 16:42:36,947 - INFO - Forecasting for item_id: Provider_9-Plant_5
+2025-01-09 16:42:36,948 - INFO - Processing time series length: 83
+2025-01-09 16:42:36,949 - INFO - Grouping data by 'ts_key'; this may take some time.
+2025-01-09 16:42:40,060 - INFO - Forecasting for item_id: Provider_14-Plant_22
+2025-01-09 16:42:40,061 - INFO - Processing time series length: 16
+2025-01-09 16:42:40,062 - INFO - Grouping data by 'ts_key'; this may take some time.
+2025-01-09 16:42:43,105 - INFO - Forecasting for item_id: Provider_14-Plant_5
+2025-01-09 16:42:43,106 - INFO - Forecasting for item_id: Provider_32-Plant_5
+2025-01-09 16:42:43,106 - INFO - Processing time series length: 64
+2025-01-09 16:42:43,107 - INFO - Grouping data by 'ts_key'; this may take some time.
+2025-01-09 16:42:46,178 - INFO - Forecasting for item_id: Provider_15-Plant_1
+2025-01-09 16:42:46,179 - INFO - Processing time series length: 90
+2025-01-09 16:42:46,179 - INFO - Grouping data by 'ts_key'; this may take some time.
+2025-01-09 16:42:49,287 - INFO - Forecasting for item_id: Provider_15-Plant_13
+2025-01-09 16:42:49,288 - INFO - Processing time series length: 89
+2025-01-09 16:42:49,290 - INFO - Grouping data by 'ts_key'; this may take some time.
+2025-01-09 16:42:52,635 - INFO - Forecasting for item_id: Provider_15-Plant_5
+2025-01-09 16:42:52,637 - INFO - Forecasting for item_id: Provider_28-Plant_5
+2025-01-09 16:42:52,638 - INFO - Forecasting for item_id: Provider_3-Plant_1
+2025-01-09 16:42:52,639 - INFO - Processing time series length: 73
+2025-01-09 16:42:52,639 - INFO - Grouping data by 'ts_key'; this may take some time.
+2025-01-09 16:42:55,779 - INFO - Forecasting for item_id: Provider_16-Plant_1
+2025-01-09 16:42:55,780 - INFO - Processing time series length: 92
+2025-01-09 16:42:55,782 - INFO - Grouping data by 'ts_key'; this may take some time.
+2025-01-09 16:42:58,918 - INFO - Forecasting for item_id: Provider_16-Plant_10
+2025-01-09 16:42:58,919 - INFO - Forecasting for item_id: Provider_16-Plant_11
+2025-01-09 16:42:58,919 - INFO - Forecasting for item_id: Provider_16-Plant_12
+2025-01-09 16:42:58,920 - INFO - Forecasting for item_id: Provider_16-Plant_13
+2025-01-09 16:42:59,003 - INFO - Forecasting for item_id: Provider_16-Plant_14
+2025-01-09 16:42:59,004 - INFO - Forecasting for item_id: Provider_16-Plant_15
+2025-01-09 16:42:59,005 - INFO - Forecasting for item_id: Provider_16-Plant_18
+2025-01-09 16:42:59,006 - INFO - Forecasting for item_id: Provider_16-Plant_19
+2025-01-09 16:42:59,087 - INFO - Forecasting for item_id: Provider_16-Plant_20
+2025-01-09 16:42:59,088 - INFO - Forecasting for item_id: Provider_16-Plant_4
+2025-01-09 16:42:59,089 - INFO - Forecasting for item_id: Provider_24-Plant_5
+2025-01-09 16:42:59,089 - INFO - Forecasting for item_id: Provider_27-Plant_5
+2025-01-09 16:42:59,090 - INFO - Processing time series length: 57
+2025-01-09 16:42:59,091 - INFO - Grouping data by 'ts_key'; this may take some time.
+2025-01-09 16:43:02,303 - INFO - Forecasting for item_id: Provider_18-Plant_1
+2025-01-09 16:43:02,304 - INFO - Processing time series length: 80
+2025-01-09 16:43:02,305 - INFO - Grouping data by 'ts_key'; this may take some time.
+2025-01-09 16:43:05,496 - INFO - Forecasting for item_id: Provider_18-Plant_11
+2025-01-09 16:43:05,497 - INFO - Processing time series length: 101
+2025-01-09 16:43:05,498 - INFO - Grouping data by 'ts_key'; this may take some time.
+2025-01-09 16:43:08,543 - INFO - Forecasting for item_id: Provider_18-Plant_13
+2025-01-09 16:43:08,544 - INFO - Processing time series length: 61
+2025-01-09 16:43:08,545 - INFO - Grouping data by 'ts_key'; this may take some time.
+2025-01-09 16:43:11,676 - INFO - Forecasting for item_id: Provider_18-Plant_15
+2025-01-09 16:43:11,677 - INFO - Processing time series length: 93
+2025-01-09 16:43:11,678 - INFO - Grouping data by 'ts_key'; this may take some time.
+2025-01-09 16:43:14,733 - INFO - Forecasting for item_id: Provider_2-Plant_1
+2025-01-09 16:43:14,734 - INFO - Forecasting for item_id: Provider_24-Plant_11
+2025-01-09 16:43:14,734 - INFO - Processing time series length: 88
+2025-01-09 16:43:14,735 - INFO - Grouping data by 'ts_key'; this may take some time.
+2025-01-09 16:43:17,827 - INFO - Forecasting for item_id: Provider_20-Plant_1
+2025-01-09 16:43:17,827 - INFO - Forecasting for item_id: Provider_3-Plant_5
+2025-01-09 16:43:17,828 - INFO - Processing time series length: 105
+2025-01-09 16:43:17,829 - INFO - Grouping data by 'ts_key'; this may take some time.
+2025-01-09 16:43:20,892 - INFO - Forecasting for item_id: Provider_20-Plant_11
+2025-01-09 16:43:20,893 - INFO - Processing time series length: 84
+2025-01-09 16:43:20,894 - INFO - Grouping data by 'ts_key'; this may take some time.
+2025-01-09 16:43:25,652 - INFO - Forecasting for item_id: Provider_20-Plant_5
+2025-01-09 16:43:25,652 - INFO - Forecasting for item_id: Provider_21-Plant_5
+2025-01-09 16:43:25,653 - INFO - Forecasting for item_id: Provider_31-Plant_5
+2025-01-09 16:43:25,654 - INFO - Processing time series length: 86
+2025-01-09 16:43:25,655 - INFO - Grouping data by 'ts_key'; this may take some time.
+2025-01-09 16:43:28,708 - INFO - Forecasting for item_id: Provider_22-Plant_5
+2025-01-09 16:43:28,709 - INFO - Forecasting for item_id: Provider_28-Plant_11
+2025-01-09 16:43:28,710 - INFO - Forecasting for item_id: Provider_30-Plant_5
+2025-01-09 16:43:28,710 - INFO - Forecasting for item_id: Provider_32-Plant_1
+2025-01-09 16:43:28,711 - INFO - Processing time series length: 81
+2025-01-09 16:43:28,712 - INFO - Grouping data by 'ts_key'; this may take some time.
+2025-01-09 16:43:31,770 - INFO - Forecasting for item_id: Provider_24-Plant_22
+2025-01-09 16:43:31,771 - INFO - Processing time series length: 99
+2025-01-09 16:43:31,772 - INFO - Grouping data by 'ts_key'; this may take some time.
+2025-01-09 16:43:34,842 - INFO - Forecasting for item_id: Provider_25-Plant_5
+2025-01-09 16:43:34,843 - INFO - Forecasting for item_id: Provider_32-Plant_11
+2025-01-09 16:43:34,844 - INFO - Processing time series length: 85
+2025-01-09 16:43:34,845 - INFO - Grouping data by 'ts_key'; this may take some time.
+2025-01-09 16:43:37,906 - INFO - Forecasting for item_id: Provider_27-Plant_1
+2025-01-09 16:43:37,907 - INFO - Forecasting for item_id: Provider_29-Plant_5
+2025-01-09 16:43:37,908 - INFO - Processing time series length: 79
+2025-01-09 16:43:37,909 - INFO - Grouping data by 'ts_key'; this may take some time.
+2025-01-09 16:43:41,020 - INFO - Forecasting for item_id: Provider_27-Plant_22
+2025-01-09 16:43:41,021 - INFO - Forecasting for item_id: Provider_29-Plant_1
+2025-01-09 16:43:41,021 - INFO - Processing time series length: 60
+2025-01-09 16:43:41,022 - INFO - Grouping data by 'ts_key'; this may take some time.
+2025-01-09 16:43:44,095 - INFO - Forecasting for item_id: Provider_28-Plant_1
+2025-01-09 16:43:44,096 - INFO - Processing time series length: 82
+2025-01-09 16:43:44,097 - INFO - Grouping data by 'ts_key'; this may take some time.
+2025-01-09 16:43:47,214 - INFO - Forecasting for item_id: Provider_31-Plant_1
+2025-01-09 16:43:47,214 - INFO - Processing time series length: 78
+2025-01-09 16:43:47,215 - INFO - Grouping data by 'ts_key'; this may take some time.
+2025-01-09 16:43:50,452 - INFO - Forecasting for item_id: Provider_31-Plant_22
+2025-01-09 16:43:50,454 - INFO - Processing time series length: 19
+2025-01-09 16:43:50,455 - INFO - Grouping data by 'ts_key'; this may take some time.
+2025-01-09 16:43:53,475 - INFO - Forecasting for item_id: Provider_35-Plant_1
+2025-01-09 16:43:53,476 - INFO - Forecasting for item_id: Provider_35-Plant_10
+2025-01-09 16:43:53,477 - INFO - Forecasting for item_id: Provider_35-Plant_11
+2025-01-09 16:43:53,478 - INFO - Forecasting for item_id: Provider_35-Plant_12
+2025-01-09 16:43:53,551 - INFO - Forecasting for item_id: Provider_35-Plant_13
+2025-01-09 16:43:53,551 - INFO - Forecasting for item_id: Provider_35-Plant_14
+2025-01-09 16:43:53,552 - INFO - Forecasting for item_id: Provider_35-Plant_15
+2025-01-09 16:43:53,552 - INFO - Forecasting for item_id: Provider_35-Plant_18
+2025-01-09 16:43:53,615 - INFO - Forecasting for item_id: Provider_35-Plant_19
+2025-01-09 16:43:53,616 - INFO - Forecasting for item_id: Provider_35-Plant_20
+2025-01-09 16:43:53,616 - INFO - Forecasting for item_id: Provider_35-Plant_4
+2025-01-09 16:43:53,617 - INFO - Forecasting for item_id: Provider_35-Plant_5
+2025-01-09 16:43:53,618 - INFO - Processing time series length: 59
+2025-01-09 16:43:53,619 - INFO - Grouping data by 'ts_key'; this may take some time.
+2025-01-09 16:43:56,760 - INFO - Forecasting for item_id: Provider_7-Plant_1
+2025-01-09 16:43:56,761 - INFO - Processing time series length: 62
+2025-01-09 16:43:56,763 - INFO - Grouping data by 'ts_key'; this may take some time.
+2025-01-09 16:43:59,811 - INFO - Forecasting for item_id: Provider_8-Plant_1
+2025-01-09 16:43:59,812 - INFO - Processing time series length: 96
+2025-01-09 16:43:59,813 - INFO - Grouping data by 'ts_key'; this may take some time.
+2025-01-09 16:44:02,901 - INFO - Forecasting for item_id: Provider_8-Plant_5
+2025-01-09 16:44:02,902 - INFO - Finished Forecasting for test frame 2022-05-01 - 2022-08-01
+2025-01-09 16:44:02,902 - INFO - Train-Testing for 2022-07-01 to 2022-10-01
+2025-01-09 16:44:02,906 - INFO - Processing time series length: 94
+2025-01-09 16:44:02,908 - INFO - Grouping data by 'ts_key'; this may take some time.
+2025-01-09 16:44:05,974 - INFO - Forecasting for item_id: Provider_10-Plant_1
+2025-01-09 16:44:05,974 - INFO - Forecasting for item_id: Provider_2-Plant_11
+2025-01-09 16:44:05,975 - INFO - Forecasting for item_id: Provider_24-Plant_1
+2025-01-09 16:44:05,975 - INFO - Forecasting for item_id: Provider_25-Plant_1
+2025-01-09 16:44:06,046 - INFO - Forecasting for item_id: Provider_25-Plant_11
+2025-01-09 16:44:06,047 - INFO - Forecasting for item_id: Provider_7-Plant_5
+2025-01-09 16:44:06,048 - INFO - Processing time series length: 106
+2025-01-09 16:44:06,077 - INFO - Grouping data by 'ts_key'; this may take some time.
+2025-01-09 16:44:09,214 - INFO - Forecasting for item_id: Provider_10-Plant_10
+2025-01-09 16:44:09,215 - INFO - Forecasting for item_id: Provider_10-Plant_11
+2025-01-09 16:44:09,215 - INFO - Forecasting for item_id: Provider_10-Plant_12
+2025-01-09 16:44:09,216 - INFO - Forecasting for item_id: Provider_10-Plant_13
+2025-01-09 16:44:09,299 - INFO - Forecasting for item_id: Provider_10-Plant_14
+2025-01-09 16:44:09,300 - INFO - Forecasting for item_id: Provider_10-Plant_15
+2025-01-09 16:44:09,301 - INFO - Forecasting for item_id: Provider_10-Plant_18
+2025-01-09 16:44:09,302 - INFO - Forecasting for item_id: Provider_10-Plant_19
+2025-01-09 16:44:09,420 - INFO - Forecasting for item_id: Provider_10-Plant_20
+2025-01-09 16:44:09,421 - INFO - Forecasting for item_id: Provider_10-Plant_4
+2025-01-09 16:44:09,422 - INFO - Forecasting for item_id: Provider_14-Plant_10
+2025-01-09 16:44:09,422 - INFO - Forecasting for item_id: Provider_14-Plant_11
+2025-01-09 16:44:09,511 - INFO - Forecasting for item_id: Provider_14-Plant_12
+2025-01-09 16:44:09,512 - INFO - Forecasting for item_id: Provider_14-Plant_13
+2025-01-09 16:44:09,513 - INFO - Forecasting for item_id: Provider_14-Plant_14
+2025-01-09 16:44:09,513 - INFO - Forecasting for item_id: Provider_14-Plant_15
+2025-01-09 16:44:09,646 - INFO - Forecasting for item_id: Provider_14-Plant_18
+2025-01-09 16:44:09,647 - INFO - Forecasting for item_id: Provider_14-Plant_19
+2025-01-09 16:44:09,647 - INFO - Forecasting for item_id: Provider_14-Plant_20
+2025-01-09 16:44:09,648 - INFO - Forecasting for item_id: Provider_14-Plant_4
+2025-01-09 16:44:09,738 - INFO - Forecasting for item_id: Provider_15-Plant_18
+2025-01-09 16:44:09,739 - INFO - Forecasting for item_id: Provider_15-Plant_19
+2025-01-09 16:44:09,740 - INFO - Forecasting for item_id: Provider_15-Plant_20
+2025-01-09 16:44:09,740 - INFO - Forecasting for item_id: Provider_15-Plant_4
+2025-01-09 16:44:09,841 - INFO - Forecasting for item_id: Provider_18-Plant_19
+2025-01-09 16:44:09,842 - INFO - Forecasting for item_id: Provider_18-Plant_20
+2025-01-09 16:44:09,843 - INFO - Forecasting for item_id: Provider_18-Plant_4
+2025-01-09 16:44:09,843 - INFO - Forecasting for item_id: Provider_2-Plant_10
+2025-01-09 16:44:09,954 - INFO - Forecasting for item_id: Provider_2-Plant_12
+2025-01-09 16:44:09,955 - INFO - Forecasting for item_id: Provider_2-Plant_13
+2025-01-09 16:44:09,955 - INFO - Forecasting for item_id: Provider_2-Plant_14
+2025-01-09 16:44:09,955 - INFO - Forecasting for item_id: Provider_2-Plant_15
+2025-01-09 16:44:10,084 - INFO - Forecasting for item_id: Provider_2-Plant_18
+2025-01-09 16:44:10,085 - INFO - Forecasting for item_id: Provider_2-Plant_19
+2025-01-09 16:44:10,085 - INFO - Forecasting for item_id: Provider_2-Plant_20
+2025-01-09 16:44:10,086 - INFO - Forecasting for item_id: Provider_2-Plant_4
+2025-01-09 16:44:10,196 - INFO - Forecasting for item_id: Provider_20-Plant_10
+2025-01-09 16:44:10,197 - INFO - Forecasting for item_id: Provider_20-Plant_12
+2025-01-09 16:44:10,197 - INFO - Forecasting for item_id: Provider_20-Plant_13
+2025-01-09 16:44:10,198 - INFO - Forecasting for item_id: Provider_20-Plant_14
+2025-01-09 16:44:10,293 - INFO - Forecasting for item_id: Provider_20-Plant_15
+2025-01-09 16:44:10,293 - INFO - Forecasting for item_id: Provider_20-Plant_18
+2025-01-09 16:44:10,294 - INFO - Forecasting for item_id: Provider_20-Plant_19
+2025-01-09 16:44:10,294 - INFO - Forecasting for item_id: Provider_20-Plant_20
+2025-01-09 16:44:10,414 - INFO - Forecasting for item_id: Provider_20-Plant_4
+2025-01-09 16:44:10,416 - INFO - Forecasting for item_id: Provider_20-Plant_6
+2025-01-09 16:44:10,417 - INFO - Forecasting for item_id: Provider_21-Plant_10
+2025-01-09 16:44:10,418 - INFO - Forecasting for item_id: Provider_21-Plant_11
+2025-01-09 16:44:10,527 - INFO - Forecasting for item_id: Provider_21-Plant_12
+2025-01-09 16:44:10,528 - INFO - Forecasting for item_id: Provider_21-Plant_13
+2025-01-09 16:44:10,529 - INFO - Forecasting for item_id: Provider_21-Plant_14
+2025-01-09 16:44:10,529 - INFO - Forecasting for item_id: Provider_21-Plant_15
+2025-01-09 16:44:10,617 - INFO - Forecasting for item_id: Provider_21-Plant_18
+2025-01-09 16:44:10,618 - INFO - Forecasting for item_id: Provider_21-Plant_19
+2025-01-09 16:44:10,619 - INFO - Forecasting for item_id: Provider_21-Plant_20
+2025-01-09 16:44:10,619 - INFO - Forecasting for item_id: Provider_21-Plant_4
+2025-01-09 16:44:10,706 - INFO - Forecasting for item_id: Provider_21-Plant_6
+2025-01-09 16:44:10,707 - INFO - Forecasting for item_id: Provider_22-Plant_10
+2025-01-09 16:44:10,707 - INFO - Forecasting for item_id: Provider_22-Plant_12
+2025-01-09 16:44:10,708 - INFO - Forecasting for item_id: Provider_22-Plant_13
+2025-01-09 16:44:10,793 - INFO - Forecasting for item_id: Provider_22-Plant_14
+2025-01-09 16:44:10,794 - INFO - Forecasting for item_id: Provider_22-Plant_15
+2025-01-09 16:44:10,794 - INFO - Forecasting for item_id: Provider_22-Plant_18
+2025-01-09 16:44:10,795 - INFO - Forecasting for item_id: Provider_22-Plant_19
+2025-01-09 16:44:10,952 - INFO - Forecasting for item_id: Provider_22-Plant_20
+2025-01-09 16:44:10,952 - INFO - Forecasting for item_id: Provider_22-Plant_4
+2025-01-09 16:44:10,953 - INFO - Forecasting for item_id: Provider_22-Plant_6
+2025-01-09 16:44:10,953 - INFO - Forecasting for item_id: Provider_24-Plant_10
+2025-01-09 16:44:11,052 - INFO - Forecasting for item_id: Provider_24-Plant_12
+2025-01-09 16:44:11,053 - INFO - Forecasting for item_id: Provider_24-Plant_13
+2025-01-09 16:44:11,053 - INFO - Forecasting for item_id: Provider_24-Plant_14
+2025-01-09 16:44:11,054 - INFO - Forecasting for item_id: Provider_24-Plant_15
+2025-01-09 16:44:11,162 - INFO - Forecasting for item_id: Provider_24-Plant_18
+2025-01-09 16:44:11,163 - INFO - Forecasting for item_id: Provider_24-Plant_19
+2025-01-09 16:44:11,164 - INFO - Forecasting for item_id: Provider_24-Plant_20
+2025-01-09 16:44:11,164 - INFO - Forecasting for item_id: Provider_24-Plant_4
+2025-01-09 16:44:11,285 - INFO - Forecasting for item_id: Provider_24-Plant_6
+2025-01-09 16:44:11,285 - INFO - Forecasting for item_id: Provider_25-Plant_10
+2025-01-09 16:44:11,286 - INFO - Forecasting for item_id: Provider_25-Plant_12
+2025-01-09 16:44:11,286 - INFO - Forecasting for item_id: Provider_25-Plant_13
+2025-01-09 16:44:11,370 - INFO - Forecasting for item_id: Provider_25-Plant_14
+2025-01-09 16:44:11,371 - INFO - Forecasting for item_id: Provider_25-Plant_15
+2025-01-09 16:44:11,371 - INFO - Forecasting for item_id: Provider_25-Plant_18
+2025-01-09 16:44:11,372 - INFO - Forecasting for item_id: Provider_25-Plant_19
+2025-01-09 16:44:11,466 - INFO - Forecasting for item_id: Provider_25-Plant_20
+2025-01-09 16:44:11,466 - INFO - Forecasting for item_id: Provider_25-Plant_4
+2025-01-09 16:44:11,467 - INFO - Forecasting for item_id: Provider_25-Plant_6
+2025-01-09 16:44:11,467 - INFO - Forecasting for item_id: Provider_27-Plant_10
+2025-01-09 16:44:11,555 - INFO - Forecasting for item_id: Provider_27-Plant_11
+2025-01-09 16:44:11,556 - INFO - Forecasting for item_id: Provider_27-Plant_12
+2025-01-09 16:44:11,556 - INFO - Forecasting for item_id: Provider_27-Plant_13
+2025-01-09 16:44:11,557 - INFO - Forecasting for item_id: Provider_27-Plant_14
+2025-01-09 16:44:11,646 - INFO - Forecasting for item_id: Provider_27-Plant_15
+2025-01-09 16:44:11,647 - INFO - Forecasting for item_id: Provider_27-Plant_18
+2025-01-09 16:44:11,648 - INFO - Forecasting for item_id: Provider_27-Plant_19
+2025-01-09 16:44:11,648 - INFO - Forecasting for item_id: Provider_27-Plant_20
+2025-01-09 16:44:11,735 - INFO - Forecasting for item_id: Provider_27-Plant_4
+2025-01-09 16:44:11,735 - INFO - Forecasting for item_id: Provider_27-Plant_6
+2025-01-09 16:44:11,736 - INFO - Forecasting for item_id: Provider_28-Plant_10
+2025-01-09 16:44:11,736 - INFO - Forecasting for item_id: Provider_28-Plant_12
+2025-01-09 16:44:11,842 - INFO - Forecasting for item_id: Provider_28-Plant_13
+2025-01-09 16:44:11,842 - INFO - Forecasting for item_id: Provider_28-Plant_14
+2025-01-09 16:44:11,843 - INFO - Forecasting for item_id: Provider_28-Plant_15
+2025-01-09 16:44:11,843 - INFO - Forecasting for item_id: Provider_28-Plant_18
+2025-01-09 16:44:11,964 - INFO - Forecasting for item_id: Provider_28-Plant_19
+2025-01-09 16:44:11,965 - INFO - Forecasting for item_id: Provider_28-Plant_20
+2025-01-09 16:44:11,965 - INFO - Forecasting for item_id: Provider_28-Plant_4
+2025-01-09 16:44:11,966 - INFO - Forecasting for item_id: Provider_29-Plant_10
+2025-01-09 16:44:12,073 - INFO - Forecasting for item_id: Provider_29-Plant_11
+2025-01-09 16:44:12,074 - INFO - Forecasting for item_id: Provider_29-Plant_12
+2025-01-09 16:44:12,074 - INFO - Forecasting for item_id: Provider_29-Plant_13
+2025-01-09 16:44:12,075 - INFO - Forecasting for item_id: Provider_29-Plant_14
+2025-01-09 16:44:12,207 - INFO - Forecasting for item_id: Provider_29-Plant_15
+2025-01-09 16:44:12,208 - INFO - Forecasting for item_id: Provider_29-Plant_18
+2025-01-09 16:44:12,208 - INFO - Forecasting for item_id: Provider_29-Plant_19
+2025-01-09 16:44:12,209 - INFO - Forecasting for item_id: Provider_29-Plant_20
+2025-01-09 16:44:12,294 - INFO - Forecasting for item_id: Provider_29-Plant_4
+2025-01-09 16:44:12,295 - INFO - Forecasting for item_id: Provider_3-Plant_10
+2025-01-09 16:44:12,295 - INFO - Forecasting for item_id: Provider_3-Plant_11
+2025-01-09 16:44:12,296 - INFO - Forecasting for item_id: Provider_3-Plant_12
+2025-01-09 16:44:12,381 - INFO - Forecasting for item_id: Provider_3-Plant_13
+2025-01-09 16:44:12,382 - INFO - Forecasting for item_id: Provider_3-Plant_14
+2025-01-09 16:44:12,382 - INFO - Forecasting for item_id: Provider_3-Plant_15
+2025-01-09 16:44:12,383 - INFO - Forecasting for item_id: Provider_3-Plant_18
+2025-01-09 16:44:12,487 - INFO - Forecasting for item_id: Provider_3-Plant_19
+2025-01-09 16:44:12,488 - INFO - Forecasting for item_id: Provider_3-Plant_20
+2025-01-09 16:44:12,488 - INFO - Forecasting for item_id: Provider_3-Plant_4
+2025-01-09 16:44:12,489 - INFO - Forecasting for item_id: Provider_3-Plant_6
+2025-01-09 16:44:12,578 - INFO - Forecasting for item_id: Provider_30-Plant_10
+2025-01-09 16:44:12,579 - INFO - Forecasting for item_id: Provider_30-Plant_12
+2025-01-09 16:44:12,579 - INFO - Forecasting for item_id: Provider_30-Plant_13
+2025-01-09 16:44:12,580 - INFO - Forecasting for item_id: Provider_30-Plant_14
+2025-01-09 16:44:12,670 - INFO - Forecasting for item_id: Provider_30-Plant_15
+2025-01-09 16:44:12,671 - INFO - Forecasting for item_id: Provider_30-Plant_18
+2025-01-09 16:44:12,672 - INFO - Forecasting for item_id: Provider_30-Plant_19
+2025-01-09 16:44:12,673 - INFO - Forecasting for item_id: Provider_30-Plant_20
+2025-01-09 16:44:12,757 - INFO - Forecasting for item_id: Provider_30-Plant_4
+2025-01-09 16:44:12,758 - INFO - Forecasting for item_id: Provider_31-Plant_10
+2025-01-09 16:44:12,758 - INFO - Forecasting for item_id: Provider_31-Plant_11
+2025-01-09 16:44:12,759 - INFO - Forecasting for item_id: Provider_31-Plant_12
+2025-01-09 16:44:12,846 - INFO - Forecasting for item_id: Provider_31-Plant_13
+2025-01-09 16:44:12,847 - INFO - Forecasting for item_id: Provider_31-Plant_14
+2025-01-09 16:44:12,847 - INFO - Forecasting for item_id: Provider_31-Plant_15
+2025-01-09 16:44:12,848 - INFO - Forecasting for item_id: Provider_31-Plant_18
+2025-01-09 16:44:12,979 - INFO - Forecasting for item_id: Provider_31-Plant_19
+2025-01-09 16:44:12,980 - INFO - Forecasting for item_id: Provider_31-Plant_20
+2025-01-09 16:44:12,981 - INFO - Forecasting for item_id: Provider_31-Plant_4
+2025-01-09 16:44:12,981 - INFO - Forecasting for item_id: Provider_32-Plant_10
+2025-01-09 16:44:13,077 - INFO - Forecasting for item_id: Provider_32-Plant_13
+2025-01-09 16:44:13,077 - INFO - Forecasting for item_id: Provider_32-Plant_14
+2025-01-09 16:44:13,078 - INFO - Forecasting for item_id: Provider_32-Plant_15
+2025-01-09 16:44:13,078 - INFO - Forecasting for item_id: Provider_32-Plant_18
+2025-01-09 16:44:13,190 - INFO - Forecasting for item_id: Provider_32-Plant_19
+2025-01-09 16:44:13,191 - INFO - Forecasting for item_id: Provider_32-Plant_20
+2025-01-09 16:44:13,192 - INFO - Forecasting for item_id: Provider_7-Plant_10
+2025-01-09 16:44:13,192 - INFO - Forecasting for item_id: Provider_7-Plant_12
+2025-01-09 16:44:13,277 - INFO - Forecasting for item_id: Provider_7-Plant_13
+2025-01-09 16:44:13,277 - INFO - Forecasting for item_id: Provider_7-Plant_14
+2025-01-09 16:44:13,278 - INFO - Forecasting for item_id: Provider_7-Plant_15
+2025-01-09 16:44:13,278 - INFO - Forecasting for item_id: Provider_7-Plant_18
+2025-01-09 16:44:13,362 - INFO - Forecasting for item_id: Provider_7-Plant_19
+2025-01-09 16:44:13,363 - INFO - Forecasting for item_id: Provider_7-Plant_20
+2025-01-09 16:44:13,363 - INFO - Forecasting for item_id: Provider_7-Plant_4
+2025-01-09 16:44:13,364 - INFO - Forecasting for item_id: Provider_7-Plant_6
+2025-01-09 16:44:13,450 - INFO - Forecasting for item_id: Provider_8-Plant_10
+2025-01-09 16:44:13,451 - INFO - Forecasting for item_id: Provider_8-Plant_11
+2025-01-09 16:44:13,451 - INFO - Forecasting for item_id: Provider_8-Plant_12
+2025-01-09 16:44:13,452 - INFO - Forecasting for item_id: Provider_8-Plant_13
+2025-01-09 16:44:13,540 - INFO - Forecasting for item_id: Provider_8-Plant_14
+2025-01-09 16:44:13,540 - INFO - Forecasting for item_id: Provider_8-Plant_15
+2025-01-09 16:44:13,541 - INFO - Forecasting for item_id: Provider_8-Plant_18
+2025-01-09 16:44:13,541 - INFO - Forecasting for item_id: Provider_8-Plant_19
+2025-01-09 16:44:13,696 - INFO - Forecasting for item_id: Provider_8-Plant_20
+2025-01-09 16:44:13,697 - INFO - Forecasting for item_id: Provider_8-Plant_4
+2025-01-09 16:44:13,698 - INFO - Forecasting for item_id: Provider_9-Plant_10
+2025-01-09 16:44:13,698 - INFO - Forecasting for item_id: Provider_9-Plant_11
+2025-01-09 16:44:13,776 - INFO - Forecasting for item_id: Provider_9-Plant_12
+2025-01-09 16:44:13,776 - INFO - Forecasting for item_id: Provider_9-Plant_13
+2025-01-09 16:44:13,777 - INFO - Forecasting for item_id: Provider_9-Plant_14
+2025-01-09 16:44:13,777 - INFO - Forecasting for item_id: Provider_9-Plant_15
+2025-01-09 16:44:13,878 - INFO - Forecasting for item_id: Provider_9-Plant_18
+2025-01-09 16:44:13,878 - INFO - Forecasting for item_id: Provider_9-Plant_19
+2025-01-09 16:44:13,879 - INFO - Forecasting for item_id: Provider_9-Plant_20
+2025-01-09 16:44:13,880 - INFO - Forecasting for item_id: Provider_9-Plant_4
+2025-01-09 16:44:13,887 - INFO - Processing time series length: 91
+2025-01-09 16:44:13,889 - INFO - Grouping data by 'ts_key'; this may take some time.
+2025-01-09 16:44:17,045 - INFO - Forecasting for item_id: Provider_10-Plant_5
+2025-01-09 16:44:17,045 - INFO - Forecasting for item_id: Provider_16-Plant_5
+2025-01-09 16:44:17,046 - INFO - Forecasting for item_id: Provider_32-Plant_4
+2025-01-09 16:44:17,046 - INFO - Forecasting for item_id: Provider_7-Plant_11
+2025-01-09 16:44:17,047 - INFO - Processing time series length: 87
+2025-01-09 16:44:17,049 - INFO - Grouping data by 'ts_key'; this may take some time.
+2025-01-09 16:44:20,205 - INFO - Forecasting for item_id: Provider_14-Plant_1
+2025-01-09 16:44:20,206 - INFO - Forecasting for item_id: Provider_18-Plant_5
+2025-01-09 16:44:20,207 - INFO - Forecasting for item_id: Provider_2-Plant_5
+2025-01-09 16:44:20,207 - INFO - Forecasting for item_id: Provider_21-Plant_1
+2025-01-09 16:44:20,280 - INFO - Forecasting for item_id: Provider_22-Plant_1
+2025-01-09 16:44:20,281 - INFO - Forecasting for item_id: Provider_22-Plant_11
+2025-01-09 16:44:20,281 - INFO - Forecasting for item_id: Provider_30-Plant_1
+2025-01-09 16:44:20,282 - INFO - Forecasting for item_id: Provider_30-Plant_11
+2025-01-09 16:44:20,349 - INFO - Forecasting for item_id: Provider_9-Plant_1
+2025-01-09 16:44:20,350 - INFO - Forecasting for item_id: Provider_9-Plant_5
+2025-01-09 16:44:20,351 - INFO - Processing time series length: 83
+2025-01-09 16:44:20,352 - INFO - Grouping data by 'ts_key'; this may take some time.
+2025-01-09 16:44:23,387 - INFO - Forecasting for item_id: Provider_14-Plant_22
+2025-01-09 16:44:23,388 - INFO - Processing time series length: 16
+2025-01-09 16:44:23,388 - INFO - Grouping data by 'ts_key'; this may take some time.
+2025-01-09 16:44:26,410 - INFO - Forecasting for item_id: Provider_14-Plant_5
+2025-01-09 16:44:26,410 - INFO - Forecasting for item_id: Provider_32-Plant_5
+2025-01-09 16:44:26,411 - INFO - Processing time series length: 64
+2025-01-09 16:44:26,412 - INFO - Grouping data by 'ts_key'; this may take some time.
+2025-01-09 16:44:30,098 - INFO - Forecasting for item_id: Provider_15-Plant_1
+2025-01-09 16:44:30,099 - INFO - Processing time series length: 90
+2025-01-09 16:44:30,100 - INFO - Grouping data by 'ts_key'; this may take some time.
+2025-01-09 16:44:33,387 - INFO - Forecasting for item_id: Provider_15-Plant_13
+2025-01-09 16:44:33,388 - INFO - Processing time series length: 89
+2025-01-09 16:44:33,390 - INFO - Grouping data by 'ts_key'; this may take some time.
+2025-01-09 16:44:37,136 - INFO - Forecasting for item_id: Provider_15-Plant_5
+2025-01-09 16:44:37,137 - INFO - Forecasting for item_id: Provider_28-Plant_5
+2025-01-09 16:44:37,138 - INFO - Forecasting for item_id: Provider_3-Plant_1
+2025-01-09 16:44:37,139 - INFO - Processing time series length: 73
+2025-01-09 16:44:37,140 - INFO - Grouping data by 'ts_key'; this may take some time.
+2025-01-09 16:44:40,274 - INFO - Forecasting for item_id: Provider_16-Plant_1
+2025-01-09 16:44:40,275 - INFO - Processing time series length: 92
+2025-01-09 16:44:40,276 - INFO - Grouping data by 'ts_key'; this may take some time.
+2025-01-09 16:44:43,426 - INFO - Forecasting for item_id: Provider_16-Plant_10
+2025-01-09 16:44:43,426 - INFO - Forecasting for item_id: Provider_16-Plant_11
+2025-01-09 16:44:43,427 - INFO - Forecasting for item_id: Provider_16-Plant_12
+2025-01-09 16:44:43,428 - INFO - Forecasting for item_id: Provider_16-Plant_13
+2025-01-09 16:44:43,563 - INFO - Forecasting for item_id: Provider_16-Plant_14
+2025-01-09 16:44:43,564 - INFO - Forecasting for item_id: Provider_16-Plant_15
+2025-01-09 16:44:43,565 - INFO - Forecasting for item_id: Provider_16-Plant_18
+2025-01-09 16:44:43,565 - INFO - Forecasting for item_id: Provider_16-Plant_19
+2025-01-09 16:44:43,646 - INFO - Forecasting for item_id: Provider_16-Plant_20
+2025-01-09 16:44:43,647 - INFO - Forecasting for item_id: Provider_16-Plant_4
+2025-01-09 16:44:43,647 - INFO - Forecasting for item_id: Provider_24-Plant_5
+2025-01-09 16:44:43,648 - INFO - Forecasting for item_id: Provider_27-Plant_5
+2025-01-09 16:44:43,649 - INFO - Processing time series length: 57
+2025-01-09 16:44:43,650 - INFO - Grouping data by 'ts_key'; this may take some time.
+2025-01-09 16:44:47,121 - INFO - Forecasting for item_id: Provider_18-Plant_1
+2025-01-09 16:44:47,122 - INFO - Processing time series length: 80
+2025-01-09 16:44:47,123 - INFO - Grouping data by 'ts_key'; this may take some time.
+2025-01-09 16:44:50,212 - INFO - Forecasting for item_id: Provider_18-Plant_11
+2025-01-09 16:44:50,214 - INFO - Processing time series length: 101
+2025-01-09 16:44:50,216 - INFO - Grouping data by 'ts_key'; this may take some time.
+2025-01-09 16:44:53,322 - INFO - Forecasting for item_id: Provider_18-Plant_13
+2025-01-09 16:44:53,323 - INFO - Processing time series length: 61
+2025-01-09 16:44:53,324 - INFO - Grouping data by 'ts_key'; this may take some time.
+2025-01-09 16:44:56,348 - INFO - Forecasting for item_id: Provider_18-Plant_15
+2025-01-09 16:44:56,349 - INFO - Processing time series length: 93
+2025-01-09 16:44:56,350 - INFO - Grouping data by 'ts_key'; this may take some time.
+2025-01-09 16:44:59,560 - INFO - Forecasting for item_id: Provider_2-Plant_1
+2025-01-09 16:44:59,561 - INFO - Forecasting for item_id: Provider_24-Plant_11
+2025-01-09 16:44:59,562 - INFO - Processing time series length: 88
+2025-01-09 16:44:59,563 - INFO - Grouping data by 'ts_key'; this may take some time.
+2025-01-09 16:45:02,608 - INFO - Forecasting for item_id: Provider_20-Plant_1
+2025-01-09 16:45:02,609 - INFO - Forecasting for item_id: Provider_3-Plant_5
+2025-01-09 16:45:02,609 - INFO - Processing time series length: 105
+2025-01-09 16:45:02,610 - INFO - Grouping data by 'ts_key'; this may take some time.
+2025-01-09 16:45:05,744 - INFO - Forecasting for item_id: Provider_20-Plant_11
+2025-01-09 16:45:05,745 - INFO - Processing time series length: 84
+2025-01-09 16:45:05,746 - INFO - Grouping data by 'ts_key'; this may take some time.
+2025-01-09 16:45:08,863 - INFO - Forecasting for item_id: Provider_20-Plant_5
+2025-01-09 16:45:08,863 - INFO - Forecasting for item_id: Provider_21-Plant_5
+2025-01-09 16:45:08,864 - INFO - Forecasting for item_id: Provider_31-Plant_5
+2025-01-09 16:45:08,865 - INFO - Processing time series length: 86
+2025-01-09 16:45:08,866 - INFO - Grouping data by 'ts_key'; this may take some time.
+2025-01-09 16:45:11,959 - INFO - Forecasting for item_id: Provider_22-Plant_5
+2025-01-09 16:45:11,960 - INFO - Forecasting for item_id: Provider_28-Plant_11
+2025-01-09 16:45:11,961 - INFO - Forecasting for item_id: Provider_30-Plant_5
+2025-01-09 16:45:11,961 - INFO - Forecasting for item_id: Provider_32-Plant_1
+2025-01-09 16:45:11,962 - INFO - Processing time series length: 81
+2025-01-09 16:45:11,963 - INFO - Grouping data by 'ts_key'; this may take some time.
+2025-01-09 16:45:15,080 - INFO - Forecasting for item_id: Provider_24-Plant_22
+2025-01-09 16:45:15,081 - INFO - Processing time series length: 99
+2025-01-09 16:45:15,082 - INFO - Grouping data by 'ts_key'; this may take some time.
+2025-01-09 16:45:18,145 - INFO - Forecasting for item_id: Provider_25-Plant_5
+2025-01-09 16:45:18,146 - INFO - Forecasting for item_id: Provider_32-Plant_11
+2025-01-09 16:45:18,147 - INFO - Processing time series length: 85
+2025-01-09 16:45:18,148 - INFO - Grouping data by 'ts_key'; this may take some time.
+2025-01-09 16:45:21,269 - INFO - Forecasting for item_id: Provider_27-Plant_1
+2025-01-09 16:45:21,271 - INFO - Forecasting for item_id: Provider_29-Plant_5
+2025-01-09 16:45:21,272 - INFO - Processing time series length: 79
+2025-01-09 16:45:21,273 - INFO - Grouping data by 'ts_key'; this may take some time.
+2025-01-09 16:45:24,356 - INFO - Forecasting for item_id: Provider_27-Plant_22
+2025-01-09 16:45:24,356 - INFO - Forecasting for item_id: Provider_29-Plant_1
+2025-01-09 16:45:24,357 - INFO - Processing time series length: 60
+2025-01-09 16:45:24,358 - INFO - Grouping data by 'ts_key'; this may take some time.
+2025-01-09 16:45:27,377 - INFO - Forecasting for item_id: Provider_28-Plant_1
+2025-01-09 16:45:27,377 - INFO - Processing time series length: 82
+2025-01-09 16:45:27,378 - INFO - Grouping data by 'ts_key'; this may take some time.
+2025-01-09 16:45:30,490 - INFO - Forecasting for item_id: Provider_31-Plant_1
+2025-01-09 16:45:30,492 - INFO - Processing time series length: 78
+2025-01-09 16:45:30,493 - INFO - Grouping data by 'ts_key'; this may take some time.
+2025-01-09 16:45:33,529 - INFO - Forecasting for item_id: Provider_31-Plant_22
+2025-01-09 16:45:33,530 - INFO - Processing time series length: 19
+2025-01-09 16:45:33,531 - INFO - Grouping data by 'ts_key'; this may take some time.
+2025-01-09 16:45:36,637 - INFO - Forecasting for item_id: Provider_35-Plant_1
+2025-01-09 16:45:36,638 - INFO - Forecasting for item_id: Provider_35-Plant_10
+2025-01-09 16:45:36,639 - INFO - Forecasting for item_id: Provider_35-Plant_11
+2025-01-09 16:45:36,639 - INFO - Forecasting for item_id: Provider_35-Plant_12
+2025-01-09 16:45:36,696 - INFO - Forecasting for item_id: Provider_35-Plant_13
+2025-01-09 16:45:36,697 - INFO - Forecasting for item_id: Provider_35-Plant_14
+2025-01-09 16:45:36,698 - INFO - Forecasting for item_id: Provider_35-Plant_15
+2025-01-09 16:45:36,698 - INFO - Forecasting for item_id: Provider_35-Plant_18
+2025-01-09 16:45:36,780 - INFO - Forecasting for item_id: Provider_35-Plant_19
+2025-01-09 16:45:36,780 - INFO - Forecasting for item_id: Provider_35-Plant_20
+2025-01-09 16:45:36,781 - INFO - Forecasting for item_id: Provider_35-Plant_4
+2025-01-09 16:45:36,781 - INFO - Forecasting for item_id: Provider_35-Plant_5
+2025-01-09 16:45:36,782 - INFO - Processing time series length: 59
+2025-01-09 16:45:36,783 - INFO - Grouping data by 'ts_key'; this may take some time.
+2025-01-09 16:45:39,823 - INFO - Forecasting for item_id: Provider_7-Plant_1
+2025-01-09 16:45:39,824 - INFO - Processing time series length: 62
+2025-01-09 16:45:39,825 - INFO - Grouping data by 'ts_key'; this may take some time.
+2025-01-09 16:45:43,037 - INFO - Forecasting for item_id: Provider_8-Plant_1
+2025-01-09 16:45:43,038 - INFO - Processing time series length: 96
+2025-01-09 16:45:43,038 - INFO - Grouping data by 'ts_key'; this may take some time.
+2025-01-09 16:45:46,098 - INFO - Forecasting for item_id: Provider_8-Plant_5
+2025-01-09 16:45:46,099 - INFO - Finished Forecasting for test frame 2022-07-01 - 2022-10-01

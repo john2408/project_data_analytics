@@ -8,3 +8,4 @@ AutogluonModels/
 .morai/
 test.py
 forecast_plot_test.png
+reports/outliers/

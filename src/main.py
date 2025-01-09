@@ -1,26 +1,28 @@
-import sys
 import os
+import sys
 
 sys.path.insert(0, os.path.abspath(".."))
 
-import pandas as pd
+from typing import Dict, List, Tuple
+
 import numpy as np
+import pandas as pd
+from sklearn.metrics import mean_absolute_error
+
 from src.data_preprocessing import (
-    preprocessing_volume_data,
-    data_quality_vol_analysis,
     apply_data_quality_timeseries,
+    data_quality_vol_analysis,
     preprocessing_production,
-)
-from src.models import (
-    train_test_stats_models,
-    train_test_lightgbm,
-    train_test_deep_learning,
-    train_test_llm_chronos,
+    preprocessing_volume_data,
 )
 from src.feature_eng import apply_feature_eng
-from src.utils import store_pickle, smape
-from sklearn.metrics import mean_absolute_error
-from typing import Dict, Tuple, List
+from src.models import (
+    train_test_deep_learning,
+    train_test_lightgbm,
+    train_test_llm_chronos,
+    train_test_stats_models,
+)
+from src.utils import smape, store_pickle
 
 
 def main_chronos(df_timeseries_gold: pd.DataFrame, shards: list) -> pd.DataFrame:
@@ -165,7 +167,9 @@ def main_feature_engineering(config: Dict) -> pd.DataFrame:
     Returns:
         pd.DataFrame: dataframe with features
     """
-    df_ratio_gold = pd.read_parquet(config["preprocessing"]["ratio_gold_path"])
+    df_ratio_gold = pd.read_parquet(
+        config["preprocessing"]["ratio_gold_path_no_outliers"]
+    )
     df_ts_decomposition = pd.read_parquet(
         config["preprocessing"]["seasonal_feat_gold_path"]
     )
@@ -376,7 +380,7 @@ def ensemble_model(
         on=["ts_key", "Timestamp", "test_frame"],
         how="inner",
     )
-    
+
     df_forecats = pd.merge(
         df_forecats,
         df_result_nbeatsx,

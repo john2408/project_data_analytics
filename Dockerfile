@@ -56,7 +56,7 @@ COPY pyproject.toml ./
 RUN poetry config virtualenvs.create false \
     && poetry install --no-interaction --no-ansi --no-root
 
-    RUN pip install -U ipywidgets
+RUN pip install -U ipywidgets
 
 # Start docker interactive session at bash
 CMD ["/bin/bash"]

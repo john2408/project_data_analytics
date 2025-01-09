@@ -1,5 +1,4 @@
-preprocessing: 
-
+preprocessing:
   # Bronze Tables
   vol_data_path: "../data/raw/inbound_volume_data.csv"
   prod_data_path: "../data/raw/production_data.csv"
@@ -15,6 +14,7 @@ preprocessing:
   prod_gold_path: "../data/gold/production_plannig_gold.parquet"
   covid_gold_path: "../data/gold/monthly_covid_rate_per_country_gold.parquet"
   ratio_gold_path: "../data/gold/ratio_vol_prod_gold.parquet"
+  ratio_gold_path_no_outliers: "../data/gold/ratio_vol_prod_gold_no_outliers.parquet"
   seasonal_feat_gold_path: "../data/gold/seasonal_feat_gold.parquet"
   timeseries_gold_path: "../data/gold/timeseries_gold.parquet"
   covid_feat_importance_path: "../data/gold/lgbm_covid_feat_importance.parquet"
@@ -22,61 +22,92 @@ preprocessing:
   # Reports
   pdf_report_ratios_path: "../reports/Timeseries_Vol_Prod_Ratio.pdf"
 
+outliers:
+  input_path: "../data/gold/ratio_vol_prod_gold.parquet"
+  output_pdf_path: "../reports/outlier_detection.pdf"
+  output_parquet_path: "../data/gold/ratio_vol_prod_gold_no_outliers.parquet"
+  target_col: "Vol/Prod_ratio_kg"
+  window: 12
+
 data_quality:
   ts_len_threshold: 8
 
-models: 
-  ml_model_names : ["LIGHTGBM", "LIGHTGBM_C"]
-  dl_model_names : ["NBEATS", "NHITS", "TFT"]
-  stats_model_names : [
-      "AutoARIMA",
-      "AutoETS",
-      "CES",
-      "SeasonalNaive",
-      "WindowAverage",
-  ]
-  chronos_model_names : ["CHRONOS"]
-  morai_model_names : ["MORAI"]
+models:
+  ml_model_names: ["LIGHTGBM", "LIGHTGBM_C"]
+  dl_model_names: ["NBEATS", "NHITS", "TFT"]
+  stats_model_names:
+    ["AutoARIMA", "AutoETS", "CES", "SeasonalNaive", "WindowAverage"]
+  chronos_model_names: ["CHRONOS"]
+  morai_model_names: ["MORAI"]
 
 feature_eng:
-  lag_months: [2 ,3, 4, 5, 6]
+  lag_months: [2, 3, 4, 5, 6]
   rolling_months: [2, 4, 6]
-  drop_cols : ['Actual_Vol_[Tons]', 
-             'Expected_Vol_[Tons]',
-             'Vol/Prod_ratio_ton',
-             'Actual_Vol_[Kg]']
+  drop_cols:
+    [
+      "Actual_Vol_[Tons]",
+      "Expected_Vol_[Tons]",
+      "Vol/Prod_ratio_ton",
+      "Actual_Vol_[Kg]",
+    ]
   target_col: "Vol/Prod_ratio_kg"
   expected_vol_col: "Expected_Vol_[Kg]"
   expected_vol_col_rename: "expected_vol_kg"
-  seasonal_features: 
+  seasonal_features:
     trend:
       apply: True
       col_name: "trend"
       rolling_months: [2, 4, 6]
-      lag_months: [2 ,3, 4, 5, 6]
+      lag_months: [2, 3, 4, 5, 6]
     sesonality:
       apply: True
       col_name: "sesonality"
       rolling_months: [6, 12]
       lag_months: [6, 12]
-    residuals: 
+    residuals:
       apply: True
       col_name: "residuals"
       rolling_months: [2, 4, 6]
-      lag_months: [2 ,3, 4, 5, 6]
+      lag_months: [2, 3, 4, 5, 6]
   covid_features:
     apply: True
-    cols_names: ['Austria', 'Belgium', 'Croatia', 'Cyprus', 'Czechia',
-       'Denmark', 'Estonia', 'Finland', 'France', 'Germany', 'Greece',
-       'Hungary', 'Iceland', 'Ireland', 'Italy', 'Latvia', 'Liechtenstein',
-       'Lithuania', 'Luxembourg', 'Malta', 'Netherlands', 'Norway', 'Poland',
-       'Portugal', 'Romania', 'Slovakia', 'Slovenia', 'Spain', 'Sweden']
+    cols_names:
+      [
+        "Austria",
+        "Belgium",
+        "Croatia",
+        "Cyprus",
+        "Czechia",
+        "Denmark",
+        "Estonia",
+        "Finland",
+        "France",
+        "Germany",
+        "Greece",
+        "Hungary",
+        "Iceland",
+        "Ireland",
+        "Italy",
+        "Latvia",
+        "Liechtenstein",
+        "Lithuania",
+        "Luxembourg",
+        "Malta",
+        "Netherlands",
+        "Norway",
+        "Poland",
+        "Portugal",
+        "Romania",
+        "Slovakia",
+        "Slovenia",
+        "Spain",
+        "Sweden",
+      ]
     rolling_months: [4, 6, 12]
     lag_months: [4, 6, 12]
-  production_features: 
+  production_features:
     apply: False
     production:
-      col_name: 'Production'
+      col_name: "Production"
       rolling_months: [4, 6, 12]
       lag_months: [4, 6, 12]
-

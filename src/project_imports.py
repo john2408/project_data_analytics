@@ -16,6 +16,7 @@ from src.data_preprocessing import (
     preprocesing_covid,
     data_quality_vol_analysis,
     apply_data_quality_timeseries,
+    apply_outlier_cleaning,
 )
 
 from src.main import (
